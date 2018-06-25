@@ -52,7 +52,8 @@ export default {
   methods: {
     clickFn(ev, linkid, textval) {
       if (textval == "农资进销存系统") {
-        window.open("http://trp.app315.net");
+        // window.open("http://trp.app315.net");
+        window.open("http://xuanen.trp.app315.net ");
       } else {
         let id = ev.target.dataset.id;
 

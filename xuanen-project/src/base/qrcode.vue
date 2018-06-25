@@ -12,7 +12,7 @@
         <div class="matext">微信扫一扫购买</div>
       </div>
     </div>
-    <div class="goumai"  v-if="pcurl"><div class="btngm"  :data-pcurl="pcurl" :data-turl="traceurl" @click="jumpFn($event)">购买</div></div>
+    <div class="goumai"  v-if="pcurl"><div class="btngm"  :data-pcurl="pcurl" :data-turl="traceurl" @click="jumpFn">购买</div></div>
  </div>
 
 </template>
@@ -22,6 +22,8 @@
 import QrcodeVue from 'qrcode.vue';
 export default {
   props: {
+    idval:{ type:String,
+      default:""},
     pcurl:{  type:String,
       default:""},
     mallurl: {
@@ -53,9 +55,13 @@ export default {
    QrcodeVue
   },
   methods: {
-    jumpFn(el){
-    
-      window.open(el.target.dataset.pcurl)
+    jumpFn(pcurl,type,el){
+       let urlstrp = `${location.protocol}//${
+          location.host
+        }/Click.aspx?ID=${this.idval}&type=1`;
+  
+       
+      window.open(urlstrp)
     }
   },
   created() {},

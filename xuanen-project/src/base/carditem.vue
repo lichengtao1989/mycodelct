@@ -1,5 +1,5 @@
 <template>
-  <div class="carditem" :data-pcurl="cardinfo.PCUrl" :data-clicks="cardinfo.Clicks" :data-pid="cardinfo.ProductID" @click="jumpFn(cardinfo.PCUrl,cardinfo.Clicks,cardinfo.ProductID)">
+  <div class="carditem" :data-pcurl="cardinfo.PCUrl" :data-clicks="cardinfo.Clicks" :data-pid="cardinfo.ProductID" @click="jumpFn(cardinfo.PCUrl,cardinfo.Clicks,cardinfo.ProductID,1)">
  <div class="swiperimg" >
        <swiper :options="swiperOption" >
     <swiper-slide v-for="(item,index) in cardinfo.ProductImg" :key="index" >
@@ -72,10 +72,10 @@ export default {
     psitem
   },
   methods: {
-    jumpFn(PCUrl, Clicks, ProductID) {
+    jumpFn(PCUrl, Clicks, ProductID,type) {
       if (PCUrl) {
         let urlstr = encodeURIComponent(PCUrl);
-        let urlstrp = `/Click.aspx?ProductID=${ProductID}&Clicks=${Clicks}&url=${urlstr}`;
+        let urlstrp = `/Click.aspx?ID=${ProductID}&type=${type}`;
         window.open(urlstrp);
       }
     }

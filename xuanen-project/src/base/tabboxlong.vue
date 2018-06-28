@@ -1,5 +1,5 @@
 <template>
-  <div class="tabbox" >
+  <div class="tabbox">
     <div class="djgd" @click="jumpMore">更多<span>>></span></div>
     <div class="top">
       <div :class="{tabactive:index==myindex}" @click="changeFn(index,item.id)" class="tabclick" :data-path="item.path" :data-listtype="item.id" v-for="(item,index) in textAry">{{item.text}}</div>
@@ -149,7 +149,7 @@
     components: {},
     methods: {
       imageSrcClear(src){
-        return src.replace(/^\"/,'').replace(/\"$/,'');
+        return src.replace(/^\"/, '').replace(/\"$/, '');
       },
       imgFn(img = []) {
         if (img.length > 0) {
@@ -376,7 +376,9 @@
       width: 165px;
       height: 16px;
     }
-      .rrhhh{height: auto;}
+    .rrhhh {
+      height: auto;
+    }
   }
 
   .honghei {
@@ -472,7 +474,7 @@
 
         text-overflow: ellipsis;
       }
-    
+
       .zycp {
         .rr {
           height: 50px;
@@ -496,7 +498,6 @@
     }
   }
 
-
   .listitemhhb {
     .cardhhb {
       @include po;
@@ -504,19 +505,19 @@
       left: -273px;
       z-index: 4;
       @include bs;
-      padding-bottom:15px;
+      padding-bottom: 15px;
       &.show-bottom {
         top: 30px;
         bottom: auto;
         @include baimg("../../static/images/box01-180.png");
       }
-      .ll{
-           width: 113px;
+      .ll {
+        width: 113px;
         text-align: right;
         padding-right: 13px;
       }
-      .rr{
-        width:115px;
+      .rr {
+        width: 115px;
       }
     }
     .info {
@@ -535,7 +536,7 @@
   @media screen and (max-width: 1785px) {
     .listitem:nth-of-type(2n + 1) {
       .boxtext {
-        left: 0;
+        left: 300px;
         @include baimg("../../static/images/box02.png");
         &.show-bottom {
           top: 30px;
@@ -543,7 +544,7 @@
         }
       }
       .cardhhb {
-        left: 0;
+        left: 300px;
         @include baimg("../../static/images/box02.png");
         &.show-bottom {
           top: 30px;

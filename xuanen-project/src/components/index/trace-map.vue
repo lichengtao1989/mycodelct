@@ -7,7 +7,7 @@
   import getRegionList from '@/api/getRegionList';
   import apiList from "@/api/api";
   import companyInfoFn from "@/api/companyinfo";
-  import greenMarkerIcon from '../../../static/images/green-marker.png';
+  import hideMarkerIcon from '../../../static/images/hide-marker.png';
   import redMarkerIcon from '../../../static/images/red-marker.png';
   const styleJson = [
     {featureType: 'background', elementType: 'all', stylers: {color: '#faf9f7', lightness: 1, visibility: 'on'}},
@@ -21,6 +21,7 @@
         map: null,
         center: {lng: 0, lat: 0, zoom: 0},
         hideInfoWindowTimeout: null,
+        boundarDrawed: [],
         cropMarkerData: []
       };
     },
@@ -39,6 +40,15 @@
         this.createMarkers();
         this.drawBoundaryLine();
       },
+      isBoundarDrawed(boundar){
+        let res = false;
+        this.boundarDrawed.forEach(item => {
+          if (JSON.stringify(item) === JSON.stringify(boundar)) {
+            res = true;
+          }
+        });
+        return res;
+      },
       drawBoundaryLine(){
         const bdary = new BMap.Boundary();
         this.cropList.forEach(crop => {
@@ -48,14 +58,17 @@
               const boundaries = rs.boundaries;
               if (boundaries && boundaries.length > 0) {
                 boundaries.forEach(boundar => {
-                  const ply = new BMap.Polygon(boundar, {
-                    strokeWeight: 2,
-                    strokeColor: '#ffffff',
-                    fillColor: '#88e7c5',
-                    strokeStyle: 'bold',
-                    fillOpacity: 0.3
-                  });
-                  this.map.addOverlay(ply);
+                  if (!this.isBoundarDrawed(boundar)) {
+                    this.boundarDrawed.push(boundar);
+                    const ply = new BMap.Polygon(boundar, {
+                      strokeWeight: 2,
+                      strokeColor: '#ffffff',
+                      fillColor: '#88e7c5',
+                      strokeStyle: 'bold',
+                      fillOpacity: 0.3
+                    });
+                    this.map.addOverlay(ply);
+                  }
                 });
               }
             });
@@ -68,7 +81,7 @@
           const lat = crop.latitude * 1;
           const point = new BMap.Point(lng, lat);
           const marker = new BMap.Marker(point, {
-            icon: new BMap.Icon(crop.isRegion ? greenMarkerIcon : redMarkerIcon, new BMap.Size(20, 20))
+            icon: new BMap.Icon(crop.isRegion ? hideMarkerIcon : redMarkerIcon, new BMap.Size(20, 20))
           });
           marker.addEventListener('mouseover', () => this.openInfo(crop));
           marker.addEventListener('click', () => this.openInfo(crop));

@@ -7,7 +7,7 @@
 </carditem>
     </div>
     <div class="cardbottom">
-<qrcodep :pcurl="urlFn(item.PCUrl,item.ProductID,item.Clicks)" :mallurl="urlFn(item.MallUrl,item.ProductID,item.Clicks)" :traceurl="urlFn(item.TraceUrl,item.ProductID,item.Clicks)"></qrcodep>
+<qrcodep :idval="item.ProductID" :pcurl="urlFn(item.PCUrl,item.ProductID,item.Clicks,1)" :mallurl="urlFn(item.MallUrl,item.ProductID,item.Clicks,3)" :traceurl="urlFn(item.TraceUrl,item.ProductID,item.Clicks,2)"></qrcodep>
     </div>
     </div>
  </div>
@@ -40,13 +40,13 @@ export default {
     qrcodep
   },
   methods: {
-    urlFn(url, id, clicks) {
+    urlFn(url, id, clicks,type) {
       if (url) {
         let urlstr = encodeURIComponent(url);
         let urlstrp = `${location.protocol}//${
           location.host
-        }/Click.aspx?ProductID=${id}&Clicks=${clicks}&url=${urlstr}`;
-        //  console.log(urlstrp)
+        }/Click.aspx?ID=${id}&type=${type}`;
+        
         return urlstrp;
       }
     }

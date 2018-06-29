@@ -61,7 +61,9 @@ export default {
 @import "static/style/_var.scss";
 
 .mycardwrap {
-  @include wh(273px, 426px);
+  // @include wh(273px, 426px);
+  width:273px;
+  min-height:403px;
   @include ov;
   border: 1px solid #ccc;
   @include pr;

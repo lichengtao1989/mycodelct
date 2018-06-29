@@ -4,7 +4,7 @@
        <swiper :options="swiperOption" >
     <swiper-slide v-for="(item,index) in cardinfo.ProductImg" :key="index" >
        <div class="djl">
-     点击量{{cardinfo.Clicks}}
+     {{cardinfo.Clicks}}
    </div>
    <div class="swiperinner">
     <!-- -->
@@ -54,7 +54,7 @@ export default {
   data() {
     return {
       num: 1000,
-      swiperOption: {
+        swiperOption: {
         autoplay: true,
         delay: 3000,
         stopOnLastSlide: false,
@@ -65,6 +65,17 @@ export default {
           clickable: true
         }
       }
+      // swiperOption: {
+      //   autoplay: true,
+      //   delay: 3000,
+      //   stopOnLastSlide: false,
+      //   autoplayDisableOnInteraction: false,
+      //   disableOnInteraction: false,
+      //   pagination: {
+      //     el: ".swiper-pagination",
+      //     clickable: true
+      //   }
+      // }
     };
   },
   computed: {},
@@ -93,24 +104,25 @@ export default {
 // .carditem{@include inline-block;margin-right:19px;}
 
 .djl {
-  @include wh(73px, 26px);
-  padding-top: 10px;
+
+  
   @include te;
-  @include baimg("../../static/images/djl.png");
+  
   @include ov;
   @include co(#fff);
   @include fo(11px);
   @include po;
-  top: 0;
-  left: 21px;
+  top: 327px;
+  right: 21px;
+  z-index: 8;
 }
 
 .swiperimg {
-  height: 271px;
+  height: 349px;
   @include pr;
 }
 .swiperinner {
-  height: 271px;
+  height: 100%;
 }
 .btext,
 .notetext {
@@ -125,4 +137,8 @@ export default {
   bottom: 0;
   width: 100%;
 }
+.ttshow{width:65%;height: 16px;line-height: 1;overflow: hidden;text-overflow: ellipsis;@include mag;white-space:nowrap;}
+</style>
+<style>
+.swiper-container{height: 100%;}
 </style>

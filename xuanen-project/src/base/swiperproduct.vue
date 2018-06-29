@@ -1,7 +1,11 @@
 <template>
   <div class="swiperproductwrap">
-     <div class="play" v-if="videoFlag" :data-src="srcstr" @click.stop.prevent='playFn(srcstr)'></div>
-     <div class="videopart" v-if="videoFlag" ></div>
+     <div class="play" v-if="videoFlag" :data-src="srcstr" @click.stop.prevent='playFn(srcstr)'>
+
+     </div>
+     <div class="videopart" v-if="videoFlag" >
+       <video :src="srcstr" preload="auto" width='100%' height='349'></video>
+     </div>
 
  <img :src="srcstr" class="imgs" v-if="!videoFlag"> 
  </div>
@@ -25,7 +29,8 @@ export default {
   },
   computed: {
    videoFlag(){
-     var flag=flag;
+console.log(this.srcstr)
+     var flag="";
      if(this.srcstr.indexOf('.mp4')>-1){
        flag=true;
      };
@@ -75,12 +80,23 @@ this.setVideoFlag(true);
 cursor: pointer;
 }
 .videopart{
-  @include wh(100%,212px);
-  @include ba(#000);
+  @include wh(100%,83%);
+  // @include ba(#000);
+  background: rgba(0, 0, 0, 0.1);
+  @include pr;
+  video{
+   
+    @include block;
+    @include po;top:0;
+    left:0;
+    z-index:1.5;
+    object-fit:fill;
+   
+  }
 }
 .imgs{
  @include block;
- @include wh(273px,271px);
+ @include wh(273px,100%);
 
 }
 

@@ -6,7 +6,9 @@
         <div class="smsy">扫码溯源</div>
          <!-- <div class="goumai"  v-if="pcurl"><div class="btngm"  :data-pcurl="pcurl" :data-turl="traceurl" @click="jumpFn">点击PC购买></div></div> -->
         <div class="posys posyssy">
+          <div class="bgqr">
         <qrcode-vue :value="traceurl" :size="size" level="H"></qrcode-vue>
+          </div>
         <div class="matext">微信扫一扫溯源</div>
         </div>
       </div><div class="ma" v-if="mallurl">
@@ -14,7 +16,7 @@
          <div class="smsy">扫码购买</div>
           <div class="goumai"  v-if="pcurl"><div class="btngm"  :data-pcurl="pcurl" :data-turl="traceurl" @click="jumpFn">点击PC购买></div></div>
      <div class="posys" :class="mcomp">
-        <qrcode-vue :value="mallurl" :size="size" level="H"></qrcode-vue>
+        <div class="bgqr"><qrcode-vue :value="mallurl" :size="size" level="H"></qrcode-vue></div>
         <div class="matext">微信扫一扫购买</div>
         </div>
       </div>
@@ -49,16 +51,15 @@ export default {
   },
   data() {
     return {
-      size: 168
+      size: 164
     };
   },
   computed: {
     mcomp() {
-    
-      if(this.pcurl){
-        return 'haspcurl'
-      }else{
-          return 'nopcurl'
+      if (this.pcurl) {
+        return "haspcurl";
+      } else {
+        return "nopcurl";
       }
     },
     malist() {
@@ -124,7 +125,7 @@ div.vPagination > ul > li.active > span[data-v-0b865a68] {
   top: 270px;
   left: 54px;
   @include wh(168px, 47px);
- 
+  cursor: pointer;
   // background: rgba(0, 0, 0, 0.57);
   .btngm {
     @include wh(158px, 43px);
@@ -157,7 +158,7 @@ div.vPagination > ul > li.active > span[data-v-0b865a68] {
     @include te;
     width: 100%;
 
- 
+    height: 54.5px;
     .maimg {
       @include block;
       @include wh(99px, 98px);
@@ -174,14 +175,18 @@ div.vPagination > ul > li.active > span[data-v-0b865a68] {
 //   }
 // }
 .posys {
- @include none;
+  @include none;
   @include po;
   top: 30px;
-  left: 54px;
+  left: 48px;
+ 
   z-index: 10;
+
 }
-.posyssy,.nopcurl{
-  top: 70px;
+.posyssy,
+.nopcurl {
+  top:80px;
+
 }
 .smsy {
   cursor: pointer;
@@ -191,19 +196,21 @@ div.vPagination > ul > li.active > span[data-v-0b865a68] {
   @include fo(16px);
 }
 .twoitem {
-  .ma{ width: 50%;}
-
+  .ma {
+    width: 50%;
+  }
 }
 .ma:hover {
-
   @include ba(#818181);
   .posys,
-  .goumai,.pobg {
+  .goumai,
+  .pobg {
     @include block;
   }
-  .smsy{
+  .smsy {
     color: #fff;
-    @include ba(#818181);
+    // @include ba(#818181);
+    background: rgba(0, 0, 0, 0.8);
   }
 }
 .pobg {
@@ -211,16 +218,22 @@ div.vPagination > ul > li.active > span[data-v-0b865a68] {
   @include po;
   width: 100%;
   height: 350px;
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.8);
   top: 0;
   left: 0;
-  z-index:9;
+  z-index: 9;
 }
-.matext{
+.matext {
   @include co(#fff);
   @include fo(16px);
-  width:100%;
+  width: 100%;
   @include te;
-  padding-top:14px;
+  padding-top: 14px;
+}
+.bgqr {
+  @include ba(#fff);
+  width: 178px;
+  height: 174px;
+  padding-top: 6px;
 }
 </style>

@@ -178,7 +178,7 @@ transform: translateZ(0);
 -moz-transform: translateZ(0);
 
 
-  z-index: 3;
+  z-index: 13;
 }
 .navlist {
   width: 1200px;

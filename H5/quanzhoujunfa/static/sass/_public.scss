@@ -1,0 +1,43 @@
+$base:50;
+.float{@include float;}
+.common-mask {
+    @include wh(100%, 100%);
+    @include po;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 5;
+    overflow: hidden;
+    word-break: break-all;
+    @include none;
+}
+
+.cutmask {
+    @include wh(100%, 100%);
+    @include ov;
+}
+
+.errmsg {
+	@include none;
+    width:580rem/$base;
+    @include p_center;
+    position: fixed;
+    z-index: 10;
+    @include ba(#fff);
+    @include border-radius(25rem/$base);
+    @include te;
+    .msgtext {
+        @include bs;
+        padding: 40rem/$base 15rem/$base;
+        @include fo(26rem/$base);
+        line-height:35rem/$base;
+    }
+    .err_btn {
+        @include li(99rem/$base);
+        @include fo(30rem/$base);
+        @include co(#eb5d6d);
+        border-top: 1px solid #e1e1e1;
+    }
+}

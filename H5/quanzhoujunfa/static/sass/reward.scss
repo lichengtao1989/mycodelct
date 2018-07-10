@@ -1,0 +1,228 @@
+@import "compass/css3";
+$base:75;
+@import "_var.scss";
+html,
+body {
+    @include wh(100%, 100%);
+}
+
+.main {
+    @include fo(24rem/$base);
+    @include wh(100%, 100%);
+    @include baimg('../images/bg02.png');
+    @include pr;
+    .yuanwrap {
+        @include wh(658rem/$base, 661rem/$base);
+        @include baimg('../images/yuan1.png');
+        @include po;
+        left: 50%;
+        margin-left: -329rem/$base;
+        top: 190rem/$base;
+        z-index: 2;
+        @include bs; // padding-top:47rem/$base;
+        // padding-left:47rem/$base;
+    }
+}
+
+ul,
+ol {
+    list-style-type: none;
+}
+
+select,
+input,
+img,
+select {
+    vertical-align: middle;
+}
+
+input {
+    font-size: 12px;
+}
+
+a {
+    text-decoration: none;
+    color: #000;
+}
+
+a:hover {
+    color: #c00;
+    text-decoration: none;
+}
+
+.clear {
+    clear: both;
+}
+
+.ppc {
+    @include p_center;
+}
+
+#wheelcanvas {
+    @include border-radius(50%);
+}
+
+.pointer {
+    @include p_center;
+    @include wh(223rem/$base, 258rem/$base);
+}
+
+.mask {
+    z-index: 4;
+    @include none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 3;
+    background: rgba(0, 0, 0, 0.6);
+    .msgbox {
+        @include p_center;
+        width: 580rem/$base;
+        @include ba(#fff);
+        @include border-radius(10rem/$base);
+        @include fo(32rem/$base);
+        padding-top: 20rem/$base;
+        .btn {
+            @include li(90rem/$base);
+            @include fo(38rem/$base);
+            @include te;
+            @include co(#009FF2);
+            border-top: 1px solid #ccc;
+            margin-top: 20rem/$base;
+        }
+        .errmsg {
+            @include te;
+            @include co(#666);
+            padding: 10rem/$base 0;
+        }
+        .ptitle {
+            @include te;
+        }
+        .reg {
+            padding-left: 45rem/$base;
+            padding-right: 45rem/$base;
+            line-height: 1.5;
+            @include fo(36rem/$base);
+            padding-top: 30rem/$base;
+            padding-bottom: 20rem/$base;
+        }
+        .smnr {
+            color: orange;
+        }
+        .hide {
+            @include none;
+        }
+    }
+}
+
+.mask2 {
+    z-index: 4;
+    @include none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 3;
+    background: rgba(0, 0, 0, 0.6);
+    .msgbox {
+        #ppi1 {
+            padding-left: 210rem/$base;
+            .leftp {
+                @include po;
+                top: 0;
+                left: 20rem/$base;
+                @include po;
+            }
+        }
+        .srsjh {
+            @include pr;
+            margin-top: 20rem/$base;
+            margin-bottom: 35rem/$base;
+            padding-left: 20rem/$base;
+            span {
+                margin-right: 15rem/$base;
+                width: 180rem/$base;
+                display: inline-block;
+                @include bs;
+                @include fo(26rem/$base);
+                text-align: right;
+            }
+            #ReceiverAddress {
+                display: inline-block;
+                @include wh(280rem/$base, 180rem/$base);
+                border: 1px solid #ccc;
+                outline: none;
+                padding: 10rem/$base 26rem/$base;
+            }
+            input {
+                display: inline-block;
+                @include wh(300rem/$base, 60rem/$base);
+                border: 1px solid #ccc;
+                border-radius: 10rem/$base;
+                outline: none;
+                @include ba(#dad9d8);
+                @include bs;
+                padding: 10rem/$base 26rem/$base;
+                @include fo(26rem/$base);
+            }
+        }
+        .tt {
+            @include te;
+            padding-bottom: 15rem/$base;
+            padding-left:30rem/$base;
+            padding-right:30rem/$base;
+        }
+        .rrt {
+            color: red;
+        }
+        .imgpp {
+            @include block;
+            @include wh(180rem/$base, 180rem/$base);
+            margin: 20rem/$base auto 60rem/$base auto;
+        }
+        @include p_center;
+        width: 580rem/$base;
+        @include ba(#fff);
+        @include border-radius(10rem/$base);
+        @include fo(32rem/$base);
+        padding-top:50rem/$base;
+    }
+    .tijiao {
+        @include li(90rem/$base);
+        @include fo(38rem/$base);
+        @include te;
+        @include co(#fff);
+        margin-top: 50rem/$base;
+        margin-bottom: 50rem/$base;
+        @include ba(#ffb820);
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+        @include border-radius(10rem/$base);
+    }
+}
+
+.msg {
+    @include none;
+    position: fixed;
+    @include border-radius(10rem/$base);
+    @include co(#fff);
+    background: rgba(0, 0, 0, 0.6);
+    @include p_center;
+    padding: 25rem/$base;
+    z-index: 5;
+    @include fo(28rem/$base);
+}
+.note{
+    color: #f64500;
+    padding-top:865rem/$base;
+    padding-left:100rem/$base;
+   
+    .noteval{
+        white-space: pre;
+        line-height:2;
+    }
+}

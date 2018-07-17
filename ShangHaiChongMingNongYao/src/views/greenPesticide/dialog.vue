@@ -1,6 +1,6 @@
 <template>
-  <nz-dialog customClass="width-850" ref="dialog" :title="title" :okHandler="submit">
-    <nz-scrollbar style="height:400px">
+  <nz-dialog customClass="width-850 mt-5vh" ref="dialog" :title="title" :okHandler="submit">
+    <nz-scrollbar style="height:600px">
       <div style="padding-right: 15px">
         <nz-form label-width="130px" ref="form" :model="form" :rules="rules">
           <div class="left-group">
@@ -18,20 +18,20 @@
                 <div class="select-wrap clear" slot="suffix">
                   <nz-valid-reject>
                     <div class="select-item">
-                      <nz-select placeholder="包装单位" v-model="form.SpecUnit"></nz-select>
+                      <nz-enum-select :options="$enum('规格包装类型').values" placeholder="包装类型" v-model="form.SpecType"></nz-enum-select>
                     </div>
                     <div class="select-item">
-                      <nz-select placeholder="包装类型" v-model="form.ReagentType"></nz-select>
+                      <nz-enum-select :options="$enum('规格包装单位').values" placeholder="包装单位" v-model="form.SpecUnit"></nz-enum-select>
                     </div>
                   </nz-valid-reject>
                 </div>
               </nz-input>
             </nz-form-item>
-            <nz-form-item label="剂型" prop="Dosage">
-              <nz-input v-model="form.Dosage"></nz-input>
+            <nz-form-item label="剂型" prop="ReagentType">
+              <nz-input v-model="form.ReagentType"></nz-input>
             </nz-form-item>
-            <nz-form-item label="商品码" prop="GoodsCode">
-              <nz-input v-model="form.GoodsCode"></nz-input>
+            <nz-form-item label="商品码" prop="ProductBarCode">
+              <nz-input v-model="form.ProductBarCode"></nz-input>
             </nz-form-item>
             <nz-form-item label="防治对象" prop="ControlTarget">
               <nz-input v-model="form.ControlTarget"></nz-input>
@@ -61,8 +61,8 @@
             <nz-form-item label="产品执行标准编号" prop="ExcuteStandardCode">
               <nz-input v-model="form.ExcuteStandardCode"></nz-input>
             </nz-form-item>
-            <nz-form-item label="用药量（亩）" prop="key3">
-              <nz-input v-model="form.key3"></nz-input>
+            <nz-form-item label="用药量（亩）" prop="Dosage">
+              <nz-input v-model="form.Dosage"></nz-input>
             </nz-form-item>
             <nz-form-item label="施用方法" prop="UsageWay">
               <nz-input v-model="form.UsageWay"></nz-input>
@@ -96,13 +96,14 @@
           RegisteCrop: '',
           Dosage: '',
           ExcuteStandardCode: '',
-          GoodsCode: '',
+          ProductBarCode: '',
           ControlTarget: '',
           UsageWay: '',
           ExpiryDate: '',
           SaleUnitPrice: '',
           ImageInfo: []
         },
+        editID: null,
         form: {},
         rules: {
           ProductName: [this.$formRules.required]
@@ -117,7 +118,10 @@
            * 执行表单提交
            * const isSaveSuccess = this.$model('demo').save(this.form);
            * */
-          const isSaveSuccess = true;
+          const formData = Object.jsonClone(this.form);
+          formData.id = this.editID;
+          console.log(formData);
+          const isSaveSuccess = await this.$model('greenPesticide').update(formData);
           if (isSaveSuccess) {
             this.$emit('save-success');
             this.$refs.dialog.hide();
@@ -127,9 +131,11 @@
       },
       init(){
         this.form = Object.jsonClone(this.formModel);
+        this.editID = null;
       },
       async initEdit(rowData){
         const data = await this.$model('greenPesticide').getInfo(rowData.Id);
+        this.editID = rowData.Id;
         if (data) {
           this.form.ProductName = data.ProductName || '';
           this.form.TraderMark = data.TraderMark || '';
@@ -139,19 +145,31 @@
           this.form.Ingredient = data.Ingredient || '';
           this.form.SpecQuantity = data.SpecQuantity || '';
           this.form.SpecUnit = data.SpecUnit || '';
+          this.form.SpecType = data.SpecType || '';
           this.form.ReagentType = data.ReagentType || '';
           this.form.RegisteCrop = data.RegisteCrop || '';
           this.form.Dosage = data.Dosage || '';
           this.form.ExcuteStandardCode = data.ExcuteStandardCode || '';
-          this.form.GoodsCode = data.GoodsCode || '';
+          this.form.ProductBarCode = data.ProductBarCode || '';
           this.form.ControlTarget = data.ControlTarget || '';
           this.form.UsageWay = data.UsageWay || '';
           this.form.ExpiryDate = data.ExpiryDate || '';
           this.form.SaleUnitPrice = data.SaleUnitPrice || '';
-          this.form.ImageInfo = data.ImageInfo || [];
+          this.form.ImageInfo = this.ImageInfoParse(data.ImageInfo);
           return true;
         }
         return false;
+      },
+      ImageInfoParse(img){
+        if (img) {
+          if (typeof img === 'string') {
+            return JSON.parse(img);
+          } else {
+            return img;
+          }
+        } else {
+          return [];
+        }
       },
       async show(data){
         let initSuccess = true;

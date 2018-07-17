@@ -1,7 +1,7 @@
 <template>
   <div>
     <nz-list :requestUrl="$apiUrl.FARMERSFILING.GET_LIST" ref="list" :needAdvancedSearch="true" baseSearchPlaceholder="输入生产主体、身份证号、手机号搜索">
-      <div slot="operate">
+      <div slot="operate" v-if="userInfo.role!=3">
         <nz-button type="primary" size="small">
           <i class="nz-icon-export"></i>
           <span>导入</span>
@@ -56,7 +56,7 @@
         <nz-table-column prop="RelationPersonIDCode" min-width="150" label="联系人身份证号" sortable="custom"></nz-table-column>
         <nz-table-column prop="RelationPerson" min-width="120" label="联系人" sortable="custom"></nz-table-column>
         <nz-table-column prop="RelationPersonPhoneNum" min-width="150" label="联系人手机号" sortable="custom"></nz-table-column>
-        <nz-table-column min-width="120" fixed="right" label="操作">
+        <nz-table-column min-width="120" fixed="right" label="操作" v-if="userInfo.role!=3">
           <template slot-scope="scope">
             <nz-button type="text" @click="disabledConfirm(scope.row)" v-if="scope.row.Status==0">禁用</nz-button>
             <nz-button type="text" @click="enable(scope.row)" v-if="scope.row.Status==1">启用</nz-button>
@@ -70,7 +70,9 @@
 <script>
   export default {
     data(){
+      const userInfo = this.$storage.get('userInfo');
       return {
+        userInfo,
         search: {ProductMainPart: '', ChargePersonIDCode: '', PhoneNum: '', RelationPerson: '', Crop: '', AuthStatus: '', Town: '', Village: ''}
       }
     },

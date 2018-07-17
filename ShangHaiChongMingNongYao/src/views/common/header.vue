@@ -24,7 +24,7 @@
     },
     async mounted() {
       if (this.$storage.get('userInfo')) {
-        this.userName = this.$storage.get('userInfo').mobile;
+        this.userName = this.$storage.get('userInfo').accountName;
       }
     }
   };

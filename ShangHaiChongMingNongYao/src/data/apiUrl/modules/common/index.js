@@ -1,4 +1,8 @@
 export default {
+  //获取单个用户信息
+  FARMERINFO: '/lsnyApi/FarmerInfo/Get',
+  //图片上传
+  UPLOAD_IMAGE: '/lsnyApi/Common/UploadImage',
   //农药品详情
   PRODUCTPESTICIDEINFO: '/lsnyApi/ProductPesticideInfo/Get',
   DROP_DOWN: {

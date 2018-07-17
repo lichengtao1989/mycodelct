@@ -35,7 +35,7 @@
           <nz-table-column prop="SupplierName" min-width="120" label="供应商名称" sortable="custom"></nz-table-column>
           <nz-table-column prop="HandPerson" min-width="120" label="经手人" sortable="custom"></nz-table-column>
           <nz-table-column prop="InStockTime" min-width="120" label="入库时间" sortable="custom"></nz-table-column>
-          <nz-table-column prop="LastUpdateTime" min-width="120" label="操作时间" sortable="custom"></nz-table-column>
+          <nz-table-column prop="CreateTime" min-width="120" label="操作时间" sortable="custom"></nz-table-column>
           <nz-table-column min-width="120" label="操作">
             <template slot-scope="scope">
               <nz-button type="text" @click="lookmore(scope.row)">详情</nz-button>

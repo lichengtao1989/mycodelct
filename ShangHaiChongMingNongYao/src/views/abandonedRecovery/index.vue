@@ -1,76 +1,107 @@
 <template>
   <div>
-    <nz-list :requestUrl="$apiUrl.PURCHASE.GET_LIST" ref="list" :needAdvancedSearch="true" baseSearchPlaceholder="进货单号">
+    <nz-list :requestUrl="$apiUrl.RECYCLING.LIST" ref="list" :needAdvancedSearch="true" baseSearchPlaceholder="来源或回收点">
+      <div slot="operate">
+        <nz-button type="primary" size="small" @click="addDialog">
+          <i class="nz-icon-add"></i>新建
+        </nz-button>
+        <!-- <nz-button type="primary" size="small" @click="showDialog">
+          <i class="nz-icon-add"></i>固定宽度2列
+        </nz-button> -->
+      </div>
       <div slot="search">
-        <nz-search-item label="销售单号" search-key="key1" v-model="search.key1">
-          <nz-input v-model="search.key1"></nz-input>
+        <nz-search-item label="来源者" search-key="farmer" v-model="search.farmer">
+          <nz-input v-model="search.farmer"></nz-input>
         </nz-search-item>
-        <nz-search-item label="商品名称" search-key="key2" v-model="search.key2">
-          <nz-remote-select :remoteUrl="$apiUrl.COMMON.DROP_DOWN.SUPPLIER" v-model="search.key2"></nz-remote-select>
+        <nz-search-item label="回收点" search-key="farmCapitalStore" v-model="search.farmCapitalStore">
+          <nz-input v-model="search.farmCapitalStore"></nz-input>
         </nz-search-item>
-        <nz-search-item label="销售时间" search-key="key3" v-model="search.key3">
-          <nz-input v-model="search.key3"></nz-input>
+        <nz-search-item label="日期" search-key="createTime" v-model="search.createTime">
+          <nz-input v-model="search.createTime"></nz-input>
         </nz-search-item>
-        <nz-search-item label="购买人" search-key="key3" v-model="search.key3">
-          <nz-input v-model="search.key3"></nz-input>
-        </nz-search-item>
-        <nz-search-item label="身份证号" search-key="key3" v-model="search.key3">
-          <nz-input v-model="search.key3"></nz-input>
+        <nz-search-item label="预警类型" search-key="earlyWarningType" v-model="search.earlyWarningType">
+          <nz-input v-model="search.earlyWarningType"></nz-input>
         </nz-search-item>
       </div>
       <template slot="tableColumns">
-        <nz-table-column prop="id1" min-width="120" label="序号" sortable="custom"></nz-table-column>
-        <nz-table-column prop="id" min-width="120" label="销售单号" sortable="custom"></nz-table-column>
-        <nz-table-column prop="yn" min-width="120" label="订单金额" sortable="custom"></nz-table-column>
-        <nz-table-column prop="yn" min-width="120" label="购买人" sortable="custom"></nz-table-column>
-        <nz-table-column prop="v1" min-width="120" label="身份证号" sortable="custom"></nz-table-column>
-        <nz-table-column prop="v1" min-width="120" label="业务员" sortable="custom"></nz-table-column>
-        <nz-table-column prop="v1" min-width="120" label="销售时间" sortable="custom"></nz-table-column>
-        <nz-table-column prop="v1" min-width="120" label="状态" sortable="custom"></nz-table-column>
+        <nz-table-column prop="ID" min-width="120" label="序号" sortable="custom"></nz-table-column>
+        <nz-table-column prop="EarlyWarningType" min-width="120" label="预警类型" sortable="custom">
+          <template slot-scope="scope">
+            {{typeFn(scope.row.EarlyWarningType)}}
+          </template>
+        </nz-table-column>
+        <nz-table-column prop="Farmer" min-width="120" label="来源者" sortable="custom"></nz-table-column>
+        <nz-table-column prop="FarmCapitalStore" min-width="120" label="回收点" sortable="custom"></nz-table-column>
+        <nz-table-column prop="CreateTime" min-width="120" label="日期" sortable="custom"></nz-table-column>
         <nz-table-column min-width="120" fixed="right" label="操作">
           <template slot-scope="scope">
             <nz-button type="text" @click="viewDetail(scope.row)">查看详情</nz-button>
-            <!-- <nz-button type="text" @click="print(scope.row)">打印</nz-button>
-            <nz-button type="text" @click="cancelGoods(scope.row)">退货</nz-button>
-            <nz-button type="text" @click="cancel(scope.row)">撤销订单</nz-button> -->
           </template>
         </nz-table-column>
       </template>
     </nz-list>
     <detail-dialog ref="dialog" @save-success="refresh"></detail-dialog>
+    <detail-edit ref="dialogedit" @save-success="refresh"></detail-edit>
+
   </div>
 </template>
 <script>
-import detailDialog from './dialog.vue';
-export default {
-  components: { detailDialog },
-  data() {
-    return {
-      search: { key1: '', key2: '', key3: '' }
-    };
-  },
-  methods: {
-    print(row) {},
-    viewDetail(row) {
-      this.$refs.dialog.show(row);
+  import detailDialog from './dialog.vue';
+  import detailEdit from './dialogedit.vue';
+
+  export default {
+    components: {detailDialog, detailEdit},
+    data() {
+      return {
+        search: {farmer: '', farmCapitalStore: '', earlyWarningType: '', createTime: ''}
+      };
     },
-    async cancel(row) {
-      const result = await this.$message.confirm('真的要撤销该订单吗?');
-      if (result) {
-        //
-        this.refresh();
+    methods: {
+      typeFn(type) {
+        let str = '';
+        if (parseInt(type) == 0) {
+          str = '无';
+        } else if (parseInt(type) == 1) {
+          str = '含违禁药品包装';
+        } else if (parseInt(type) == 2) {
+          str = '含非绿色农药包装';
+        }
+        return str;
+      },
+      addDialog() {
+        this.$refs.dialogedit.show();
+      },
+      print(row) {
+      },
+      async viewDetail(row) {
+        let {err, res} = await this.$ajax.post(this.$apiUrl.RECYCLING.DETAIL, {id: row.ID});
+        if (err) {
+          this.$message.showError(err);
+          return;
+        }
+        if (res.resultCode == 200) {
+          this.$refs.dialog.show(res.data);
+        }
+        // console.log(row);
+        // this.$refs.dialog.show(row);
+      },
+      async cancel(row) {
+        const result = await this.$message.confirm('真的要撤销该订单吗?');
+        if (result) {
+          //
+          this.refresh();
+        }
+      },
+      async cancelGoods(row) {
+        const result = await this.$message.confirm('真的要确认收货吗?');
+        if (result) {
+          //
+          this.refresh();
+        }
+      },
+      refresh() {
+        this.$refs.list.refresh();
       }
-    },
-    async cancelGoods(row) {
-      const result = await this.$message.confirm('真的要确认收货吗?');
-      if (result) {
-        //
-        this.refresh();
-      }
-    },
-    refresh() {
-      this.$refs.list.refresh();
     }
-  }
-};
+  };
 </script>

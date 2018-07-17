@@ -25,11 +25,11 @@
         <nz-table-column prop="ProductName" min-width="120" label="农药名称" sortable="custom"></nz-table-column>
         <nz-table-column prop="TraderMark" min-width="120" label="注册商标" sortable="custom"></nz-table-column>
         <nz-table-column prop="SpecQuantity" min-width="120" label="规格" sortable="custom">
-          <!-- <template slot-scope="scope">
+          <template slot-scope="scope">
             <div>
               {{unitFn(scope.row.SpecQuantity,scope.row.SpecUnit)}}
             </div>
-          </template> -->
+          </template>
         </nz-table-column>
         <nz-table-column prop="ProductionBatch" min-width="120" label="批次" sortable="custom"></nz-table-column>
         <nz-table-column prop="ProductionTime" min-width="120" label="生产日期" sortable="custom"></nz-table-column>
@@ -40,7 +40,7 @@
         <nz-table-column prop="InStockType" min-width="120" label="入库类型" sortable="custom">
           <template slot-scope="scope">
             <div>
-              <span></span>{{statusFn(scope.row.InStockType)}}</div>
+              <span></span>{{statusFn(scope.row.InstockWay)}}</div>
           </template>
         </nz-table-column>
         <nz-table-column prop="Position" min-width="120" label="存放仓位" sortable="custom"></nz-table-column>
@@ -75,12 +75,14 @@ export default {
     statusFn(type) {
       let str = '';
       if (type == 0) {
-        str = '进货入库';
+        str = '单个入库';
+      }else{
+        str = '整箱入库';
       }
       return str;
     },
     unitFn(num, unit) {
-      return num + '/' + unit;
+      return num + 'g/' + unit;
     },
     beforeSearch(obj) {
       return { ...obj, InstockRecordId: this.$route.query.id };

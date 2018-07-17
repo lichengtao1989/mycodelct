@@ -24,7 +24,11 @@
         <nz-table-column prop="RegisteCode" min-width="120" label="农药登记号" sortable="custom"></nz-table-column>
         <nz-table-column prop="ProductName" min-width="120" label="农药名称" sortable="custom"></nz-table-column>
         <nz-table-column prop="TraderMark" min-width="120" label="注册商标" sortable="custom"></nz-table-column>
-        <nz-table-column prop="SpecQuantity" min-width="120" label="规格" sortable="custom"></nz-table-column>
+        <nz-table-column prop="SpecQuantity" min-width="120" label="规格" sortable="custom">
+           <template slot-scope="scope">
+            <div>{{scope.row.SpecQuantity+'g/'+scope.row.SpecUnit}}</div>
+          </template>
+        </nz-table-column>
         <nz-table-column prop="Batch" min-width="120" label="批次" sortable="custom"></nz-table-column>
         <nz-table-column prop="ProductionDate" min-width="120" label="生产日期" sortable="custom"></nz-table-column>
         <nz-table-column prop="Count" min-width="120" label="数量" sortable="custom"></nz-table-column>

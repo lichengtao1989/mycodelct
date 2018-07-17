@@ -8,10 +8,11 @@
           <nz-form-item label="供应商" prop="PesticideId">
             <nz-remote-select v-model="form.SupplierId" :remote-url="$apiUrl.COMMON.DROP_DOWN.SUPPLIER" @select="selectSupplieFn" :params="{ pageNum: 1, pageSize:100 }" value-key="id" label-key="name"></nz-remote-select>
             <nz-button type="text" @click="addDialog">
-              <i class="nz-icon-add2 add-icon"></i>创建</nz-button>
+              <i class="nz-icon-add2 add-icon"></i>创建
+            </nz-button>
           </nz-form-item>
           <nz-form-item label=" 入库时间" prop="InStockTime">
-            <nz-datepicker format="yyyy-MM-dd" placeholder="日期选择" :chooseFuture="true" type="date" v-model="form.InStockTime"></nz-datepicker>
+            <nz-datepicker placeholder="日期选择" :chooseFuture="true" type="datetime" v-model="form.InStockTime"></nz-datepicker>
           </nz-form-item>
           <nz-form-item label="经手人" prop="HandPerson">
             <nz-input v-model="form.HandPerson" placeholder="请输入经手人"></nz-input>
@@ -21,12 +22,14 @@
             <nz-remote-select v-model="PesticideName" class="cusotmer-input" :remote-url="$apiUrl.COMMON.DROP_DOWN.PESTICIDEINFO" placeholder="请选择商品" @select="clickItem">
             </nz-remote-select>
             <nz-button @click="switching" type="text" class="input-mode">
-              <i class="nz-icon-switching count-span"></i>输入模式</nz-button>
+              <i class="nz-icon-switching count-span"></i>输入模式
+            </nz-button>
           </nz-form-item>
           <nz-form-item label="搜索商品" v-else prop="productBarCode" ref="scanProduct" class="scan-code">
             <nz-input v-model="productBarCode" :autofocus="productModel" placeholder="请扫描商品" class="cusotmer-input" @keyup.enter.native="clickItem2"></nz-input>
             <nz-button @click="switching" type="text" class="input-mode">
-              <i class="nz-icon-switching count-span"></i>扫码模式</nz-button>
+              <i class="nz-icon-switching count-span"></i>扫码模式
+            </nz-button>
           </nz-form-item>
         </nz-form>
       </div>
@@ -43,7 +46,7 @@
                 <span class="mc">{{item.ProductName}}</span>
               </td>
               <td>
-                <span class="guige">{{item.format}}</span>
+                <span class="guige">{{item.SpecQuantity}}{{item.SpecUnit}}/{{item.SpecType}}</span>
               </td>
               <td>
                 <nz-input placeholder="数量" v-model="item.Amount"></nz-input>
@@ -74,7 +77,7 @@
           <i class="nz-icon-confirm"></i>
           入库
         </nz-button>
-        <nz-button size="small">
+        <nz-button size="small" @click="cancelJump">
           <i class="nz-icon-close"></i>
           取消
         </nz-button>
@@ -108,6 +111,9 @@ export default {
     }
   },
   methods: {
+    cancelJump() {
+      this.$router.push({ path: `${window.location.origin}/#/` });
+    },
     delDataAryItem(item, idx) {
       console.log(item, idx);
       this.listAry.splice(idx, 1);
@@ -125,7 +131,8 @@ export default {
           this.listAry.push({
             PesticideId: datainfo.Id || '',
             ProductName: datainfo.ProductName || '',
-            format: datainfo.SpecQuantity || '',
+            SpecQuantity: datainfo.SpecQuantity || '',
+            SpecType: datainfo.SpecType || '',
             TraderMark: datainfo.TraderMark || '',
             Amount: '',
             SpecUnit: datainfo.SpecUnit || '',
@@ -140,6 +147,7 @@ export default {
     },
     async getDetail(id) {
       let { err, res } = await this.$ajax.post(this.$apiUrl.COMMON.PRODUCTPESTICIDEINFO, { id: id });
+      this.PesticideName = '';
       return { err, res };
     },
     async putIn() {
@@ -171,26 +179,35 @@ export default {
     },
     async clickItem2() {
       let pObj = { SearchType: 1, Keyword: this.productBarCode };
+      this.productBarCode = '';
+      // console.log(pObj);
       let { err, res } = await this.$ajax.post(this.$apiUrl.COMMON.DROP_DOWN.PESTICIDEINFO, pObj);
-      // console.log(err, res);
       if (err) {
       } else {
         let info = res.data;
-        let datainfo = info[0];
+
         if (info.length > 0) {
-          this.listAry.push({
-            PesticideId: datainfo.Id || '',
-            ProductName: datainfo.ProductName || '',
-            format: datainfo.SpecQuantity || '',
-            TraderMark: datainfo.TraderMark || '',
-            Amount: '',
-            SpecUnit: datainfo.SpecUnit || '',
-            ProductionBatch: '',
-            ProductionTime: '',
-            ExpireTime: '',
-            position: '',
-            BarCode: ''
-          });
+          let id = info[0].id;
+          let { err, res } = await this.$ajax.post(this.$apiUrl.COMMON.PRODUCTPESTICIDEINFO, { id: id });
+          // console.log(err, res);
+          if (err) {
+          } else {
+            let datainfo = res.data;
+            this.listAry.push({
+              PesticideId: datainfo.Id || '',
+              ProductName: datainfo.ProductName || '',
+              SpecQuantity: datainfo.SpecQuantity || '',
+              SpecType: datainfo.SpecType || '',
+              TraderMark: datainfo.TraderMark || '',
+              Amount: '',
+              SpecUnit: datainfo.SpecUnit || '',
+              ProductionBatch: '',
+              ProductionTime: '',
+              ExpireTime: '',
+              position: '',
+              BarCode: ''
+            });
+          }
         } else {
           this.$message.showError('该商品条码不存在');
         }
@@ -206,6 +223,7 @@ export default {
       this.$refs.dialogcode.show(data);
     },
     refreshGetData(data) {
+      console.log(data);
       this.$set(this.listAry, this.myindex, data);
     },
     addDialog() {
@@ -258,6 +276,7 @@ export default {
     width: 800px;
   }
 }
+
 .nexttable {
   padding-left: 60px;
   padding-right: 60px;
@@ -305,6 +324,7 @@ export default {
     }
   }
 }
+
 .nextbtn {
   text-align: center;
   padding-top: 25px;

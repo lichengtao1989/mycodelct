@@ -68,7 +68,8 @@ export default {
       this.form.pesticideName = data.pesticideName || '';
       this.form.registeredTrademark = data.registeredTrademark || '';
       this.form.pesticideCode = data.pesticideCode || '';
-      this.form.specification = data.specification || '';
+      this.form.warnCount = data.warnCount || '';
+      this.form.specification = `${data.specQuantity}${data.specUnit}/${data.specType}` || '';
     },
     show(data) {
       this.init();

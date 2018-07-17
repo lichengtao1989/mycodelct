@@ -1,7 +1,7 @@
 <template>
   <div>
     <nz-list :requestUrl="$apiUrl.GREENPESTICIDE.GET_LIST" ref="list" :needAdvancedSearch="true" baseSearchPlaceholder="请输入名称、商标、登记证号查询">
-      <div slot="operate">
+      <div slot="operate" v-if="userInfo.role!=3">
         <nz-button type="primary" size="small" @click="addDialog">
           <i class="nz-icon-add"></i>
           <span>添加</span>
@@ -16,27 +16,29 @@
         </nz-button>
       </div>
       <div slot="search">
-        <nz-search-item label="农药名称" search-key="key1" v-model="search.key1">
-          <nz-remote-select :remoteUrl="$apiUrl.COMMON.DROP_DOWN.PESTICIDEINFO" v-model="search.key1" placeholder="请输入农药名称"></nz-remote-select>
+        <nz-search-item label="农药名称" search-key="ProductName" v-model="search.ProductName">
+          <nz-input v-model="search.ProductName" placeholder="请输入农药名称"></nz-input>
         </nz-search-item>
-        <nz-search-item label="注册商标" search-key="key2" v-model="search.key2">
-          <nz-input v-model="search.key2" placeholder="请输入商标品牌"></nz-input>
+        <nz-search-item label="注册商标" search-key="TraderMark" v-model="search.TraderMark">
+          <nz-input v-model="search.TraderMark" placeholder="请输入商标品牌"></nz-input>
         </nz-search-item>
-        <nz-search-item label="商品条码" search-key="key3" v-model="search.key3">
-          <nz-input v-model="search.key3" placeholder="请输入要查询的商品条码"></nz-input>
+        <nz-search-item label="商品条码" search-key="ProductBarCode" v-model="search.ProductBarCode">
+          <nz-input v-model="search.ProductBarCode" placeholder="请输入要查询的商品条码"></nz-input>
         </nz-search-item>
-        <nz-search-item label="登记证号" search-key="key4" v-model="search.key4">
-          <nz-input v-model="search.key4" placeholder="请输入农药登记证号"></nz-input>
+        <nz-search-item label="登记证号" search-key="RegisteCode" v-model="search.RegisteCode">
+          <nz-input v-model="search.RegisteCode" placeholder="请输入农药登记证号"></nz-input>
         </nz-search-item>
       </div>
       <template slot="tableColumns">
         <nz-table-column prop="ProductName" min-width="120" label="农药名称" sortable="custom"></nz-table-column>
         <nz-table-column prop="TraderMark" min-width="120" label="注册商标" sortable="custom"></nz-table-column>
         <nz-table-column prop="RegisteCode" min-width="120" label="登记证号" sortable="custom"></nz-table-column>
-        <nz-table-column prop="SpecQuantity" min-width="120" label="规格" sortable="custom"></nz-table-column>
+        <nz-table-column prop="SpecQuantity" min-width="120" label="规格" sortable="custom">
+          <template slot-scope="scope"><span>{{spec(scope.row)}}</span></template>
+        </nz-table-column>
         <nz-table-column prop="ProductionEnterprise" min-width="120" label="生产企业" sortable="custom"></nz-table-column>
         <nz-table-column prop="SaleUnitPrice" min-width="120" label="销售单价" sortable="custom"></nz-table-column>
-        <nz-table-column min-width="120" fixed="right" label="操作">
+        <nz-table-column min-width="120" fixed="right" label="操作" v-if="userInfo.role!=3">
           <template slot-scope="scope">
             <nz-button type="text" @click="editDialig(scope.row)">编辑</nz-button>
             <nz-button type="text" @click="delConfirm">删除</nz-button>
@@ -52,11 +54,20 @@
   export default {
     components: {addEditDialog},
     data(){
+      const userInfo = this.$storage.get('userInfo');
       return {
-        search: {key1: '', key2: '', key3: '', key4: ''}
+        userInfo,
+        search: {ProductName: '', TraderMark: '', ProductBarCode: '', RegisteCode: ''}
       }
     },
     methods: {
+      spec(row){
+        const {SpecQuantity, SpecUnit, SpecType} = row;
+        if (SpecQuantity && SpecUnit && SpecType) {
+          return `${SpecQuantity}${SpecUnit}/${SpecType}`;
+        }
+        return '';
+      },
       addDialog(){
         this.$refs.dialog.show();
       },

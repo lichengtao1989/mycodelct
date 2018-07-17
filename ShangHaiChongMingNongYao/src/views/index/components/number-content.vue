@@ -46,7 +46,7 @@
   .number, .describe {
     padding: 0;
     margin: 0;
-    margin-left: 16.8%;
+    margin-left: 13.8%;
   }
 
   .number {

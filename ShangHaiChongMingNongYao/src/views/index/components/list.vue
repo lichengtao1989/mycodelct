@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div style="padding: 0 22px">
-      <table class="index-list">
+    <div style="padding: 0 3%">
+      <table class="index-list" :style="config.tableStyle">
         <thead>
         <tr>
           <th v-for="(item,index) in config.columns" :key="index" :style="item.style">{{item.name}}</th>
@@ -11,25 +11,26 @@
         <tr v-for="(dataItem,dataIndex) in config.data" :key="dataIndex">
           <td v-for="(col,index) in config.columns" :key="index" :style="col.style">
             <component v-if="col.component" :is="col.component" :data="dataItem"></component>
-            <div v-if="!col.component && col.render" v-html="col.render(dataItem)"></div>
-            <span v-if="!col.component && !col.render">{{ dataItem[col.key] }}</span>
+            <div class="inner-text" v-if="!col.component && col.render" v-html="col.render(dataItem)"></div>
+            <div class="inner-text" :title="dataItem[col.key]" v-if="!col.component && !col.render">{{ dataItem[col.key] }}</div>
           </td>
         </tr>
         </tbody>
       </table>
     </div>
     <div class="more">
-      <a>
+      <router-link class="more-link" :to="moreTarget">
         <i class="nz-icon-more"></i>
         <span>更多</span>
-      </a>
+      </router-link>
     </div>
   </div>
 </template>
 <script>
   export default {
     props: {
-      config: Object
+      config: Object,
+      moreTarget: {type: String, default: ''}
     },
     data(){
       return {};
@@ -46,6 +47,11 @@
     tr, td, th {
       height: 43px;
       border-bottom: 1px solid #ededed;
+      white-space: nowrap;
+      .inner-text {
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
     }
     th {
       color: #999999 !important;
@@ -55,15 +61,29 @@
     }
   }
 
+  @media screen and (max-width: 1400px) {
+    .index-list {
+      font-size: 13px;
+    }
+  }
+
+  @media screen and (max-width: 1300px) {
+    .index-list {
+      font-size: 12px;
+    }
+  }
+
   .more {
     height: 40px;
     background-color: #f9f9f9;
     text-align: right;
     color: @primaryColor;
     line-height: 40px;
-    a {
+    .more-link {
       margin-right: 20px;
       cursor: pointer;
+      text-decoration: none;
+      color: @primaryColor;
     }
   }
 </style>

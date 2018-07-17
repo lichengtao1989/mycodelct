@@ -7,25 +7,25 @@
             <link-item target="salesBill" :icon="nineIcons.xskd" text="销售开单"></link-item>
             <link-item target="purchaseApplication" :icon="nineIcons.thsq" text="进货申请"></link-item>
             <link-item target="stock" :icon="nineIcons.kc" text="库存"></link-item>
-            <link-item target="cancAdd" :icon="nineIcons.thdj" text="退货登记"></link-item>
+            <link-item target="cancBill" :icon="nineIcons.thdj" text="退货登记"></link-item>
             <link-item target="agriculturalStoreInfo" :icon="nineIcons.nzdxx" text="农资店信息"></link-item>
             <link-item target="farmersFiling" :icon="nineIcons.nhbacx" text="农户备案查询"></link-item>
             <link-item target="greenPesticide" :icon="nineIcons.lsnyml" text="绿色农药目录"></link-item>
             <link-item target="capitalAccount" :icon="nineIcons.zjzh" text="资金账户"></link-item>
-            <link-item target="abandonedRecovering" :icon="nineIcons.fqwhs" text="废弃物回收"></link-item>
+            <link-item target="abandonedRecovery" :icon="nineIcons.fqwhs" text="废弃物回收"></link-item>
           </link-group>
         </div>
       </index-card>
       <div class="right-cards-group" ref="rightCardsGroup">
         <cards-row>
           <index-card size="large">
-            <number-box :icon="userIcon" iconColor="#57c8f2" number="54323" describe="今日客户数"></number-box>
+            <number-box :icon="userIcon" iconColor="#57c8f2" number="12" describe="今日客户数"></number-box>
           </index-card>
         </cards-row>
 
         <cards-row>
           <index-card size="large">
-            <number-box :icon="moneyIcon" iconColor="#ff6c60" number="68323" describe="今日销售金额"></number-box>
+            <number-box :icon="moneyIcon" iconColor="#ff6c60" number="6832" describe="今日销售金额"></number-box>
           </index-card>
         </cards-row>
 
@@ -75,10 +75,11 @@
     computed: {
       orderRankingConfig(){
         return {
+          tableStyle: {'table-layout': 'fixed'},
           columns: [
-            {name: '排名', key: 'index'},
-            {name: '农药名称', key: 'name'},
-            {name: '登记证号', key: 'number'},
+            {name: '排名', style: {width: '10%'}, key: 'index'},
+            {name: '农药名称', style: {width: '35%'}, key: 'name'},
+            {name: '登记证号', style: {width: '30%'}, key: 'number'},
             {name: '订货量（个）', key: 'count'}
           ],
           data: orderRankingData

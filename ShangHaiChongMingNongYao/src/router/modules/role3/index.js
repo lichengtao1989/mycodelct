@@ -35,5 +35,17 @@ export default formatter({
     require.ensure([], () => {
       resolve(require('@/views/cancRecord/index.vue'));
     }, '/modules/cancRecord/index');
+  },
+  //附近门店库存查询
+  nearbyStoreInventoryQuery: resolve => {
+    require.ensure([], () => {
+      resolve(require('@/views/nearbyStoreInventoryQuery/index.vue'));
+    }, '/modules/nearbyStoreInventoryQuery/index');
+  },
+  //农资店信息
+  agriculturalStoreInfo: resolve => {
+    require.ensure([], () => {
+      resolve(require('@/views/agriculturalStoreInfo/index.vue'));
+    }, '/modules/agriculturalStoreInfo/index');
   }
 });

@@ -1,9 +1,9 @@
 <template>
-  <nz-dialog ref="dialog" customClass="width-500" :title="title" :okHandler="submit">
+  <nz-dialog ref="dialog" customClass="view-code-dialog width-500" :title="title" :okHandler="hideDialog">
     <div class="nrs">
       <div class="lines">
         <div class="left">入库方式:</div>
-        <div class="right">单个</div>
+        <div class="right">{{typeValShow}}</div>
       </div>
       <div class="lines">
         <div class="left">追溯码:</div>
@@ -18,6 +18,7 @@
 export default {
   data() {
     return {
+      typeValShow: '',
       activeName: 'first',
       title: '',
       codelist: [],
@@ -38,20 +39,8 @@ export default {
     handleClick(tab, event) {
       // console.log(tab, event);
     },
-    async submit(callback) {
-      console.log(this.activeName);
-      const valid = await this.$validForm(this.$refs.form);
-      if (valid) {
-        /**
-         * 执行表单提交
-         * const isSaveSuccess = this.$model('demo').save(this.form);
-         * */
-        const isSaveSuccess = true;
-        if (isSaveSuccess) {
-          this.$emit('save-success');
-          this.$refs.dialog.hide();
-        }
-      }
+    async hideDialog(callback) {
+      this.$refs.dialog.hide();
       callback();
     },
     init() {
@@ -62,6 +51,13 @@ export default {
       this.title = '查看农药码';
       this.codelist = [];
       let BarCode = data.BarCode || '';
+      // console.log(data);
+      if (data.InstockWay == 0) {
+        this.typeValShow = '单个入库';
+      } else {
+        this.typeValShow = '整箱入库';
+      }
+      console.log(this.typeValShow);
       if (BarCode.indexOf(',') > -1) {
         //多个
         this.codelist = BarCode.split(',');
@@ -96,6 +92,13 @@ export default {
   }
   .codelist {
     padding-bottom: 15px;
+  }
+}
+</style>
+<style rel="stylesheet/less" lang="less">
+.view-code-dialog {
+  .el-button--default {
+    display: none;
   }
 }
 </style>

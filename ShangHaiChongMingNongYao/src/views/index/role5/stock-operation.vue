@@ -1,5 +1,5 @@
 <template>
-  <nz-button type="text" @click="readMsg">知道了</nz-button>
+  <nz-button type="text" @click="viewDetail">详情</nz-button>
 </template>
 <script>
   export default {
@@ -10,8 +10,8 @@
       return {};
     },
     methods: {
-      readMsg(){
-        console.log(this.data);
+      viewDetail(){
+        window.open('#/main/stock?id=' + this.data.Id);
       }
     }
   }

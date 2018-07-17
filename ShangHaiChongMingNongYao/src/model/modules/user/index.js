@@ -45,6 +45,17 @@ class UserModel extends BaseModel {
     return {err, res};
   }
 
+  //获取当前登陆用户的信息
+  async getLoginUserInfo() {
+    let {err, res} = await this.$ajax.post(this.$apiUrl.USER.GET_LOGIN_USER_INFO);
+    if (err) {
+      this.$message.showError(err);
+      return null;
+    } else {
+      return res.data;
+    }
+  }
+
   //
   devSetRole(role) {
     if (process.env.NODE_ENV !== 'production') {

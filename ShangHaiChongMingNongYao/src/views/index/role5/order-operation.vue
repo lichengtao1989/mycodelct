@@ -2,10 +2,13 @@
   <div>
     <nz-button type="text" @click="orderDetail">订单详情</nz-button>
     <nz-button type="text" @click="deliver">发货</nz-button>
+    <view-detail ref="dialog"></view-detail>
   </div>
 </template>
 <script>
+  import viewDetail from '../../deliver/detail.vue'
   export default {
+    components: {viewDetail},
     props: {
       data: Object
     },
@@ -14,11 +17,11 @@
     },
     methods: {
       orderDetail(){
-        console.log(this.data);
+        this.$refs.dialog.show(this.data);
       },
       deliver(){
-        console.log(this.data);
-        window.open('#/main/deliver?id=456')
+        const {ID} = this.data;
+        window.open('#/main/deliver?id=' + ID)
       }
     }
   }

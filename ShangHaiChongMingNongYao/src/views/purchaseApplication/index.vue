@@ -2,8 +2,8 @@
   <div style="padding: 30px">
     <nz-form v-if="form" :validateOnRuleChange="false" label-width="80px" ref="form" :model="form" :rules="rules">
       <div class="left-group" style="width: 580px">
-        <nz-form-item label="供应商" required prop="Suppliers">
-          <nz-remote-select v-model="form.Suppliers" :remoteUrl="$apiUrl.COMMON.DROP_DOWN.SUPPLIER" placeholder="请选择供应商"></nz-remote-select>
+        <nz-form-item label="总经销商" required prop="Suppliers">
+          <nz-remote-select v-model="form.Suppliers" :remoteUrl="$apiUrl.COMMON.DROP_DOWN.DISTRIBUTOR" placeholder="请选择总经销商"></nz-remote-select>
         </nz-form-item>
         <nz-form-item label="紧急程度" prop="PriorityDescription">
           <nz-enum-select v-model="form.PriorityDescription" :options="$enum('进货申请紧急程度').values" isRadioBtn></nz-enum-select>
@@ -27,7 +27,7 @@
         <nz-table-column prop="RegisteCode" label="农药登记号"></nz-table-column>
         <nz-table-column prop="ProductName" label="农药名称"></nz-table-column>
         <nz-table-column label="规格">
-          <template slot-scope="scope"><span>{{scope.row.SpecQuantity}}{{scope.row.SpecUnit}}</span></template>
+          <template slot-scope="scope"><span>{{spec(scope.row)}}</span></template>
         </nz-table-column>
         <nz-table-column prop="Count" label="数量">
           <template slot-scope="scope">
@@ -60,7 +60,7 @@
   export default {
     data(){
       return {
-        formModel: {Suppliers: '', PriorityDescription: '1', Note: '', sonList: []},
+        formModel: {Suppliers: '', PriorityDescription: '0', Note: '', sonList: []},
         form: null,
         goodsId: '', //搜索商品 输入模式
         goodsCode: '', //搜索商品 扫码模式
@@ -91,6 +91,13 @@
       }
     },
     methods: {
+      spec(row){
+        const {SpecQuantity, SpecUnit, SpecType} = row;
+        if (SpecQuantity && SpecUnit && SpecType) {
+          return `${SpecQuantity}${SpecUnit}/${SpecType}`;
+        }
+        return '';
+      },
       countValid(index){
         return {
           validator: async (rule, value, callback) => {
@@ -138,8 +145,13 @@
         const valid = await this.$validForm(this.$refs.form);
         if (valid) {
           this.isSubmiting = true;
-          const {Suppliers, PriorityDescription, Note, sonList} = this.form;
+          let {Suppliers, PriorityDescription, Note, sonList} = this.form;
           const MoneyCount = this.totalCalc;
+          sonList = sonList.map(item => {
+            const PesticideID = item.Id;
+            const Count = item.Count;
+            return {PesticideID, Count}
+          });
           const isSuccess = await this.$model('purchase').add(Suppliers, PriorityDescription, Note, MoneyCount, sonList);
           this.isSubmiting = false;
           if (isSuccess) {
@@ -164,11 +176,32 @@
       },
       async addGoods(id){
         let data = await this.$model('greenPesticide').getInfo(id);
-        data.Count = '';
-        this.form.sonList.push(data);
+        data.Count = '1';
+        this.sonAdd(data);
       },
-      enterCode(){
-        console.log(this.goodsCode);
+      sonAdd(data){
+        const matchSon = this.form.sonList.find(item => item.Id === data.Id);
+        if (matchSon) {
+          let Count = (matchSon.Count * 1 + 1) + '';
+          if (isNaN(Count)) {
+            Count = '1';
+          }
+          matchSon.Count = Count;
+        } else {
+          this.form.sonList.push(data);
+        }
+      },
+      async enterCode(){
+        const ProductBarCode = this.goodsCode;
+        if (ProductBarCode) {
+          const data = await this.$model('greenPesticide').getInfoByProductBarCode(ProductBarCode);
+          if (data) {
+            data.Count = '1';
+            this.sonAdd(data);
+          }
+          await this.$nextTick();
+          this.goodsCode = '';
+        }
       },
       async toggleInputType(){
         this.isScanType = !this.isScanType;

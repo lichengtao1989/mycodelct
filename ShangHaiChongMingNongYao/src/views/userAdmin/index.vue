@@ -83,12 +83,15 @@ export default {
           str = '区农委';
           break;
         case 2:
-          str = '农资店';
+          str = '农户';
           break;
         case 3:
-          str = '门店';
+          str = '农资店';
           break;
         case 4:
+          str = '总经销商';
+          break;
+        case 5:
           str = '总经销商';
           break;
         default:

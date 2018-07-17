@@ -1,31 +1,32 @@
 <template>
   <nz-dialog ref="dialog" customClass="width-800" :title="title" :okHandler="submit" class="heg">
-      <nz-scrollbar style="height:450px">
+    <nz-scrollbar style="height:450px">
       <nz-form label-width="100px" ref="form" :model="form" :rules="rules">
-        <nz-form-item label="农药品名称" prop="mobile">
-          <nz-input v-model="form.mobile" placeholder="农药品名称" readonly="true"></nz-input>
+        <nz-form-item label="农药品名称" prop="ProductName">
+          <nz-input v-model="form.ProductName" placeholder="农药品名称" readonly="true"></nz-input>
         </nz-form-item>
-        <nz-form-item label="注册商标" prop="contact">
-          <nz-input v-model="form.contact" placeholder="注册商标" readonly="true"></nz-input>
+        <nz-form-item label="注册商标" prop="TraderMark">
+          <nz-input v-model="form.TraderMark" placeholder="注册商标" readonly="true"></nz-input>
         </nz-form-item>
-        <nz-form-item label="规格" prop="password">
-          <nz-input v-model="form.password" placeholder="规格" readonly="true"></nz-input>
+        <nz-form-item label="规格" prop="spec">
+          <nz-input v-model="form.spec" placeholder="规格" readonly="true"></nz-input>
         </nz-form-item>
-        <nz-form-item label="生产批次" prop="iDNumber">
-          <nz-input v-model="form.iDNumber" placeholder="生产批次" readonly="true"></nz-input>
-        </nz-form-item>
-        <nz-form-item label="应扫描数量" prop="iDNumber">
-          <nz-input v-model="form.iDNumber" placeholder="应扫描数量" readonly="true"></nz-input>
+        <!-- <nz-form-item label="生产批次" prop="ProductionBatch">
+          <nz-input v-model="form.ProductionBatch" placeholder="生产批次" readonly="true"></nz-input>
+        </nz-form-item> -->
+        <nz-form-item label="应扫描数量" prop="Amount">
+          <nz-input v-model="form.Amount" placeholder="应扫描数量" readonly="true"></nz-input>
         </nz-form-item>
         <nz-form-item label="入库方式" prop="iDNumber">
-          <nz-button class="dange btnl">单个</nz-button>
-          <nz-button class="xiang btnl">整箱</nz-button>
+          <!-- <nz-button class="dange btnl" :class="{activeclass:idx}">单个</nz-button>
+          <nz-button class="xiang btnl" >整箱</nz-button> -->
+          <nz-button @click="idxFn(idx)" class="btnl" v-for="(item,idx) in typeAry" :key="item" :class="{active:idx==deidx?true:false}">{{item.text}}</nz-button>
         </nz-form-item>
-        <nz-form-item label="农药码" prop="iDNumber">
-          <nz-input v-model="form.iDNumber" placeholder="请扫码/或手动输入" type="textarea" :rows="10"></nz-input>
+        <nz-form-item label="农药码" prop="BarCode">
+          <nz-input v-model="form.BarCode" placeholder="请扫码/或手动输入" type="textarea" :rows="10"></nz-input>
         </nz-form-item>
         <nz-form-item label="已扫" prop="iDNumber">
-          <nz-input v-model="form.iDNumber" placeholder="已扫" readonly="true"></nz-input>
+          <nz-input :value="codeNum" placeholder="已扫" readonly="true"></nz-input>
         </nz-form-item>
       </nz-form>
     </nz-scrollbar>
@@ -35,11 +36,13 @@
 export default {
   data() {
     return {
+      typeAry: [{ text: '单个' }, { text: '整箱' }],
+      deidx: 0,
       selectAry: '',
       remoteUrl: this.$apiUrl.USERMANAGE.DROPDOWNDATA,
       accountID: '',
       title: '',
-      formModel: {},
+      formModel: { BarCode: '' },
       form: {},
       rules: {
         // key1: [this.$formRules.required],
@@ -52,8 +55,22 @@ export default {
       }
     };
   },
+  computed: {
+    codeNum() {
+      const BarCode = this.form.BarCode || '';
+      const codes = BarCode.trim()
+        .split('\n')
+        .filter(line => line.trim() != '');
+      return codes.length;
+    }
+  },
   mounted() {},
   methods: {
+    idxFn(idx) {
+      this.deidx = idx;
+      this.form.deidx = idx;
+      console.log(this.form);
+    },
     changeItemFn(value) {
       let obj = {};
       obj = this.selectAry.find(item => {
@@ -85,21 +102,14 @@ export default {
       // console.log(tab, event);
     },
     async submit(callback) {
+      console.log(this.form);
       const valid = await this.$validForm(this.$refs.form);
       if (valid) {
-        // this.$emit('save-success');
+        let nowCode = this.form.BarCode.replace(/[\r\n]/g, ',');
+        this.form.BarCode = nowCode;
+        this.$emit('postData', Object.jsonClone(this.form));
         this.$refs.dialog.hide();
         this.$message.success('添加成功');
-        // this.$ajax
-        //   .post(this.$apiUrl.USERMANAGE.SAVE, this.form)
-        //   .then(r => {
-        //     if (r.res.resultCode == 200) {
-        //       this.$emit('save-success');
-        //       this.$refs.dialog.hide();
-        //     } else {
-        //     }
-        //   })
-        //   .catch(() => {});
       }
       callback(); //处理loading
     },
@@ -109,15 +119,30 @@ export default {
     },
     initEdit(data) {
       this.title = '编辑';
-      this.form.accountType = data.accountType || '';
-      this.form.accountName = data.accountName || '';
-      this.form.mobile = data.mobile || '';
-      this.form.password = data.password || '';
-      this.form.contact = data.contact || '';
-      this.form.iDNumber = data.iDNumber || '';
-      this.form.accountID = data.accountID || '';
-      this.form.userID = data.userID || '';
-      this.form.status = data.status || '';
+      console.log(data);
+      if (data.deidx) {
+        this.deidx = data.deidx;
+      } else {
+        this.deidx = 0;
+      }
+      let bcode = data.BarCode.replace(/[,]/g, '\n');
+      this.form.deidx = data.deidx || 0;
+      this.form.BarCode = bcode || '';
+      this.form.PesticideId = data.PesticideId || '';
+      this.form.ProductName = data.ProductName || '';
+      this.form.format = data.format || '';
+      this.form.Amount = data.Amount || '';
+      this.form.SaleUnitPrice = data.SaleUnitPrice || '';
+      this.form.SpecUnit = data.SpecUnit || '';
+      this.form.ProductionBatch = data.ProductionBatch || '';
+      this.form.ProductionTime = data.ProductionTime || '';
+      this.form.ExpireTime = data.ExpireTime || '';
+      this.form.position = data.position || '';
+      this.form.TraderMark = data.TraderMark || '';
+      this.form.SpecType = data.SpecType || '';
+      this.form.SpecQuantity = data.SpecQuantity || '';
+      this.form.spec = `${data.SpecQuantity}${data.SpecUnit}/${data.SpecType}`;
+      //{ PesticideId: id, name: str, format: '20.00', Amount: '', unit: '瓶', ProductionBatch: '', ProductionTime: '', ExpireTime: '', position: '', BarCode: '' }
     },
     show(data) {
       this.init();
@@ -130,5 +155,10 @@ export default {
 };
 </script>
 <style lang="less" rel="stylesheet/less" scoped>
-
+.heg {
+  .active {
+    background: #00a88a;
+    color: #fff;
+  }
+}
 </style>

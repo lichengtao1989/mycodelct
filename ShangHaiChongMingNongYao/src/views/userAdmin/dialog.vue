@@ -1,17 +1,15 @@
 <template>
   <nz-dialog ref="dialog" customClass="width-500" :title="title" :okHandler="submit">
     <nz-form label-width="80px" ref="form" :model="form" :rules="rules">
-      <nz-form-item label="主体类型" required>
-        <nz-select v-model="form.accountType" placeholder="请选择主体类型" @change="changeFn">
+      <nz-form-item label="主体类型" prop="accountType">
+        <nz-select v-model="accountType" placeholder="请选择主体类型" @change="changeFn">
           <nz-option label="农户" value="2"></nz-option>
           <nz-option label="农资店" value="3"></nz-option>
           <nz-option label="总经销商" value="5"></nz-option>
         </nz-select>
       </nz-form-item>
       <nz-form-item label="主体名称" prop="accountName">
-        <nz-select v-model="form.accountName" placeholder="请选择主体类型" @change="changeItemFn">
-          <nz-option :label="item.name" :value="item.name" :data-id="item.id" v-for="item in selectAry" :key="item.id"></nz-option>
-        </nz-select>
+        <nz-remote-select v-model="form.accountName" :remoteUrl="$apiUrl.USERMANAGE.DROPDOWNDATA" :params="params" valueKey="name" @select="selectFn"></nz-remote-select>
       </nz-form-item>
       <nz-form-item label="用户账号" prop="mobile" required>
         <nz-input v-model="form.mobile" placeholder="请输入用户账号（手机号）"></nz-input>
@@ -32,25 +30,32 @@
 export default {
   data() {
     return {
+      v1: '',
+      accountType: '',
+      accountName: '',
       selectAry: '',
       remoteUrl: this.$apiUrl.USERMANAGE.DROPDOWNDATA,
       accountID: '',
       title: '',
+      params: { pageNum: '1', pageSize: '100' },
       formModel: {},
-      form: {},
+      form: { accountName: '' },
       rules: {
-        // key1: [this.$formRules.required],
-        // key2: [this.$formRules.required], //, this.$formRules.intRange(5, 10)
-        // key3: [this.$formRules.required], //, this.$formRules.minLength(10), this.$formRules.maxLength(20)
-        // key4: [this.$formRules.required],
-        // key5: [this.$formRules.required],
-        // key6: [this.$formRules.required],
-        // key7: [this.$formRules.required]
+        accountName: [{ required: true, message: 'accountName is requied', trigger: 'blur' }],
+        accountType: [{ required: true, message: 'accountType is requied', trigger: 'blur' }]
+        // [
+        //     { required: true, message: '请输入活动名称', trigger: 'blur' },
+        //     { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
+        //   ]
       }
     };
   },
   mounted() {},
   methods: {
+    selectFn(val) {
+      // console.log(val);
+      this.form.accountID = val.id;
+    },
     changeItemFn(value) {
       let obj = {};
       obj = this.selectAry.find(item => {
@@ -59,17 +64,18 @@ export default {
       this.accountID = obj.id;
       this.form.accountID = obj.id;
     },
+    changeFn2(val) {
+      // console.log(val);
+    },
     changeFn(val) {
-      console.log(val)
-      let pStr = '';
-      if (this.form.accountType == 2) {
-        pStr = 'Farmer';
-      } else if (this.form.accountType == 3) {
-        pStr = 'AgriculturalMaterials';
-      } else if (this.form.accountType == 5) {
-        pStr = 'Distributor';
+      if (val == 2) {
+        this.params.function = 'Farmer';
+      } else if (val == 3) {
+        this.params.function = 'AgriculturalMaterials';
+      } else if (val == 5) {
+        this.params.function = 'Distributor';
       }
-      this.getData(pStr);
+      this.form.accountName = '';
     },
     async getData(str) {
       let { err, res } = await this.$ajax.post(this.$apiUrl.USERMANAGE.DROPDOWNDATA, { function: str, pageNum: '1', pageSize: '100' });
@@ -83,6 +89,9 @@ export default {
       // console.log(tab, event);
     },
     async submit(callback) {
+      // console.log(this.form);
+      this.form.accountType = this.accountType;
+
       const valid = await this.$validForm(this.$refs.form);
       if (valid) {
         this.$ajax
@@ -92,6 +101,7 @@ export default {
               this.$emit('save-success');
               this.$refs.dialog.hide();
             } else {
+              this.$message.showError(r.res.msg);
             }
           })
           .catch(() => {});
@@ -103,6 +113,15 @@ export default {
       this.form = Object.jsonClone(this.formModel);
     },
     initEdit(data) {
+      // console.log(data);
+      if (parseInt(data.accountType) == 2) {
+        this.params.function = 'Farmer';
+      } else if (parseInt(data.accountType) == 3) {
+        this.params.function = 'AgriculturalMaterials';
+      } else if (parseInt(data.accountType) == 5) {
+        this.params.function = 'Distributor';
+      }
+      this.accountType = data.accountType;
       this.title = '编辑';
       this.form.accountType = data.accountType || '';
       this.form.accountName = data.accountName || '';
@@ -115,7 +134,9 @@ export default {
       this.form.status = data.status || '';
     },
     show(data) {
+      this.accountType = '';
       this.init();
+      // console.log(data);
       if (data) {
         this.initEdit(data);
       }

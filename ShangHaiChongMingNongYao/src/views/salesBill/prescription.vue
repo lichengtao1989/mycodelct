@@ -1,12 +1,12 @@
 <template>
   <div class="prescriptionwrap">
-    <div class="prescriptionlist">
+    <div class="prescriptionlist" v-if="infoAry.crop">
       <div class="tops">处方单
         <div class="pobj">
-          <span class="bj1">
+          <span class="bj1" @click="editFn">
             <i class="nz-icon-edit"></i>
           </span>
-          <span class="bj1">
+          <span class="bj1" @click="delFn">
             <i class="nz-icon-close"></i>
           </span>
         </div>
@@ -14,46 +14,73 @@
       <div class="nextll">
         <div class="sst">
           <div class="pp">
-            <span class="spl1">针对作物:</span>敌敌畏</div>
+            <span class="spl1">针对作物:</span>{{infoAry.crop}}
+          </div>
           <div class="pp">
-            <span class="spl1">生长阶段:</span>xxxx</div>
+            <span class="spl1">生长阶段:</span>{{infoAry.growth}}
+          </div>
           <div class="pp">
-            <span class="spl1">针对病虫害:</span>xxxx</div>
+            <span class="spl1">针对病虫害:</span>{{infoAry.pest}}
+          </div>
+        </div>
+        <div class="sst" v-for="item in infoAry.productList" :key="item.productName">
+          <div class="pp">
+            <span class="spl1">商品名称:</span>{{item.productName}}
+          </div>
+          <div class="pp">
+            <span class="spl1">亩用量:</span>{{item.num}}
+          </div>
+          <div class="pp">
+            <span class="spl1">安全间隔期:</span>{{item.day}}
+          </div>
+          <!-- <div class="pp">
+            <span class="spl1">农药药性:</span>xxxx
+          </div> -->
+          <div class="pp">
+            <span class="spl1">使用方法:</span>
+            <span v-for="itm in item.type" :key="itm">{{itm}}</span>
+          </div>
         </div>
         <div class="sst">
           <div class="pp">
-            <span class="spl1">商品名称:</span>敌敌畏</div>
-          <div class="pp">
-            <span class="spl1">亩用量:</span>xxxx</div>
-          <div class="pp">
-            <span class="spl1">安全间隔期:</span>xxxx</div>
-          <div class="pp">
-            <span class="spl1">农药药性:</span>xxxx</div>
-          <div class="pp">
-            <span class="spl1">使用方法:</span>xxxx</div>
-        </div>
-        <div class="sst">
-          <div class="pp">
-            <span class="spl1">用药注意事项:</span>敌敌畏</div>
+            <span class="spl1">用药注意事项:</span>{{infoAry.warnText}}
+          </div>
         </div>
       </div>
     </div>
     <!-- <div class="ann" @click.once="lookPrescription"> -->
     <div class="ann" @click="lookPrescription">
       <span>
-        <i class="nz-icon-add2 add-icon"></i>处方单</span>
+        <i class="nz-icon-add2 add-icon"></i>
+        <span>处方单</span>
+      </span>
     </div>
   </div>
 </template>
 <script>
 export default {
+  props: {
+    infoAry: {
+      type: Object,
+      default: function() {
+        return {};
+      }
+    }
+  },
   data() {
-    return {};
+    return {
+      prescriptionListAry: [1]
+    };
   },
   mounted() {},
   methods: {
+    delFn() {
+      this.$emit('delPrescriptionList');
+    },
+    editFn() {
+      this.$emit('editPrescriptionList');
+    },
     lookPrescription() {
-      console.log(123);
       this.$emit('lookPrescription');
     }
   }
@@ -67,6 +94,7 @@ export default {
     padding-left: 17px;
   }
 }
+
 .prescriptionwrap {
   padding-top: 35px;
   padding-bottom: 51px;

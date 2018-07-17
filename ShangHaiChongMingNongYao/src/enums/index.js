@@ -1,7 +1,8 @@
 import common from './modules/common';
 import agriculturalStore from './modules/agriculturalStore';
 import purchase from './modules/purchase';
-const enums = [...common, ...agriculturalStore, ...purchase];
+import pesticide from './modules/pesticide';
+const enums = [...common, ...agriculturalStore, ...purchase, ...pesticide];
 /**
  * const ynEnum = this.$enum('是否');
  * */

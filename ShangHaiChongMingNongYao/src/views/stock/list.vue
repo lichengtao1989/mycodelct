@@ -21,7 +21,11 @@
           <nz-table-column prop="pesticideCode" min-width="120" label="登记证号" sortable="custom"></nz-table-column>
           <nz-table-column prop="pesticideName" min-width="120" label="农药名称" sortable="custom"></nz-table-column>
           <nz-table-column prop="registeredTrademark" min-width="120" label="注册商标" sortable="custom"></nz-table-column>
-          <nz-table-column prop="specification" min-width="120" label="规格" sortable="custom"></nz-table-column>
+          <nz-table-column prop="specification" min-width="120" label="规格" sortable="custom">
+               <template slot-scope="scope">
+              <div >{{scope.row.specQuantity}}{{scope.row.specUnit}}/{{scope.row.specType}}</div>
+            </template>
+          </nz-table-column>
           <nz-table-column prop="manufacturer" min-width="120" label="生产厂家" sortable="custom"></nz-table-column>
           <nz-table-column prop="stockCount" min-width="120" label="库存数量" sortable="custom"></nz-table-column>
           <nz-table-column prop="unit" min-width="120" label="单位" sortable="custom"></nz-table-column>
@@ -34,7 +38,7 @@
           <nz-table-column min-width="120" label="操作" fixed="right">
             <template slot-scope="scope">
               <nz-button type="text" @click="addDialog(scope.row)">库存预警</nz-button>
-              <nz-button type="text" @click="lookmore(scope.row)">详情</nz-button>
+              <!-- <nz-button type="text" v-show="false" @click="lookmore(scope.row)">详情</nz-button> -->
             </template>
           </nz-table-column>
         </template>

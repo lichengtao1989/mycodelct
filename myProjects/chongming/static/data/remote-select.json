@@ -1,0 +1,17 @@
+{
+  "resultCode": 200,
+  "msg": null,
+  "data": {
+    "total": 2,
+    "rows": [
+      {
+        "id": 11,
+        "name": "选项1"
+      },
+      {
+        "id": 22,
+        "name": "选项2"
+      }
+    ]
+  }
+}

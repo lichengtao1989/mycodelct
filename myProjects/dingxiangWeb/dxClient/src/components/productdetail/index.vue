@@ -34,23 +34,24 @@
       </div>
       <div class="right">
         <div class="sm1">
-          <div class="inline">
+          <div class="inline" v-if="infoData.ProductBrand">
             <span class="w80">品牌</span>
             <span class="w280">{{infoData.ProductBrand}}</span>
           </div>
-          <div class="inline">
+          <div class="inline" v-if="infoData.ContactInfo">
             <span class="w80">联系方式</span>
             <span class="w280">{{infoData.ContactInfo}}</span>
           </div>
         </div>
         <div class="sm1">
-          <div class="inline">
+          <div class="inline" v-if="infoData.Producer">
             <span class="w80">生产企业</span>
             <span class="w280">{{infoData.Producer}}</span>
           </div>
-          <div class="inline">
+          <div class="inline" v-if="infoData.ShelfLife">
             <span class="w80">保质期</span>
-            <span class="w280">{{infoData.ShelfLife+'天'}}</span></div>
+            <span class="w280">{{infoData.ShelfLife+'天'}}</span>
+          </div>
         </div>
         <div class="sm2">
           <div class="djgm" @click="jumpUrl">
@@ -125,6 +126,13 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped="" rel="stylesheet/scss">
 @import 'static/style/_var.scss';
+.swiperinner {
+  @include wh(100%, 100%);
+  img {
+    @include block;
+    @include wh(100%, 100%);
+  }
+}
 .imgss {
   display: block;
   height: 100%;
@@ -147,12 +155,10 @@ export default {
       display: inline-block;
       width: 220px;
       vertical-align: top;
-   
     }
     .w80 {
       display: inline-block;
       width: 80px;
-    
     }
     min-height: 440px;
     @include pr;
@@ -163,7 +169,7 @@ export default {
       width: 800px;
       .sm1 {
         // @include li(52px);
-           line-height: 30px;
+        line-height: 30px;
         padding-top: 15px;
         border-bottom: 1px solid #dadce0;
       }

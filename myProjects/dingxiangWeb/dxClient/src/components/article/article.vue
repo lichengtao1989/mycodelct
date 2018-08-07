@@ -36,7 +36,7 @@ export default {
   },
   computed: {
     typeFn() {
-      let str = dataAry[this.ArticleType].values[this.ArticleSubType].name ? dataAry[this.ArticleType].values[this.ArticleSubType].name : '';
+      let str = dataAry[this.ArticleType].values[this.ArticleSubType].name ? dataAry[this.ArticleType].values[this.ArticleSubType-1].name : '';
       return str;
     },
     myTitleVal() {

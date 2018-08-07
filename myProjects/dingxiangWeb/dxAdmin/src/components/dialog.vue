@@ -2,7 +2,7 @@
   <nz-dialog ref="dialog" customClass="width-800" :title="title" :okHandler="submit" :isNeedOkButton="!readonly" :data-readonly="readonly">
     <nz-form label-width="80px" ref="form" :model="form" :rules="rules">
       <nz-form-item label="分类" v-if="isShow">
-        <nz-select v-model="form.ArticleSubType">
+        <nz-select v-model="form.ArticleSubType" @change="selectFn">
           <nz-option :label="item.name" :value="item.value" v-for="item of selectAry" :key="item.value"></nz-option>
         </nz-select>
       </nz-form-item>
@@ -95,6 +95,10 @@ export default {
   },
   mounted() {},
   methods: {
+    selectFn(val) {
+      // console.log(val);
+      // console.log(this.form.ArticleSubType);
+    },
     setContent(str) {
       const editor = this.$refs.editorFrame;
       const contentHtml = str || '';
@@ -151,13 +155,14 @@ export default {
     },
     initEdit(data) {
       this.title = '编辑';
-      this.form.ArticleTitle = data.ArticleTitle;
-      this.form.ArticleType = data.ArticleType;
-      this.form.ArticleSubType = data.ArticleSubType;
-      this.form.ReadCount = data.ReadCount;
-      this.form.Islink = data.Islink;
-      this.form.ArticleID = data.ArticleID;
-      this.form.ArticleContent = data.ArticleContent;
+      this.form = Object.jsonClone(data);
+      // this.form.ArticleTitle = data.ArticleTitle;
+      // this.form.ArticleType = data.ArticleType;
+      // this.form.ArticleSubType = data.ArticleSubType;
+      // this.form.ReadCount = data.ReadCount;
+      // this.form.Islink = data.Islink;
+      // this.form.ArticleID = data.ArticleID;
+      // this.form.ArticleContent = data.ArticleContent;
       this.valuehtml = data.ArticleContent;
       // console.log(this.form);
     },

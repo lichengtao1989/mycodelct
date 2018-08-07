@@ -1,24 +1,20 @@
-var http = require('http');
-var fs = require('fs');
+var express = require('express');
+var app = express();
+app.use(express.static('./static'));
+// app.use('/static',express.static('./static'));
 
-function read (files,options) {
-  console.log(files);
-  return new Promise((resolve, reject) => {
-    fs.readFile(files, options, (err,data)=>{
-      if(err) reject(err);
-      resolve(data)
-    })
-  })
-}
-http.createServer(function (req, res) {
-  // res.writeHead({"content-type":"text/plain","status":200})
-  res.setHeader("Content-Type", "text/html;chartset=UTF-8")
-  read('./test.html','utf8').then((data)=>{
-    // console.log(data);
-    res.end(data);
-  })
-
-  
-  
-
-}).listen(9900)
+app.get('/', function(req, res) {
+  res.send('hello');
+});
+app.get('/student/:number', function(req, res) {
+  res.set({
+    'Content-Type': 'text/html;charset=UTF-8'
+  });
+  if (/^[\d]{6}$/.test(req.params.number)) {
+    console.log(req.params.number);
+    res.send('number:' + req.params.number);
+  } else {
+    res.send('number wrong');
+  }
+});
+app.listen(9000);

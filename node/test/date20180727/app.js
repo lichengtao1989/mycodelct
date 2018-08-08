@@ -2,9 +2,12 @@ var express = require('express');
 var app = express();
 app.use(express.static('./static'));
 // app.use('/static',express.static('./static'));
-
+app.set('view engine', 'ejs');
 app.get('/', function(req, res) {
-  res.send('hello');
+  res.render('index',{
+    name:'lct',
+    list:['hh','dd','bb']
+  });
 });
 app.get('/student/:number', function(req, res) {
   res.set({

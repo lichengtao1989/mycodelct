@@ -31,7 +31,7 @@
         </div>
         <div class="right-group">
           <nz-form-item label="注册商标">
-            <nz-input v-model="form.b" ></nz-input>
+            <nz-input v-model="form.b"></nz-input>
           </nz-form-item>
           <nz-form-item label="毒性">
             <nz-input v-model="form.Toxicity" :readonly="onlyflag"></nz-input>
@@ -238,7 +238,7 @@ export default {
       }
     },
     async enterKey(event) {
-      // let valNow = this.form.CertificateNumber;
+      let valNow = this.type == 1 ? this.form.CertificateNumber : this.form.RegistrationNumber;
       let url = '';
       url = this.type == 1 ? this.$apiUrl.COMMONAPI.GetPesticideInfoByCertificateNumber + '?CertificateNumber=' + this.form.CertificateNumber : this.$apiUrl.COMMONAPI.GetFertilizerInfo + '?keyword=' + this.form.RegistrationNumber;
       // if (this.type == 1) {
@@ -254,9 +254,19 @@ export default {
         // let valueNow = this.form.CertificateNumber;
         console.log(err);
         // this.form.CertificateNumber = valueNow;
+        if (this.type == 1) {
+          this.form.CertificateNumber = valNow;
+        } else {
+          this.form.RegistrationNumber = valNow;
+        }
       } else {
         this.form = res.data;
-        // this.form.CertificateNumber = valNow;
+
+        if (this.type == 1) {
+          this.form.CertificateNumber = valNow;
+        } else {
+          this.form.RegistrationNumber = valNow;
+        }
         this.onlyflag = true;
       }
     },

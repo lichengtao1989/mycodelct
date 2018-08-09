@@ -1,7 +1,7 @@
 <template>
   <div>
     <nz-list :requestUrl="$apiUrl.RECYCLING.LIST" ref="list" :needAdvancedSearch="true" baseSearchPlaceholder="来源或回收点">
-      <div slot="operate">
+      <div slot="operate" v-if="roleval!=1">
         <nz-button type="primary" size="small" @click="addDialog">
           <i class="nz-icon-add"></i>新建
         </nz-button>
@@ -46,62 +46,67 @@
   </div>
 </template>
 <script>
-  import detailDialog from './dialog.vue';
-  import detailEdit from './dialogedit.vue';
+import detailDialog from './dialog.vue';
+import detailEdit from './dialogedit.vue';
 
-  export default {
-    components: {detailDialog, detailEdit},
-    data() {
-      return {
-        search: {farmer: '', farmCapitalStore: '', earlyWarningType: '', createTime: ''}
-      };
-    },
-    methods: {
-      typeFn(type) {
-        let str = '';
-        if (parseInt(type) == 0) {
-          str = '无';
-        } else if (parseInt(type) == 1) {
-          str = '含违禁药品包装';
-        } else if (parseInt(type) == 2) {
-          str = '含非绿色农药包装';
-        }
-        return str;
-      },
-      addDialog() {
-        this.$refs.dialogedit.show();
-      },
-      print(row) {
-      },
-      async viewDetail(row) {
-        let {err, res} = await this.$ajax.post(this.$apiUrl.RECYCLING.DETAIL, {id: row.ID});
-        if (err) {
-          this.$message.showError(err);
-          return;
-        }
-        if (res.resultCode == 200) {
-          this.$refs.dialog.show(res.data);
-        }
-        // console.log(row);
-        // this.$refs.dialog.show(row);
-      },
-      async cancel(row) {
-        const result = await this.$message.confirm('真的要撤销该订单吗?');
-        if (result) {
-          //
-          this.refresh();
-        }
-      },
-      async cancelGoods(row) {
-        const result = await this.$message.confirm('真的要确认收货吗?');
-        if (result) {
-          //
-          this.refresh();
-        }
-      },
-      refresh() {
-        this.$refs.list.refresh();
+export default {
+  mounted() {
+    let userInfo = this.$storage.get('userInfo');
+    // console.log(userInfo);
+    this.roleval = userInfo.role;
+  },
+  components: { detailDialog, detailEdit },
+  data() {
+    return {
+      roleval: null,
+      search: { farmer: '', farmCapitalStore: '', earlyWarningType: '', createTime: '' }
+    };
+  },
+  methods: {
+    typeFn(type) {
+      let str = '';
+      if (parseInt(type) == 0) {
+        str = '无';
+      } else if (parseInt(type) == 1) {
+        str = '含违禁药品包装';
+      } else if (parseInt(type) == 2) {
+        str = '含非绿色农药包装';
       }
+      return str;
+    },
+    addDialog() {
+      this.$refs.dialogedit.show();
+    },
+    print(row) {},
+    async viewDetail(row) {
+      let { err, res } = await this.$ajax.post(this.$apiUrl.RECYCLING.DETAIL, { id: row.ID });
+      if (err) {
+        this.$message.showError(err);
+        return;
+      }
+      if (res.resultCode == 200) {
+        this.$refs.dialog.show(res.data);
+      }
+      // console.log(row);
+      // this.$refs.dialog.show(row);
+    },
+    async cancel(row) {
+      const result = await this.$message.confirm('真的要撤销该订单吗?');
+      if (result) {
+        //
+        this.refresh();
+      }
+    },
+    async cancelGoods(row) {
+      const result = await this.$message.confirm('真的要确认收货吗?');
+      if (result) {
+        //
+        this.refresh();
+      }
+    },
+    refresh() {
+      this.$refs.list.refresh();
     }
-  };
+  }
+};
 </script>

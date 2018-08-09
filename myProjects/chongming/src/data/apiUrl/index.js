@@ -14,6 +14,7 @@ import GREENPESTICIDE from './modules/greenPesticide/index'; //绿色农药目�
 import FARMERSFILING from './modules/farmersFiling/index'; //农户主体备案
 import PURCHASE from './modules/purchase/index'; //进货发货
 import DISEASES from './modules/diseases/index'; //病虫害
+import COMMONAPI from './modules/commonApi/index'; //病虫害
 //
 import FARMERSINFO from './modules/farmersInfo/index'; //农户备案信息
 //
@@ -33,7 +34,8 @@ const apiUrl = {
   STOCK,
   PURCHASE,
   FARMERSINFO,
-  DISEASES
+  DISEASES,
+  COMMONAPI
 };
 export default {
   install(Vue) {

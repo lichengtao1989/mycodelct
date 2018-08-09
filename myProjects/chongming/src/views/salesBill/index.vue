@@ -3,16 +3,21 @@
     <add-edit-dialog ref="dialog" @save="savePrescription" :infoVal="form.FarmStoreSale_PesticideList"></add-edit-dialog>
     <dialog-code ref="dialogcode" @save-success="refresh" @postData="refreshGetData"></dialog-code>
     <div class="listwrap">
+      <div class="idcard">
+        <nz-button type="primary" style="margin-bottom: 10px;" @click="startFun">
+          <span>识读身份证</span>
+        </nz-button>
+      </div>
       <div class="topin">
         <nz-form label-width="80px" ref="form" :model="form" :rules="rules">
-          <nz-form-item label="购买人" prop="customerID">
-            <nz-remote-select v-model="form.FarmerID" class="cusotmer-input" :remote-url="$apiUrl.COMMON.DROP_DOWN.FARMER" placeholder="请选择购买人" @select="clickItemFarmer">
+          <nz-form-item label="购买人" prop="FarmerID">
+            <nz-remote-select v-model="form.FarmerID" class="cusotmer-input" :label="form.ChargePerson" :remote-url="$apiUrl.COMMON.DROP_DOWN.FARMER" placeholder="请选择购买人" @select="clickItemFarmer">
             </nz-remote-select>
           </nz-form-item>
-          <nz-form-item label="身份证号" prop="contact">
+          <nz-form-item label="身份证号" prop="ChargePersonIDCode">
             <nz-input v-model="farmerInfo.ChargePersonIDCode" readonly="true"></nz-input>
           </nz-form-item>
-          <nz-form-item label="联系电话" prop="contact">
+          <nz-form-item label="联系电话" prop="PhoneNum">
             <nz-input v-model="farmerInfo.PhoneNum" readonly="true"></nz-input>
           </nz-form-item>
           <nz-form-item label="搜索商品" v-if="!productModel" prop="PesticideName">
@@ -120,7 +125,7 @@ export default {
       listAry: [],
       columns: [{ name: '农药登记号' }, { name: '投入品名称' }, { name: '规格' }, { name: '数量' }, { name: '单位' }, { name: '单价（元）' }, { name: '小计' }, { name: '操作' }],
       productModel: false,
-      form: { FarmerId: '', SubsidyMoney: '', ReadyMoney: '', FarmStoreSale_PesticideList: [] },
+      form: { FarmerId: '', SubsidyMoney: '', ReadyMoney: '', ChargePerson: '', FarmStoreSale_PesticideList: [] },
       dialogflag: false,
       search: { key1: '', key2: '', key3: '', key4: '', key5: '', key6: '' },
       contentHeight: 500,
@@ -180,6 +185,23 @@ export default {
         this.subsidy = await this.loadFundAccountMoney(res.data.FundAccountID);
       }
     },
+    async clickItemFarmer2(val) {
+      if (!val) {
+        return;
+      }
+      this.form.FarmerId = val;
+      let { err, res } = await this.$ajax.get(this.$apiUrl.COMMON.FARMERINFO, { id: val });
+      // console.log(err, res);
+      if (err) {
+        console.log(err);
+      } else {
+        this.farmerInfo = res.data;
+        console.log(this.farmerInfo);
+        this.form.ChargePerson = res.data.ChargePerson;
+        //this.subsidy = parseFloat(res.data.SubsidyMoney);
+        this.subsidy = await this.loadFundAccountMoney(res.data.FundAccountID);
+      }
+    },
     //补贴账号可用金额
     async loadFundAccountMoney(FundAccountID) {
       let { err, res } = await this.$ajax.post(this.$apiUrl.FUNDACCOUNT.ACCOUNT, { FundAccountID });
@@ -233,7 +255,7 @@ export default {
     printFn(info) {
       const LODOP = lodopFuncs.getLodop();
       LODOP.PRINT_INIT('');
-      LODOP.SET_PRINT_MODE('WINDOW_DEFPRINTER');
+      //LODOP.SET_PRINT_MODE('WINDOW_DEFPRINTER');
       // LODOP.ADD_PRINT_TEXT(50, 50, 260, 39, '细线样式打印：');
       const template = _.template(ticketTpl);
       const ticketContent = template(info);
@@ -390,7 +412,6 @@ export default {
       }
     },
     async disableFn(msg) {
-      console.log(msg);
       const result = await this.$message.confirm('确定要禁用吗?');
       if (result) {
         this.refresh();
@@ -398,6 +419,36 @@ export default {
     },
     resize() {
       // this.contentHeight = window.innerHeight - 50;
+    },
+    trim(string) {
+      return (string || '').replace(/^[\s\uFEFF]+|[\s\uFEFF]+$/g, '');
+    },
+    async startFun() {
+      let url = 'http://127.0.0.1:24010/ZKIDROnline/ScanReadIdCardInfo?OP-DEV=1&CMD-URL=4&REPEAT=1&common=1';
+      //let { err, res } = await this.$model('dataManagement').commonfn2(url);
+      let { err, res } = await this.$ajax.get(url);
+      if (res.ret == 11) {
+        this.$message.showError('请识读身份证');
+        return;
+      }
+      let successRes = JSON.parse(res.replace(/\\/g, '/'));
+
+      if (successRes.ret == 0) {
+        let Certificate = successRes.Certificate;
+        // this.form.name = this.trim(Certificate.Name);
+        // this.form.sex = this.trim(Certificate.Sex);
+        // this.form.address = this.trim(Certificate.Address);
+        // this.form.identityNumber = this.trim(Certificate.IDNumber);
+        let { err, res } = await this.$ajax.get(this.$apiUrl.FARMERSINFO.GET_FARMER_INFO, { chargePersonIDCode: this.trim(Certificate.IDNumber) });
+        if (err) {
+          this.$message.showError(err);
+        } else {
+          console.log(res);
+          this.clickItemFarmer2(res.data.Id);
+        }
+      } else {
+        this.$message.showError(err);
+      }
     }
   },
   beforeDestroy() {
@@ -483,6 +534,9 @@ export default {
   .bot3 {
     margin-right: 10px;
   }
+}
+.idcard {
+  padding: 20px 20px 20px 20px;
 }
 </style>
 <style lang="less" rel="stylesheet/less">

@@ -41,5 +41,11 @@ export default formatter({
     require.ensure([], () => {
       resolve(require('@/views/capitalAccount/index.vue'));
     }, '/modules/capitalAccount/index');
+  },
+  //病虫害管理
+  diseasesInsectPests: resolve => {
+    require.ensure([], () => {
+      resolve(require('@/views/diseasesinsectpests/index.vue'));
+    }, '/modules/diseasesinsectpests/index');
   }
 });

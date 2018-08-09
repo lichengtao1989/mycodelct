@@ -36,7 +36,10 @@
 </script>
 <style rel="stylesheet/less" lang="less" scoped>
   .info-list {
-    margin: 60px 100px;
+    // margin: 60px 100px;
+    position: absolute;top:100px;
+    left:50%;
+    transform: translateX(-50%);
     font-size: 0;
   }
 </style>

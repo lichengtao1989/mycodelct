@@ -19,7 +19,7 @@
     </cards-row>
 
     <cards-row>
-      <index-card size="large" title="客户主体分布情况">
+      <index-card size="large" title="农户主体分布情况">
         <index-chart :options="chartOptions"></index-chart>
       </index-card>
     </cards-row>

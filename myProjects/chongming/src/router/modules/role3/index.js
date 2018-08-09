@@ -47,5 +47,11 @@ export default formatter({
     require.ensure([], () => {
       resolve(require('@/views/agriculturalStoreInfo/index.vue'));
     }, '/modules/agriculturalStoreInfo/index');
+  },
+  //病虫害管理
+  diseasesInsectPests: resolve => {
+    require.ensure([], () => {
+      resolve(require('@/views/diseasesinsectpests/index.vue'));
+    }, '/modules/diseasesinsectpests/index');
   }
 });

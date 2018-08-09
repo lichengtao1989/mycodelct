@@ -15,6 +15,10 @@ export default {
     params: { type: Object },
     queryKey: { type: String, default: 'keyWord' },
     /**
+     * 显示的值，一般在编辑页面初始化的时候才需要赋值，仅用于一开始的显示
+     */
+    label: String,
+    /**
      * 是否禁用
      */
     disabled: { type: Boolean },
@@ -51,6 +55,18 @@ export default {
         } else {
           callback();
         }
+      }
+    }
+  },
+  watch: {
+    label(val) {
+      if (val != '' || val != undefined) {
+        this.$nextTick(() => {
+          let option = {};
+          option[this.valueKey] = this.value;
+          option[this.labelKey] = this.label;
+          this.options = [option];
+        });
       }
     }
   },

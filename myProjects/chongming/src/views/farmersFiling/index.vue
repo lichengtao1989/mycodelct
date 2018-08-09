@@ -44,6 +44,7 @@
         <nz-table-column prop="Town" min-width="120" label="乡镇" sortable="custom"></nz-table-column>
         <nz-table-column prop="Village" min-width="120" label="村组" sortable="custom"></nz-table-column>
         <nz-table-column prop="ProductMainPart" min-width="120" label="生产主体" sortable="custom"></nz-table-column>
+        <nz-table-column prop="" min-width="120" label="农户类型" sortable="custom"></nz-table-column>
         <nz-table-column prop="ChargePersonIDCode" min-width="150" label="负责人身份证号" sortable="custom"></nz-table-column>
         <nz-table-column prop="ChargePerson" min-width="120" label="负责人" sortable="custom"></nz-table-column>
         <nz-table-column prop="PhoneNum" min-width="120" label="手机号" sortable="custom"></nz-table-column>

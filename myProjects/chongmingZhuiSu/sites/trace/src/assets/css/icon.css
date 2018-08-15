@@ -1,0 +1,150 @@
+@font-face {
+  font-family: "cjmWeatherIconFont";
+  src: url('../fonts/iconfont.eot?t=1504229213247'); /* IE9*/
+  src: url('../fonts/iconfont.eot?t=1504229213247#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('../fonts/iconfont.woff?t=1504229213247') format('woff'),
+  url('../fonts/iconfont.ttf?t=1504229213247') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  url('../fonts/iconfont.svg?t=1504229213247#cjmWeatherIconFont') format('svg'); /* iOS 4.1- */
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="cjm-weather-icon-"], [class*=" cjm-weather-icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'cjmWeatherIconFont' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  line-height: 1;
+  display: inline-block;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.cjm-icon-rotate-90 {
+  -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=1)";
+  -webkit-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+
+.cjm-icon-rotate-180 {
+  -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=2)";
+  -webkit-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+
+.cjm-icon-rotate-n90 {
+  -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=3)";
+  -webkit-transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+  transform: rotate(-90deg);
+}
+
+.cjm-icon-flip-horizontal {
+  -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=0, mirror=1)";
+  -webkit-transform: scale(-1, 1);
+  -ms-transform: scale(-1, 1);
+  transform: scale(-1, 1);
+}
+
+.cjm-icon-flip-vertical {
+  -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=2, mirror=1)";
+  -webkit-transform: scale(1, -1);
+  -ms-transform: scale(1, -1);
+  transform: scale(1, -1);
+}
+
+:root .cjm-icon-rotate-90,
+:root .cjm-icon-rotate-180,
+:root .cjm-icon-rotate-n90,
+:root .cjm-icon-flip-horizontal,
+:root .cjm-icon-flip-vertical {
+  filter: none;
+}
+
+.cjm-weather-icon-xiangduishidu:before { content: "\e611"; }
+
+.cjm-weather-icon-jiangshuiliang:before { content: "\e612"; }
+
+.cjm-weather-icon-turangPHzhi:before { content: "\e613"; }
+
+.cjm-weather-icon-turangwendu:before { content: "\e614"; }
+
+.cjm-weather-icon-zhengfaliang:before { content: "\e615"; }
+
+.cjm-weather-icon-fenglifengxiang:before { content: "\e616"; }
+
+.cjm-weather-icon-turangyanfen:before { content: "\e617"; }
+
+.cjm-weather-icon-turangshidu:before { content: "\e618"; }
+
+.cjm-weather-icon-eryanghuatan:before { content: "\e619"; }
+
+.cjm-weather-icon-kongqiqiya:before { content: "\e61a"; }
+
+.cjm-weather-icon-guangzhaoqiangdu:before { content: "\e61b"; }
+
+.cjm-weather-icon-dayu:before { content: "\e61c"; }
+
+.cjm-weather-icon-zhongyu:before { content: "\e61d"; }
+
+.cjm-weather-icon-baoxue:before { content: "\e61e"; }
+
+.cjm-weather-icon-bingbao:before { content: "\e61f"; }
+
+.cjm-weather-icon-daxue:before { content: "\e620"; }
+
+.cjm-weather-icon-baoyu:before { content: "\e621"; }
+
+.cjm-weather-icon-dongyu:before { content: "\e622"; }
+
+.cjm-weather-icon-mai:before { content: "\e623"; }
+
+.cjm-weather-icon-xiaoyu:before { content: "\e624"; }
+
+.cjm-weather-icon-yangsha:before { content: "\e625"; }
+
+.cjm-weather-icon-xiaoxue:before { content: "\e626"; }
+
+.cjm-weather-icon-shachenbao:before { content: "\e627"; }
+
+.cjm-weather-icon-qing:before { content: "\e628"; }
+
+.cjm-weather-icon-wu:before { content: "\e629"; }
+
+.cjm-weather-icon-yujiaxue:before { content: "\e62a"; }
+
+.cjm-weather-icon-zhenyu:before { content: "\e62b"; }
+
+.cjm-weather-icon-yin:before { content: "\e62c"; }
+
+.cjm-weather-icon-zhenxue:before { content: "\e62d"; }
+
+.cjm-weather-icon-zhongxue:before { content: "\e62e"; }
+
+.cjm-weather-icon-duoyun:before { content: "\e62f"; }
+
+.cjm-weather-icon-richurila:before { content: "\e630"; }
+
+.cjm-weather-icon-fengxiang:before { content: "\e631"; }
+
+.cjm-weather-icon-leizhenyu:before { content: "\e632"; }
+
+.cjm-weather-icon-PM:before { content: "\e633"; }
+
+.cjm-weather-icon-anqi:before { content: "\e635"; }
+
+.cjm-weather-icon-liuhuaqing:before { content: "\e636"; }
+
+
+
+
+
+
+
+

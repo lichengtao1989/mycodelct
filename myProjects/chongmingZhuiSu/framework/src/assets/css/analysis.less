@@ -1,0 +1,166 @@
+@import "./config";
+
+/*数据分析数字总览*/
+.cjm-analysis-overview {
+  width: 100%;
+  overflow: hidden;
+  margin-bottom: 20px;
+
+  & > li {
+    float: left;
+    min-width: 105px;
+    width: 16.6666%;
+    background-color: @DarkWhite;
+    border: 1px solid @LightGray;
+    border-right: none;
+    box-sizing: border-box;
+    height: 150px;
+    padding-left: 20px;
+  }
+
+  & > li:last-child {
+    border-right: 1px solid @LightGray;
+  }
+
+  .cjm-analysis-overview-title {
+    padding: 20px 0;
+    font-size: 16px;
+    color: #1f2d3d;
+    line-height: 16px;
+  }
+
+  .cjm-analysis-overview-value {
+    font-size: 32px;
+    color: #1f2d3d;
+    line-height: 32px;
+    padding-bottom: 16px;
+  }
+
+  .cjm-analysis-overview-trend {
+    font-size: 13px;
+    color: #8492a6;
+    line-height: 13px;
+    padding-bottom: 8px;
+
+    &:last-child {
+      padding: 0;
+    }
+  }
+
+  .cjm-icon-drop {
+    color: #6bdf90;
+    font-size: 10px;
+  }
+
+  .cjm-icon-drop.ascent {
+    color: #eb776b;
+    font-size: 10px;
+  }
+}
+
+/*数据分析右侧查询*/
+.cjm-analysis-query-right {
+  width: 160px;
+  position: absolute;
+  top: -30px;
+  right: 1px;
+}
+
+/*数据分析左侧查询*/
+.cjm-analysis-query-left {
+  margin: 16px 0;
+
+  .cjm-analysis-query-left-item {
+    margin-bottom: 16px;
+  }
+  .cjm-analysis-query-left-item:last-child {
+    margin-bottom: 0;
+  }
+}
+
+/*数据分析图表*/
+.cjm-analysis-chart {
+  width: 100%;
+  height: 310px;
+}
+
+/*数据分析图表(无数据)*/
+.cjm-analysis-chart-noData{
+  width: 100%;
+  height: 310px;
+  background: url('../../assets/images/no-data.png') no-repeat center center;
+}
+
+/*数据分析图标+表格*/
+.cjm-analysis-chartTable {
+  &:after {
+    content: '';
+    clear: both;
+    display: block;
+  }
+
+  .cjm-analysis-chart, .cjm-analysis-chart-noData {
+    float: left;
+    width: 50%;
+  }
+
+  .cjm-analysis-table {
+    width: 50%;
+    float: left;
+  }
+}
+
+/*数据分析数字总览卡片*/
+.cjm-analysis-overview2 {
+  &:after {
+    content: '';
+    display: block;
+    clear: both;
+  }
+
+  & > li {
+    float: left;
+    height: 60px;
+    padding: 45px 0;
+    width: 50%;
+  }
+
+  .cjm-analysis-overview2-value {
+    font-weight: bold;
+    font-size: 28px;
+    text-align: center;
+  }
+
+  .cjm-analysis-overview2-title {
+    text-align: center;
+  }
+}
+
+.cjm-analysis-search {
+  margin-bottom: 10px;
+
+  &:after {
+    clear: both;
+    display: block;
+    content: '';
+  }
+
+  .cjm-analysis-search-item {
+    float: left;
+    margin-right: 40px;
+    margin-bottom: 10px;
+
+    & > label {
+      font-size: 14px;
+      margin-right: 10px;
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  .cjm-analysis-search-item:last-child {
+    margin-right: 0;
+  }
+}

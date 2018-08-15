@@ -1,0 +1,311 @@
+@import './config';
+
+/*按钮内部图标和文字的间隔*/
+.el-button {
+  i {
+    margin-right: 6px;
+  }
+}
+
+/*滚动条*/
+.el-scrollbar__bar {
+  z-index: 10000;
+}
+.el-scrollbar__thumb {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+.el-scrollbar__thumb:hover {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+.cjm-scrollbar {
+  height: 100%;
+}
+
+.cjm-scrollbar-wrap {
+  overflow: hidden;
+  overflow-y: scroll;
+  height: 100%;
+}
+
+/*表格*/
+.cjm-table.el-table {
+  width: 100%;
+
+  thead {
+    color: #666;
+  }
+
+  td {
+    border-bottom: none;
+  }
+  td:not(:last-child) {
+    border-right: none;
+  }
+
+  td,
+  th {
+    padding: 5px 0;
+    height: 40px;
+  }
+
+  //排序箭头
+  .caret-wrapper {
+    height: 24px;
+    .sort-caret.ascending {
+      top: 0;
+    }
+    .sort-caret.descending {
+      bottom: 2px;
+    }
+  }
+
+  //表头边框
+  .el-table__header th:not(:last-child) {
+    border-right: none;
+
+    .cell {
+      border-right: 1px solid @Gray;
+    }
+  }
+
+  //表头颜色
+  .el-table__header-wrapper thead th,
+  .el-table__fixed-header-wrapper thead th {
+    background-color: @ExtraLightGray;
+  }
+
+  .cell {
+    padding-left: 14px;
+    padding-right: 14px;
+    font-size: 13px;
+
+    .el-button {
+      font-size: 13px;
+      padding-top: 5px;
+      padding-bottom: 5px;
+    }
+  }
+
+  //斑马纹颜色
+  &.el-table--striped .el-table__body tr.el-table__row--striped td {
+    background: @DarkWhite;
+  }
+
+  .hover-row td {
+    background: @ExtraLightGray !important;
+  }
+
+  .el-table__body tr:hover > td {
+    background: @ExtraLightGray !important;
+  }
+
+  .el-table__fixed,
+  .el-table__fixed-right {
+    box-shadow: none;
+  }
+  .el-table__fixed-right {
+    box-shadow: 0 0 8px #ddd;
+  }
+}
+
+/*可编辑的表格*/
+.cjm-editableTable {
+  tr {
+    height: 60px;
+  }
+
+  .el-table__empty-block {
+    display: none;
+  }
+
+  .el-autocomplete,
+  .el-date-editor.el-input,
+  .el-cascader,
+  .el-select {
+    width: 100%;
+  }
+}
+
+/*增加分页器文本框宽度，能够显示4位数*/
+.el-pagination__editor {
+  width: 45px;
+}
+
+/*编辑类型的表单页*/
+.cjm-edit-page,
+.cjm-view-page {
+  max-width: 1200px;
+
+  .cjm-page-bottom-bar {
+    max-width: 1200px;
+  }
+}
+
+/*查看类型的表单页*/
+.cjm-view-page {
+  .cjm-table-row {
+    //查看类表单两列时需要加行
+    display: table;
+    width: 100%;
+    .el-form-item {
+      display: table-cell;
+      position: relative;
+      float: none;
+      .el-form-item__label {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+      }
+      .el-form-item__content {
+        display: inline-block;
+      }
+    }
+  }
+  .el-form {
+    border-left: 1px solid @LightGray;
+    border-top: 1px solid @LightGray;
+  }
+  .el-form-item {
+    border-right: 1px solid @LightGray;
+    border-bottom: 1px solid @LightGray;
+    box-sizing: border-box;
+    margin-bottom: 0;
+    display: inline-table;
+  }
+  .el-form-item__label {
+    background: @ExtraLightGray;
+    text-align: left;
+    padding: 14px 12px;
+    display: table-cell;
+    float: none;
+  }
+  .el-form-item__content {
+    padding: 3px 12px;
+    display: table-cell;
+  }
+}
+
+/*新窗口打开的页面*/
+.cjm-new-window-page {
+  padding: 20px;
+}
+
+.cjm-page-bottom-holder {
+  height: 57px;
+  width: 100%;
+}
+
+.cjm-page-bottom-bar {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  text-align: center;
+
+  .el-button {
+    padding: 10px 22px;
+  }
+}
+
+/*新增项区域*/
+.cjm-item-area {
+  background-color: @DarkWhite;
+  margin: 20px 0;
+  padding: 0 30px 20px;
+  position: relative;
+  border: 1px solid @LightGray;
+  .cjm--delete-panel {
+    padding: 15px 0;
+  }
+  .cjm-item-delete {
+    float: right;
+    margin: 0 -13px 0 0;
+    cursor: pointer;
+  }
+}
+
+.cjm-option-subtitle {
+  font-size: 12px;
+  color: @LightSilver;
+}
+
+/*h1标题*/
+.cjm-h1,
+.cjm-h2 {
+  height: 21px;
+  line-height: 21px;
+  margin-bottom: 20px;
+  margin-left: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  clear: both;
+
+  &:before {
+    float: left;
+    content: '';
+    width: 5px;
+    height: 21px;
+    background: @primaryColor;
+    margin-right: 12px;
+  }
+
+  &:after {
+    display: block;
+    content: '';
+    clear: both;
+  }
+}
+
+.cjm-h2 {
+  margin-left: 25px;
+  font-size: 15px;
+}
+
+/*范围日期组件*/
+.el-range-editor {
+  box-sizing: border-box;
+
+  .el-icon-date {
+    width: 13%;
+  }
+  .el-range-input {
+    width: 40%;
+  }
+  .el-range-separator {
+    width: 5%;
+    padding: 0 1%;
+  }
+  .el-range__close-icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+}
+
+.el-tabs__item {
+  color: @ExtraLightBlack;
+}
+
+/*步骤条*/
+.el-step__title{
+  font-size: 14px;
+}
+.el-step__title.is-success{
+  color: @ExtraLightSilver;
+}
+.el-step__description.is-success{
+  color: @ExtraLightSilver;
+}
+.el-step__head.is-success{
+  color: @primaryColor;
+  border-color: @primaryColor;
+}
+.el-step__head .el-step__icon .el-step__icon-inner{
+  font-weight: normal;
+}
+.el-step__head.is-finish .el-step__icon{
+  color: #fff;
+  background-color: @primaryColor;
+}

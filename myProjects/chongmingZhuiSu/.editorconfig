@@ -1,0 +1,15 @@
+root = true
+#匹配所有文件
+[*]
+#文件编码格式
+charset = utf-8
+#采用空格缩进
+indent_style = space
+#缩进空格数
+indent_size = 2
+#以lf为每行结尾
+end_of_line = lf
+#每个文件以空白行结尾
+insert_final_newline = true
+#去除每行结尾空白符
+trim_trailing_whitespace = true

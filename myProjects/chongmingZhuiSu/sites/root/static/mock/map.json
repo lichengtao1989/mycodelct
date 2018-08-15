@@ -1,0 +1,17 @@
+{
+  "resultCode": "200",
+  "msg": "",
+  "data": {
+    "values": [
+      {"value": 335, "name": "浙江"},
+      {"value": 310, "name": "广东"},
+      {"value": 234, "name": "江苏"}
+    ],
+    "option": {
+      "name": "扫码量",
+      "mapName": "china",
+      "mapType": "country"
+    }
+  }
+}
+

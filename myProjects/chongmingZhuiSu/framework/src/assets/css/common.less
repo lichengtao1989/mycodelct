@@ -1,0 +1,46 @@
+@import './config';
+
+@media print {
+  .no-print {
+    display: none;
+  }
+
+  .print {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+}
+
+body {
+  background: #eee;
+}
+
+.clear:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+//去掉ie输入框自带的清除(X)功能
+::-ms-clear,
+::-ms-reveal {
+  display: none;
+}
+
+.cjm-img-nodata {
+  background-image: url(../images/no-data.png);
+  background-size: 100%;
+}
+.cjm-img-error {
+  background-image: url(../images/error.png);
+  background-size: 100%;
+}
+.el-tabs__nav:focus {
+  outline: none;
+}
+.el-tabs__item:focus.is-active.is-focus:not(:active) {
+  box-shadow: none;
+}

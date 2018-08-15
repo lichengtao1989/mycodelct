@@ -1,0 +1,50 @@
+@themes: #3667a5, #057748, #36465D;
+
+/*一级菜单*/
+.cjm-menu-item-head {
+  color: #fff;
+}
+
+/*二级菜单*/
+.cjm-menu-item-body {
+  background: rgba(0, 0, 0, 0.2);
+
+  /*新窗口打开的图标*/
+  & > li > a {
+    color: #fff;
+  }
+}
+
+.cjm-menu-item-active-icon {
+  color: #eee;
+  //color: #d9dee4;
+}
+
+.cjm-menu-right {
+  //border-radius: 3px 0 0 3px;
+  background: #eee;
+
+  li {
+    color: #4d4d4d;
+  }
+}
+
+.generate-themes(@n, @i: 1) when (@i =< @n) {
+  .theme@{i} {
+    .cjm-head,
+    .cjm-head-items,
+    .cjm-menu-left,
+    &.cjm-head-theme-item {
+      background: extract(@themes, @i);
+    }
+
+    .cjm-head-user-txtItem,
+    .cjm-head-switchSystem,
+    .cjm-menu-right li:hover{
+      color: extract(@themes, @i);
+    }
+  }
+  .generate-themes(@n, (@i + 1));
+}
+
+.generate-themes(3);

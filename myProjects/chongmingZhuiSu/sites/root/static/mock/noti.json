@@ -1,0 +1,22 @@
+{
+  "data":{
+    "total":1,
+    "rows":[
+      {
+        "id":"75342e36-b796-418f-95e9-a0cab20be80d",
+        "title":"标题",
+        "corpID":"组织ID",
+        "corpName":"组织名称",
+        "range": "1",
+        "type": "1",
+        "status":"0",
+        "closable":"0",
+        "createBy":"创建人",
+        "createTime":"2017/8/17 00:00:00",
+        "content": "<p>\n\t<span style=\"color:#337FE5;\">这是第一行</span>\n</p>\n<p>\n\t<span style=\"color:#337FE5;font-size:24px;\">这是第二行</span>\n</p>\n<p>\n\t<img src=\"http://resource1.app315.net/1/3a5e2c3450f64bb7bb09b4cf0c45815d.jpg?imageMogr2/format/jpg/quality/70|imageView2/2/w/2000/h/2000\" alt=\"\" /> \n</p>\n<p>\n\t<p>\n\t\t<span style=\"color:#337FE5;\">这是第3行</span>\n\t</p>\n\t<p>\n\t\t<span style=\"color:#337FE5;font-size:24px;\">这是第4行</span>\n\t</p>\n\t<p>\n\t\t<p>\n\t\t\t<span style=\"color:#337FE5;\">这是第5行</span>\n\t\t</p>\n\t\t<p>\n\t\t\t<span style=\"color:#337FE5;font-size:24px;\">这是第6行</span>\n\t\t</p>\n\t\t<p>\n\t\t\t<span style=\"color:#337FE5;\">这是第7行</span>\n\t\t</p>\n\t\t<p>\n\t\t\t<span style=\"color:#337FE5;font-size:24px;\"><span style=\"color:#337FE5;font-size:24px;\">这是第8行</span></span>\n\t\t</p>\n\t\t<p>\n\t\t\t<span style=\"color:#337FE5;font-size:24px;\"><span style=\"color:#337FE5;font-size:24px;\"><span style=\"color:#337FE5;font-size:24px;\">这是第9行</span></span></span>\n\t\t</p>\n\t\t<p>\n\t\t\t<span style=\"color:#337FE5;font-size:24px;\"><span style=\"color:#337FE5;font-size:24px;\"><span style=\"color:#337FE5;font-size:24px;\">这是第10行。。。。。。</span><br />\n</span></span>\n\t\t</p>\n\t\t<p>\n\t\t\t<span style=\"color:#337FE5;font-size:24px;\"><span style=\"color:#337FE5;font-size:24px;\"><span style=\"color:#337FE5;font-size:24px;\">第三方库价格很低是</span></span></span>\n\t\t</p>\n\t\t<p>\n\t\t\t<span style=\"color:#337FE5;font-size:24px;\"><span style=\"color:#337FE5;font-size:24px;\"><span style=\"color:#337FE5;font-size:24px;\">dsgdfs</span></span></span>\n\t\t</p>\n\t\t<p>\n\t\t\t<span style=\"color:#337FE5;font-size:24px;\"><span style=\"color:#337FE5;font-size:24px;\"><span style=\"color:#337FE5;font-size:24px;\">dfg</span></span></span>\n\t\t</p>\n\t\t<p>\n\t\t\t<span style=\"color:#337FE5;font-size:24px;\"><span style=\"color:#337FE5;font-size:24px;\"><span style=\"color:#337FE5;font-size:24px;\">df</span></span></span>\n\t\t</p>\n\t\t<p>\n\t\t\t<span style=\"color:#337FE5;font-size:24px;\"><span style=\"color:#337FE5;font-size:24px;\"><span style=\"color:#337FE5;font-size:24px;\">gdf</span></span></span>\n\t\t</p>\n\t\t<p>\n\t\t\t<span style=\"color:#337FE5;font-size:24px;\"><span style=\"color:#337FE5;font-size:24px;\"><span style=\"color:#337FE5;font-size:24px;\">gdf</span></span></span>\n\t\t</p>\n\t\t<p>\n\t\t\t<span style=\"color:#337FE5;font-size:24px;\"><span style=\"color:#337FE5;font-size:24px;\"><span style=\"color:#337FE5;font-size:24px;\">gddfgerterter</span></span></span>\n\t\t</p>\n\t\t<p>\n\t\t\t<span style=\"color:#337FE5;font-size:24px;\"><span style=\"color:#337FE5;font-size:24px;\"><span style=\"color:#337FE5;font-size:24px;\">ertert</span></span></span>\n\t\t</p>\n\t\t<p>\n\t\t\t<span style=\"color:#337FE5;font-size:24px;\"><span style=\"color:#337FE5;font-size:24px;\"><span style=\"color:#337FE5;font-size:24px;\">erter</span></span></span>\n\t\t</p>\n\t\t<p>\n\t\t\t<span style=\"color:#337FE5;font-size:24px;\"><span style=\"color:#337FE5;font-size:24px;\"><span style=\"color:#337FE5;font-size:24px;\">terterrrrrrrrrrrrrrrrrrrrr</span></span></span>\n\t\t</p>\n\t</p>\n</p>\n<p>\n\t<img src=\"http://resource1.app315.net/1/3a5e2c3450f64bb7bb09b4cf0c45815d.jpg?imageMogr2/format/jpg/quality/70|imageView2/2/w/2000/h/2000\" alt=\"\" style=\"width:500px;\" />\n</p>"
+      }
+    ]
+  },
+  "resultCode":"200",
+  "msg":""
+}

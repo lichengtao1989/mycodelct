@@ -1,0 +1,207 @@
+{
+  "data":{
+    "total":2,
+    "rows":[
+      {
+        "id":"75342e36-b796-418f-95e9-a0cab20be80d",
+        "title":"折线图",
+        "visible":"1",
+        "size":"1",
+        "category":"1",
+        "secondCategory":"1",
+        "priority": "2",
+        "closable":"1",
+        "createTime":"2017/8/17 00:00:00",
+        "options": {
+          "dataSource": "static/mock/line2.json",
+          "detailPageCode": "systemList"
+        }
+      }, {
+        "id":"75342e36-b796-418f-95e9-a0cab20be80e",
+        "title":"饼状图",
+        "visible":"1",
+        "size":"1",
+        "category":"1",
+        "secondCategory":"3",
+        "priority": "2",
+        "closable":"1",
+        "createTime":"2017/8/17 00:00:00",
+        "options": {
+          "dataSource": "static/mock/pie.json",
+          "detailPageCode": "systemList"
+        }
+      }, {
+        "id":"75342e36-b796-418f-95e9-a0cab20be80f",
+        "title":"柱状图",
+        "visible":"1",
+        "size":"1",
+        "category":"1",
+        "secondCategory":"2",
+        "priority": "3",
+        "closable":"1",
+        "options": {
+          "dataSource": "static/mock/bar.json",
+          "detailPageCode": "systemList"
+        }
+      }, {
+        "id":"75342e36-b796-418f-95e9-a0cab20be80g",
+        "title":"数字卡片",
+        "visible":"1",
+        "size":"1",
+        "category":"1",
+        "secondCategory":"5",
+        "priority": "1",
+        "closable":"1",
+        "createTime":"2017/8/17 00:00:00",
+        "options": {
+          "dataSource": "static/mock/number.json",
+          "detailPageCode": "systemList"
+        }
+      }, {
+        "id":"75342e36-b796-418f-95e9-a0cab20be80h",
+        "title":"地图卡片",
+        "visible":"1",
+        "size":"1",
+        "category":"1",
+        "secondCategory":"4",
+        "priority": "2",
+        "closable":"1",
+        "createTime":"2017/8/17 00:00:00",
+        "options": {
+          "dataSource": "static/mock/map.json",
+          "detailPageCode": "systemList"
+        }
+      }, {
+        "id":"75342e36-b796-418f-95e9-a0cab20be80i",
+        "title":"标题1",
+        "visible":"1",
+        "size":"1",
+        "category":"0",
+        "secondCategory":"",
+        "priority": "2",
+        "closable":"1",
+        "createTime":"2017/8/11 00:00:00",
+        "options": {
+          "notificationID":"1",
+          "content":"121",
+          "showCreater":"1",
+          "corpName":"组织名称"
+        }
+      },{
+        "id":"75342e36-b796-418f-95e9-a0cab20be80j",
+        "title":"标题1",
+        "visible":"1",
+        "size":"1",
+        "category":"0",
+        "secondCategory":"",
+        "priority": "2",
+        "closable":"1",
+        "createTime":"2017/5/12 00:00:00",
+        "options": {
+          "notificationID":"2",
+          "content":"121",
+          "showCreater":"1",
+          "corpName":"组织名称"
+        }
+      },{
+        "id":"75342e36-b796-418f-95e9-a0cab20be81j",
+        "title":"标题1",
+        "visible":"1",
+        "size":"1",
+        "category":"0",
+        "secondCategory":"",
+        "priority": "2",
+        "closable":"1",
+        "createTime":"2017/9/17 00:00:00",
+        "options": {
+          "notificationID":"2",
+          "content":"121",
+          "showCreater":"1",
+          "corpName":"组织名称"
+        }
+      },{
+        "id":"75342e36-b796-418f-95e9-a0cab20be82j",
+        "title":"标题1",
+        "visible":"1",
+        "size":"1",
+        "category":"0",
+        "secondCategory":"",
+        "priority": "2",
+        "closable":"1",
+        "createTime":"2017/7/17 00:00:00",
+        "options": {
+          "notificationID":"2",
+          "content":"121",
+          "showCreater":"1",
+          "corpName":"组织名称"
+        }
+      },{
+        "id":"75342e36-b796-418f-95e9-a0cab20be83j",
+        "title":"标题1",
+        "visible":"1",
+        "size":"1",
+        "category":"0",
+        "secondCategory":"",
+        "priority": "2",
+        "closable":"1",
+        "createTime":"2017/8/14 00:00:00",
+        "options": {
+          "notificationID":"2",
+          "content":"121",
+          "showCreater":"1",
+          "corpName":"组织名称"
+        }
+      },{
+        "id":"75342e36-b796-418f-95e9-a0cab20be84j",
+        "title":"标题1",
+        "visible":"1",
+        "size":"1",
+        "category":"0",
+        "secondCategory":"",
+        "priority": "2",
+        "closable":"1",
+        "createTime":"2017/8/14 00:00:00",
+        "options": {
+          "notificationID":"2",
+          "content":"121",
+          "showCreater":"1",
+          "corpName":"组织名称"
+        }
+      },{
+        "id":"75342e36-b796-418f-95e9-a0cab20be80k",
+        "title":"标题2",
+        "visible":"1",
+        "size":"1",
+        "category":"0",
+        "secondCategory":"",
+        "priority": "2",
+        "closable":"0",
+        "createTime":"2017/8/17 00:00:00",
+        "options":{
+          "notificationID":"3",
+          "content":"<p>123</p>",
+          "showCreater":"1",
+          "corpName":"组织名称"
+        }
+      },{
+        "id":"75342e36-b796-418f-95e9-a0cab20be80k",
+        "title":"标题3",
+        "visible":"1",
+        "size":"1",
+        "category":"0",
+        "secondCategory":"",
+        "priority": "2",
+        "closable":"0",
+        "createTime":"2017/8/15 00:00:00",
+        "options":{
+          "notificationID":"3",
+          "content":"<p>123</p>",
+          "showCreater":"1",
+          "corpName":"组织名称"
+        }
+      }
+    ]
+  },
+  "resultCode":"200",
+  "msg":"卡片获取异常"
+}

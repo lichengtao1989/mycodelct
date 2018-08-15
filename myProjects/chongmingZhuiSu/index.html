@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="cache-control" content="no-cache" />
+  <meta http-equiv="expires" content="0" />
+  <meta http-equiv="pragma" content="no-cache" />
+  <meta name="renderer" content="webkit">
+  <link href="static/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
+  <title>超级码系统</title>
+  <style>
+    .cjm-index-loading {
+       position: absolute;
+       top: 0;
+       bottom: 0;
+       left: 0;
+       right: 0;
+       z-index: -1;
+       background: url(static/images/root-loading.gif) no-repeat 50% 40%;
+       background-color: #fff;
+     }
+  </style>
+</head>
+<body style="overflow: hidden;">
+<div id="app"></div>
+<div class="cjm-index-loading"></div>
+<div id="print" class="print"></div>
+<!--以下版本号为了使得老版本的卡片页面能正常显示-->
+<input type="hidden" id="newVersion" value="3.0"/>
+
+<script type="text/javascript">
+  (function () {
+    var css = [
+      '/Resource/easyui/themes/default/easyui.css',
+      '/Resource/easyui/themes/icon.css',
+      '/Resource/fancybox/jquery.fancybox-1.3.2.css',
+      '/Resource/css/easyuiext.css',
+      '/Resource/css/baseForVue.css',
+      '/Resource/mCustomScrollbar/jquery.mCustomScrollbar.css'
+    ];
+    var js = [
+      '/Resource/jquery/jquery-min.js',
+      '/Resource/jquery/jquery.json-2.4.min.js',
+      '/Resource/easyui/jquery.easyui.min.js',
+      '/Resource/easyui/locale/easyui-lang-zh_CN.js',
+      '/Resource/js/easyuiExt.js',
+      '/Resource/fancybox/jquery.fancybox-1.3.2.pack.js',
+      '/Resource/My97DatePicker/WdatePicker.js',
+      '/Resource/js/common.js',
+      '/Resource/mCustomScrollbar/jquery.mCustomScrollbar.concat.min.js'
+    ];
+    var loadCss = function (items) {
+      for (var i=0; i< items.length; i++) {
+        var item = items[i];
+        var dom = document.createElement('link');
+        dom.rel = 'stylesheet';
+        dom.href = item;
+        document.body.appendChild(dom);
+      }
+    };
+    var loadJS = function (url, success) {
+      var dom = document.createElement('script');
+      dom.src = url;
+      success = success || function () {
+        };
+      dom.onload = dom.onreadystatechange = function () {
+        if (!this.readyState || 'loaded' === this.readyState || 'complete' === this.readyState) {
+          success();
+          this.onload = this.onreadystatechange = null;
+          this.parentNode.removeChild(this);
+        }
+      };
+      document.body.appendChild(dom);
+    };
+    var loadNextJS = function (array, index) {
+      if (array.length <= index) {
+        return;
+      }
+      loadJS(array[index], function () {
+        loadNextJS(array, ++index);
+      })
+    };
+
+    setTimeout(function () {
+      loadCss(css);
+      loadNextJS(js, 0);
+    }, 10);
+  })();
+</script>
+<script type="text/javascript" src="//api.map.baidu.com/api?v=2.0&ak=4ae721a05484fca11cb57c1a33b98b30"></script>
+</body>
+</html>

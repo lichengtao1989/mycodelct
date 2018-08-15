@@ -1,0 +1,13 @@
+{
+  "resultCode": "200",
+  "msg": "",
+  "data": [
+    {
+      "value": 20,
+      "unit": "%",
+      "ratioStatus": "daily",
+      "termRatio": 0.03,
+      "loopRatio": -0.02
+    }
+  ]
+}

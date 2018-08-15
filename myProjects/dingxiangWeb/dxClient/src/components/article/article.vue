@@ -36,7 +36,7 @@ export default {
   },
   computed: {
     typeFn() {
-      let str = dataAry[this.ArticleType].values[this.ArticleSubType].name ? dataAry[this.ArticleType].values[this.ArticleSubType-1].name : '';
+      let str = dataAry[this.ArticleType].values[this.ArticleSubType - 1].name ? dataAry[this.ArticleType].values[this.ArticleSubType - 1].name : '';
       return str;
     },
     myTitleVal() {
@@ -79,16 +79,15 @@ export default {
       if (err) {
       } else {
         if (res.ResultCode == 200) {
-             let dataInfo = res.Data.List[0];
+          let dataInfo = res.Data.List[0];
           if (query.ArticleID) {
-         
             this.mycontent = dataInfo.ArticleContent;
             this.mytitle = dataInfo.ArticleTitle;
             this.ArticleType = dataInfo.ArticleType;
             this.CreateTime = dataInfo.CreateTime;
             this.ReadCount = dataInfo.ReadCount;
             this.ArticleSubType = dataInfo.ArticleSubType;
-          }else{
+          } else {
             this.mycontent = dataInfo.Content;
             this.mytitle = dataInfo.Title;
             this.ArticleType = dataInfo.Type;
@@ -121,7 +120,8 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="scss" scoped="" rel="stylesheet/scss">
+<style lang="scss" scoped="" type="text/css">
+$base: 192;
 @import 'static/style/_var.scss';
 .fbsm {
   @include te;
@@ -129,32 +129,32 @@ export default {
 }
 .xqwrap {
   @include mag;
-  min-height: 600px;
-  width: 1198px;
-  border: 1px solid #128f40;
-  border-top-width: 4px;
-  @include fo(16px);
-  line-height: 31px;
+  min-height: 600rem/$base;
+  width: 1198rem/$base;
+  border: 1rem/$base solid #128f40;
+  border-top-width: 4rem/$base;
+  @include fo(16rem/$base);
+  line-height: 31rem/$base;
   @include co(#333);
   @include ba(#fff);
-  margin-top: 7px;
+  margin-top: 7rem/$base;
   .tmv {
     @include co(#128f40);
-    padding: 9px 0 34px 19px;
+    padding: 9rem/$base 0 34rem/$base 19rem/$base;
   }
   .content {
     @include mag;
-    width: 878px;
-    line-height: 31px;
-    text-indent: 32px;
+    width: 878rem/$base;
+    line-height: 31rem/$base;
+    text-indent: 32rem/$base;
     // div,p{
 
     // }
   }
   .mytitle {
     @include te;
-    padding-bottom: 45px;
-    @include fo(20px);
+    padding-bottom: 45rem/$base;
+    @include fo(20rem/$base);
   }
 }
 </style>

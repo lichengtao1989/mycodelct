@@ -268,13 +268,14 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped="" type="text/css">
+$base: 192;
 @import 'static/style/_var.scss';
 .newlist {
-  width: 404px;
-  border-top: 1px solid #e1e1e1;
-  padding-top: 25px;
-  margin-top: 8px;
-  @include fo(16px);
+  width: 404rem / $base;
+  border-top: 1rem / $base solid #e1e1e1;
+  padding-top: 25rem / $base;
+  margin-top: 8rem / $base;
+  @include fo(16rem / $base);
   @include ov;
 }
 .inline {
@@ -283,48 +284,48 @@ export default {
 }
 .newitem {
   cursor: pointer;
-  margin-bottom: 13px;
+  margin-bottom: 13rem / $base;
   .inline {
     vertical-align: middle;
   }
   .sk {
-    @include wh(6px, 6px);
+    @include wh(6rem / $base, 6rem / $base);
     @include ba(#ccc);
-    margin-right: 12px;
+    margin-right: 12rem / $base;
   }
   .xw {
-    width: 333px;
-    height: 20px;
+    width: 333rem / $base;
+    height: 20rem / $base;
     @include ovt;
   }
 }
 .moduleitem {
-  padding-left: 15px;
-  padding-right: 15px;
-  padding-top: 11px;
-  @include wh(433px, 352px);
+  padding-left: 15rem / $base;
+  padding-right: 15rem / $base;
+  padding-top: 11rem / $base;
+  @include wh(433rem / $base, 352rem / $base);
   @include ov;
   @include bs;
   @include pr;
   @include ba(#fff);
   display: inline-block;
-  margin-bottom: 14px;
+  margin-bottom: 14rem / $base;
   .left {
-    @include wh(56px, 56px);
+    @include wh(56rem / $base, 56rem / $base);
     @include baimg('../../../static/images/dxdbt1.png');
   }
   .ename {
-    @include fo(12px);
+    @include fo(12rem / $base);
     @include co(#cccccc);
   }
   .right {
-    padding-left: 11px;
+    padding-left: 11rem / $base;
   }
   .dbt {
-    @include fo(32px);
+    @include fo(32rem / $base);
     font-weight: bold;
     @include co(#1993f0);
-    padding-bottom: 10px;
+    padding-bottom: 10rem / $base;
   }
 }
 .itemtype2 {
@@ -394,21 +395,21 @@ export default {
 .itemtype2,
 .itemtype5,
 .itemtype8 {
-  margin-left: 10px;
-  margin-right: 10px;
+  margin-left: 10rem / $base;
+  margin-right: 10rem / $base;
 }
 .morelink {
   cursor: pointer;
   @include po;
-  @include fo(14px);
+  @include fo(14rem / $base);
   @include co(#999);
-  top: 55px;
-  right: 16px;
+  top: 55rem / $base;
+  right: 16rem / $base;
   z-index: 2;
 }
 .swiperoutlct1 {
-  margin-top: 11px;
-  @include wh(404px, 257px);
+  margin-top: 11rem / $base;
+  @include wh(404rem / $base, 257rem / $base);
   @include ov;
   img {
     @include block;
@@ -427,23 +428,24 @@ export default {
   background: rgba(0, 0, 0, 0.7);
   .ttshow {
     @include co(#fff);
-    @include fo(16px);
-    line-height: 44px;
-    padding-left: 21px;
-    padding-right: 21px;
-    height: 44px;
+    @include fo(16rem / $base);
+    line-height: 44rem / $base;
+    padding-left: 21rem / $base;
+    padding-right: 21rem / $base;
+    height: 44rem / $base;
     width: 75%;
     @include tov;
   }
 }
 </style>
 <style lang="scss" type="text/css">
+$base: 192;
 #swiperoutlct1 .swiper-pagination-bullet,
 #swiperoutlct2 .swiper-pagination-bullet {
   background: #68686c;
   opacity: 1;
-  width: 10px;
-  height: 10px;
+  width: 10rem / $base;
+  height: 10rem / $base;
 }
 
 #swiperoutlct1 .swiper-pagination-bullet-active,
@@ -454,7 +456,7 @@ export default {
 #swiperoutlct2 .swiper-pagination {
   position: absolute;
   text-align: right;
-  padding-right: 20px;
+  padding-right: 20rem / $base;
   box-sizing: border-box;
   -webkit-transition: 300ms opacity;
   -o-transition: 300ms opacity;
@@ -462,7 +464,7 @@ export default {
   -webkit-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
   z-index: 10;
-  bottom: 15px;
+  bottom: 15rem / $base;
   right: 10%;
   display: inline-block;
 }

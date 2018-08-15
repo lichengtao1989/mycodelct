@@ -99,17 +99,18 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped="" type="text/css">
+$base: 192;
 @import "static/style/_var.scss";
 .top {
-  width: 1320px;
+  width: 1320rem/$base;
   @include mag;
-  height: 205px;
+  height: 205rem/$base;
   @include pr;
   .logoimg {
     @include po;
     @include block;
-    height: 64px;
-    top: 76px;
+    height: 64rem/$base;
+    top: 76rem/$base;
     left: 0;
     z-index: 2;
   }
@@ -117,16 +118,16 @@ export default {
     @include po;
     z-index: 2;
     @include co(#000);
-    @include fo(14px);
-    bottom: 75px;
+    @include fo(14rem/$base);
+    bottom: 75rem/$base;
     right: 0;
   }
   .textshow {
-    line-height: 116px;
-    font-size: 42px;
+    line-height: 116rem/$base;
+    font-size: 42rem/$base;
     font-weight: bolder;
     color: #11512d;
-    padding-left: 101px;
+    padding-left: 101rem/$base;
   }
 }
 </style>

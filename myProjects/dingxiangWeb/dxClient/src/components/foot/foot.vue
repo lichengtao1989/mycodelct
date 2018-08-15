@@ -55,19 +55,20 @@ export default {
 </script>
 
 <style lang="scss" scoped="" type="text/css">
+$base: 192;
 @import 'static/style/_var.scss';
 .foot {
-  height: 180px;
+  height: 180rem/$base;
   width: 100%;
   @include ba(#f2f3f6);
-  margin-top: 60px;
+  margin-top: 60rem/$base;
   .footinner {
-    width: 1200px;
+    width: 1200rem/$base;
     @include te;
     @include mag;
-    padding-top: 42px;
+    padding-top: 42rem/$base;
     @include co(#676767);
-    @include fo(12px);
+    @include fo(12rem/$base);
     .p01 {
       div {
         cursor: pointer;
@@ -75,7 +76,7 @@ export default {
       }
     }
     .smtt {
-      padding-top: 18px;
+      padding-top: 18rem/$base;
     }
   }
 }

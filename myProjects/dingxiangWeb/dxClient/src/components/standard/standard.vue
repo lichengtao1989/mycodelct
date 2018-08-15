@@ -87,56 +87,57 @@ export default {
 };
 </script>
 
-
 <style lang="scss" scoped="" type="text/css">
+$base: 192;
 @import 'static/style/_var.scss';
 .listright {
-  border: 1px solid #128f40;
+  border: 1rem / $base solid #128f40;
 }
 .listout {
   @include pr;
   width: 100%;
   @include bs;
-  padding-left: 363px;
+  padding-left: 363rem / $base;
   @include mag;
-  margin-top: 7px;
-  padding-bottom: 0px;
+  margin-top: 7rem / $base;
+  padding-bottom: 0rem / $base;
   .listleft {
+    font-size: 16rem / $base;
     @include po;
     top: 0;
     left: 0;
 
-    width: 354px;
-    // height: 304px;
-    margin-bottom: 7px;
+    width: 354rem / $base;
+    // height: 304rem/$base;
+    margin-bottom: 7rem / $base;
 
     .model-title {
-      padding: 8px 20px 6px;
+      padding: 8rem / $base 20rem / $base 6rem / $base;
       color: #128f40;
-      font-size: 16px;
+      font-size: 16rem / $base;
     }
     .news-active {
       background: #ffffff;
-      padding: 0 16px;
-      border: 1px solid #128f40;
+      padding: 0 16rem / $base;
+      border: 1rem / $base solid #128f40;
     }
     .news-active .news-active-list {
-      padding: 20px 0;
+      padding: 20rem / $base 0;
     }
     .news-active .news-active-list ul li.active {
       background: #128f40;
-      border: 1px solid #128f40;
+      border: 1rem / $base solid #128f40;
       color: #fff;
     }
     .insp {
       vertical-align: middle;
     }
     .news-active .news-active-list ul li {
-      width: 217px;
-      height: 40px;
-      line-height: 40px;
-      border: 1px solid #b7d886;
-      margin: 0px auto 15px;
+      width: 217rem / $base;
+      height: 40rem / $base;
+      line-height: 40rem / $base;
+      border: 1rem / $base solid #b7d886;
+      margin: 0rem / $base auto 15rem / $base;
       text-align: center;
       position: relative;
       cursor: pointer;
@@ -144,30 +145,30 @@ export default {
     }
     .news-active .news-active-list ul li span.sorrow {
       display: inline-block;
-      width: 30px;
-      height: 21px;
+      width: 30rem / $base;
+      height: 21rem / $base;
       background: url('../../../static/images/sorrow.png') no-repeat;
       background-size: 100% auto;
-      left: 53px;
-      margin-right: 10px;
+      left: 53rem / $base;
+      margin-right: 10rem / $base;
     }
     .news-active .news-active-list ul li.active span.sorrow {
-      background-position-y: -21px;
+      background-position-y: -21rem / $base;
     }
   }
 }
 .pr {
   @include pr;
-  height: 260px;
-  width: 355px;
-  margin-top: 10px;
+  height: 260rem / $base;
+  width: 355rem / $base;
+  margin-top: 10rem / $base;
 }
 .page {
   @include te;
   // @include po;
-  margin-bottom: 15px;
+  margin-bottom: 15rem / $base;
   width: 100%;
   left: 0;
-  bottom: 80px;
+  bottom: 80rem / $base;
 }
 </style>

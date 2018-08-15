@@ -99,29 +99,30 @@ export default {
 </script>
 
 <style lang="scss" scoped="" type="text/css">
+$base: 192;
 @import 'static/style/_var.scss';
 .lxwm {
-  @include fo(16px);
+  @include fo(16rem/$base);
   @include co(#128f40);
-  padding: 9px 0 9px 19px;
+  padding: 9rem/$base 0 9rem/$base 19rem/$base;
 }
 .wrap {
   @include pr;
-  height: 773px;
-  margin-top: 10px;
-  border: 1px solid #128f40;
+  height: 773rem/$base;
+  margin-top: 10rem/$base;
+  border: 1rem/$base solid #128f40;
 }
 .originsout {
-  border: 1px solid #128f40;
-  padding-bottom: 30px;
+  border: 1rem/$base solid #128f40;
+  padding-bottom: 30rem/$base;
 }
 .dpp2 {
-  padding-left: 19px;
-  margin-bottom: 20px;
+  padding-left: 19rem/$base;
+  margin-bottom: 20rem/$base;
 }
 .dp {
   @include te;
-  margin-right: 9px;
+  margin-right: 9rem/$base;
   @include inline;
   cursor: pointer;
 }

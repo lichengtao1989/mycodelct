@@ -54,6 +54,7 @@ export default {
 
 
 <style lang="scss" scoped="" type="text/css">
+$base: 192;
 @import 'static/style/_var.scss';
-.matext{@include li(40px);@include te;width:100%;}
+.matext{@include li(40rem/$base);@include te;width:100%;}
 </style>

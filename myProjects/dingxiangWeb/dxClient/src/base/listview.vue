@@ -49,25 +49,26 @@ export default {
 
 
 <style lang="scss" scoped="" type="text/css">
+$base: 192;
 @import 'static/style/_var.scss';
 .listview {
   @include ba(#fff);
-  min-height: 675px;
+  min-height: 675rem/$base;
   width: 100%;
-  padding-left: 19px;
+  padding-left: 19rem/$base;
   @include bs;
-  @include fo(15px);
+  @include fo(15rem/$base);
   @include co(#2b2b2b);
   @include pr;
   .topt {
-    padding-top: 9px;
+    padding-top: 9rem/$base;
     @include co(#128f40);
-    padding-bottom: 21px;
+    padding-bottom: 21rem/$base;
   }
 }
 .zwsj {
   text-align: center;
   color: #333;
-  font-size: 16px;
+  font-size: 16rem/$base;
 }
 </style>

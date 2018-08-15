@@ -18,7 +18,6 @@
     </div>
   </div>
 
-  </div>
 </template>
 
 <script>
@@ -60,62 +59,63 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped="" type="text/css">
+$base: 192;
 @import 'static/style/_var.scss';
 .topright {
   height: 100%;
   @include ba(#fff);
-  border: 1px solid #128f40;
+  border: 1rem/$base solid #128f40;
   @include bs;
-  padding-top: 10px;
-  padding-left: 15px;
+  padding-top: 10rem/$base;
+  padding-left: 15rem/$base;
 }
 .rightinnri {
   .wrap {
-    // padding-left: 16px;
-    // padding-top: 8px;
+    // padding-left: 16rem/$base;
+    // padding-top: 8rem/$base;
 
     .text {
-      @include fo(16px);
+      @include fo(16rem/$base);
       @include co(#128f40);
     }
     .inputcx {
       @include block;
-      @include wh(311px, 42px);
-      padding-left: 9px;
-      line-height: 42px;
-      border: 1px solid #ccd0d5;
-      @include fo(15px);
+      @include wh(311rem/$base, 42rem/$base);
+      padding-left: 9rem/$base;
+      line-height: 42rem/$base;
+      border: 1rem/$base solid #ccd0d5;
+      @include fo(15rem/$base);
       outline: none;
     }
   }
   .inputpart {
-    padding-top: 16px;
-    padding-bottom: 7px;
+    padding-top: 16rem/$base;
+    padding-bottom: 7rem/$base;
   }
   .chaxunbtn {
-    @include wh(322px, 42px);
+    @include wh(322rem/$base, 42rem/$base);
     cursor: pointer;
     @include te;
-    line-height: 42px;
-    @include fo(18px);
+    line-height: 42rem/$base;
+    @include fo(18rem/$base);
     @include co(#fff);
     @include ba(#128f40);
   }
   .numitem {
-    @include wh(38px, 38px);
+    @include wh(38rem/$base, 38rem/$base);
     @include te;
-    line-height: 38px;
+    line-height: 38rem/$base;
     @include co(#4b4b4b);
-    @include fo(24px);
-    border: 1px solid #cacfd4;
+    @include fo(24rem/$base);
+    border: 1rem/$base solid #cacfd4;
     @include float;
-    margin-right: 7px;
-    margin-top: 9px;
+    margin-right: 7rem/$base;
+    margin-top: 9rem/$base;
     cursor: pointer;
   }
   .numactive {
     @include co(#128f40);
-    border: 1px solid #128f40;
+    border: 1rem/$base solid #128f40;
   }
   .shuzishuru {
     @include pr;
@@ -123,18 +123,18 @@ export default {
   .potuige,
   .qingkong {
     @include po;
-    @include wh(85px, 38px);
-    @include li(38px);
+    @include wh(85rem/$base, 38rem/$base);
+    @include li(38rem/$base);
     @include te;
     @include co(#128f40);
-    border: 1px solid #cacfd4;
-    left: 141px;
-    top: 57px;
+    border: 1rem/$base solid #cacfd4;
+    left: 141rem/$base;
+    top: 57rem/$base;
     z-index: 2;
     cursor: pointer;
   }
   .qingkong {
-    left: 235px;
+    left: 235rem/$base;
   }
 }
 </style>

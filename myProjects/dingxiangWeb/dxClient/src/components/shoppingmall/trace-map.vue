@@ -163,14 +163,15 @@
     height: 100%;
   }
 </style>
-<style lang="scss" rel="stylesheet/scss">
+<style lang="scss" scoped="" type="text/css">
+$base: 192;
   .infoWindow {
-    margin-top: 12px;
+    margin-top: 12rem/$base;
   }
 
   .infowWindowTxt {
-    width: 280px;
-    font-size: 14px;
+    width: 280rem/$base;
+    font-size: 14rem/$base;
     line-height: 1.6em;
     color: #424242;
     p {
@@ -181,7 +182,7 @@
       text-overflow: ellipsis;
       white-space: nowrap;
       .label-block {
-        width: 120px;
+        width: 120rem/$base;
         text-align: right;
         display: inline-block;
       }

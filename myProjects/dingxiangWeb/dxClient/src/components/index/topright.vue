@@ -124,6 +124,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped="" type="text/css">
+$base: 192;
 @import 'static/style/_var.scss';
 .pofixed {
   position: fixed;
@@ -142,12 +143,12 @@ export default {
   .pobtn {
     @include po;
     bottom: 0;
-    @include wh(150px, 36px);
-    line-height: 36px;
+    @include wh(150rem/$base, 36rem/$base);
+    line-height: 36rem/$base;
     @include co(#fff);
     @include ba(#5fc054);
     @include te;
-    @include brs(4px);
+    @include brs(4rem/$base);
     z-index: 2;
   }
   .pobtn1 {
@@ -159,26 +160,26 @@ export default {
 
   .rightinnri {
     .tbs1 {
-      @include wh(27px, 27px);
+      @include wh(27rem/$base, 27rem/$base);
       @include baimg('../../../static/images/dxtbs1.png');
     }
     .tbs2 {
-      @include wh(27px, 26px);
+      @include wh(27rem/$base, 26rem/$base);
       @include baimg('../../../static/images/dxtbs2.png');
     }
     .tbs3 {
-      @include wh(26px, 24px);
+      @include wh(26rem/$base, 24rem/$base);
       @include baimg('../../../static/images/dxtbs3.png');
     }
     .pp {
       @include ba(#1993f0);
-      @include wh(309px, 44px);
-      line-height: 44px;
+      @include wh(309rem/$base, 44rem/$base);
+      line-height: 44rem/$base;
       @include te;
       @include co(#fff);
-      @include fo(18px);
-      @include brs(4px);
-      margin-bottom: 8px;
+      @include fo(18rem/$base);
+      @include brs(4rem/$base);
+      margin-bottom: 8rem/$base;
       font-weight: bold;
     }
     .pp2 {
@@ -192,68 +193,68 @@ export default {
       vertical-align: middle;
     }
     .zheng {
-      padding-top: 6px;
+      padding-top: 6rem/$base;
     }
     .spi {
-      @include wh(25px, 27px);
+      @include wh(25rem/$base, 27rem/$base);
       @include baimg('../../../static/images/dxzheng.png');
     }
     .wrap {
       @include ba(#ececec);
-      padding-left: 20px;
+      padding-left: 20rem/$base;
       @include ov;
       .spt {
-        @include fo(18px);
-        line-height: 28px;
+        @include fo(18rem/$base);
+        line-height: 28rem/$base;
         @include co(#5fc054);
         font-weight: bold;
       }
       .text {
-        @include fo(16px);
+        @include fo(16rem/$base);
         @include co(#128f40);
       }
       .inputcx {
         @include block;
         @include bs;
-        @include wh(276px, 44px);
-        padding-left: 9px;
-        line-height: 44px;
+        @include wh(276rem/$base, 44rem/$base);
+        padding-left: 9rem/$base;
+        line-height: 44rem/$base;
         border: none;
-        @include brs(4px);
-        @include fo(15px);
+        @include brs(4rem/$base);
+        @include fo(14rem/$base);
         outline: none;
       }
     }
     .inputpart {
-      padding-top: 7px;
-      padding-bottom: 7px;
+      padding-top: 7rem/$base;
+      padding-bottom: 7rem/$base;
     }
     .chaxunbtn {
-      margin-bottom: 14px;
-      @include brs(4px);
-      @include wh(276px, 44px);
+      margin-bottom: 14rem/$base;
+      @include brs(4rem/$base);
+      @include wh(276rem/$base, 44rem/$base);
       cursor: pointer;
       @include te;
-      line-height: 44px;
-      @include fo(18px);
+      line-height: 44rem/$base;
+      @include fo(18rem/$base);
       @include co(#fff);
       @include ba(#5fc054);
     }
     .numitem {
-      @include wh(38px, 38px);
+      @include wh(38rem/$base, 38rem/$base);
       @include te;
-      line-height: 38px;
+      line-height: 38rem/$base;
       @include co(#4b4b4b);
-      @include fo(24px);
-      border: 1px solid #cacfd4;
+      @include fo(24rem/$base);
+      border: 1rem/$base solid #cacfd4;
       @include float;
-      margin-right: 7px;
-      margin-top: 9px;
+      margin-right: 7rem/$base;
+      margin-top: 9rem/$base;
       cursor: pointer;
     }
     .numactive {
       @include co(#128f40);
-      border: 1px solid #128f40;
+      border: 1rem/$base solid #128f40;
     }
     .shuzishuru {
       @include pr;
@@ -261,56 +262,57 @@ export default {
     .potuige,
     .qingkong {
       @include po;
-      @include wh(85px, 38px);
-      @include li(38px);
+      @include wh(85rem/$base, 38rem/$base);
+      @include li(38rem/$base);
       @include te;
       @include co(#128f40);
-      border: 1px solid #cacfd4;
-      left: 141px;
-      top: 57px;
+      border: 1rem/$base solid #cacfd4;
+      left: 141rem/$base;
+      top: 57rem/$base;
       z-index: 2;
       cursor: pointer;
     }
     .qingkong {
-      left: 235px;
+      left: 235rem/$base;
     }
   }
   .cf {
     @include co(#fff);
+    font-size:15rem/$base;
   }
   .pp {
     cursor: pointer;
   }
 }
 .framestyle {
-  @include wh(424px, 345px);
+  @include wh(424rem/$base, 345rem/$base);
   @include mag;
 }
 iframe {
   @include block;
-  @include wh(424px, 345px);
+  @include wh(424rem/$base, 345rem/$base);
 }
 .loginbtn {
-  @include wh(361px, 41px);
+  @include wh(361rem/$base, 41rem/$base);
   @include te;
-  @include li(41px);
+  @include li(41rem/$base);
   @include co(#fff);
   @include ba(#128f40);
   @include mag;
-  border-radius: 5px;
+  border-radius: 5rem/$base;
   cursor: pointer;
-  @include fo(17px);
+  @include fo(17rem/$base);
 }
 .jzyhm {
   cursor: pointer;
-  margin-bottom: 25px;
+  margin-bottom: 25rem/$base;
 }
 .rein {
   @include inline-block;
-  vertical-align: 2px;
-  margin-left: 32px;
-  margin-right: 6px;
-  border: 1px solid #c9c9c9;
+  vertical-align: 2rem/$base;
+  margin-left: 32rem/$base;
+  margin-right: 6rem/$base;
+  border: 1rem/$base solid #c9c9c9;
   outline: none;
 }
 .loginout {
@@ -324,54 +326,54 @@ iframe {
   bottom: 0;
 }
 .loginwrap {
-  width: 540px;
+  width: 540rem/$base;
 
   @include ba(#fff);
-  border-radius: 8px;
-  padding-top: 24px;
-  // padding-bottom: 50px;
-  // min-height: 330px;
+  border-radius: 8rem/$base;
+  padding-top: 24rem/$base;
+  // padding-bottom: 50rem/$base;
+  // min-height: 330rem/$base;
   @include p_center;
   cursor: pointer;
 }
 .close {
-  @include wh(36px, 36px);
+  @include wh(36rem/$base, 36rem/$base);
   @include baimg('../../../static/images/close.png');
   @include po;
-  top: -18px;
-  right: -18px;
+  top: -18rem/$base;
+  right: -18rem/$base;
   z-index: 6;
 }
 .bt {
   @include te;
-  @include fo(24px);
+  @include fo(24rem/$base);
   // @include co(#128f40);
   color: rgb(16, 206, 198);
-  padding-bottom: 29px;
+  padding-bottom: 29rem/$base;
 }
 .pp {
-  @include wh(361px, 48px);
+  @include wh(361rem/$base, 48rem/$base);
   @include mag;
   @include pr;
   input {
     outline: none;
     @include block;
-    padding-left: 56px;
-    width: 304px;
-    @include li(46px);
-    border: 1px solid #c5c5c5;
-    border-radius: 4px;
+    padding-left: 56rem/$base;
+    width: 304rem/$base;
+    @include li(46rem/$base);
+    border: 1rem/$base solid #c5c5c5;
+    border-radius: 4rem/$base;
   }
   img {
     @include po;
-    top: 12px;
-    left: 15px;
+    top: 12rem/$base;
+    left: 15rem/$base;
   }
 }
 .part1 {
-  margin-bottom: 20px;
+  margin-bottom: 20rem/$base;
 }
 .part2 {
-  margin-bottom: 36px;
+  margin-bottom: 36rem/$base;
 }
 </style>

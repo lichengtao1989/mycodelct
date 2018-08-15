@@ -37,9 +37,10 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped="" type="text/scss" rel="stylesheet/scss">
+<style lang="scss" scoped="" type="text/css">
+$base: 192;
 @import 'static/style/_var.scss';
-$base: 14px;
+
 #app {
   font-family: 'Microsoft YaHei UI', 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -47,12 +48,13 @@ $base: 14px;
   background-image: url('../static/images/bg.png');
   background-repeat: no-repeat;
   background-position: top center;
-  background-size: 1920px auto;
+  background-size: 1920rem/$base auto;
   background-color: #f8f8f8;
 }
 .minheght {
-  min-height: 580px;
-  width: 1320px;
+  min-height: 580rem/$base;
+  width: 1320rem/$base;
+  // font-size:14rem/$base;
   @include mag;
 }
 </style>

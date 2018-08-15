@@ -5,7 +5,7 @@
     </div>
     <div class="nextinfo">
       <div class="left">
-        <div class="ppxs">
+        <div class="xxl">
           {{infoData.ProductName}}
         </div>
         <div class="w300">
@@ -125,6 +125,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped="" rel="stylesheet/scss">
+$base: 192;
 @import 'static/style/_var.scss';
 .swiperinner {
   @include wh(100%, 100%);
@@ -139,39 +140,40 @@ export default {
 }
 .detailinfocp {
   @include ba(#fff);
-  margin-top: 10px;
+  margin-top: 10rem/$base;
   width: 100%;
-  border: 1px solid #128f40;
+  border: 1rem/$base solid #128f40;
   .biaoti {
-    padding: 10px 20px;
-    font-size: 16px;
+    padding: 10rem/$base 20rem/$base;
+    font-size: 16rem/$base;
     color: #128f40;
   }
   .left {
-    padding: 30px 70px;
+    padding: 30rem/$base 70rem/$base;
   }
   .nextinfo {
+    font-size:16rem/$base;
     .w280 {
       display: inline-block;
-      width: 220px;
+      width: 220rem/$base;
       vertical-align: top;
     }
     .w80 {
       display: inline-block;
-      width: 80px;
+      width: 80rem/$base;
     }
-    min-height: 440px;
+    min-height: 440rem/$base;
     @include pr;
     .right {
       @include po;
-      top: 30px;
-      left: 450px;
-      width: 800px;
+      top: 30rem/$base;
+      left: 450rem/$base;
+      width: 800rem/$base;
       .sm1 {
-        // @include li(52px);
-        line-height: 30px;
-        padding-top: 15px;
-        border-bottom: 1px solid #dadce0;
+        // @include li(52rem/$base);
+        line-height: 30rem/$base;
+        padding-top: 15rem/$base;
+        border-bottom: 1rem/$base solid #dadce0;
       }
       .inline {
         display: inline-block;
@@ -180,22 +182,22 @@ export default {
       }
     }
     .djgm {
-      @include wh(320px, 47px);
+      @include wh(320rem/$base, 47rem/$base);
       @include te;
       @include ba(#128f40);
       @include co(#fff);
-      line-height: 47px;
-      margin: 50px auto;
+      line-height: 47rem/$base;
+      margin: 50rem/$base auto;
       cursor: pointer;
     }
   }
   .w300 {
-    width: 300px;
+    width: 300rem/$base;
     @include pr;
-    height: 250px;
+    height: 250rem/$base;
   }
-  .ppxs {
-    padding-bottom: 10px;
+  .xxl {
+    padding-bottom: 10rem/$base;
 
     color: #212325;
     font-weight: bold;
@@ -203,14 +205,15 @@ export default {
 }
 </style>
 <style lang="scss" scoped="" type="text/css">
+$base: 192;
 @import 'static/style/_var.scss';
 
 .newlist {
-  width: 404px;
-  border-top: 1px solid #e1e1e1;
-  padding-top: 25px;
-  margin-top: 8px;
-  @include fo(16px);
+  width: 404rem/$base;
+  border-top: 1rem/$base solid #e1e1e1;
+  padding-top: 25rem/$base;
+  margin-top: 8rem/$base;
+  @include fo(16rem/$base);
   @include ov;
 }
 .inline {
@@ -219,48 +222,48 @@ export default {
 }
 .newitem {
   cursor: pointer;
-  margin-bottom: 17px;
+  margin-bottom: 17rem/$base;
   .inline {
     vertical-align: middle;
   }
   .sk {
-    @include wh(6px, 6px);
+    @include wh(6rem/$base, 6rem/$base);
     @include ba(#ccc);
-    margin-right: 12px;
+    margin-right: 12rem/$base;
   }
   .xw {
-    width: 333px;
-    height: 16px;
+    width: 333rem/$base;
+    height: 16rem/$base;
     @include ovt;
   }
 }
 .moduleitem {
-  padding-left: 15px;
-  padding-right: 15px;
-  padding-top: 11px;
-  @include wh(433px, 352px);
+  padding-left: 15rem/$base;
+  padding-right: 15rem/$base;
+  padding-top: 11rem/$base;
+  @include wh(433rem/$base, 352rem/$base);
   @include ov;
   @include bs;
   @include pr;
   @include ba(#fff);
   display: inline-block;
-  margin-bottom: 14px;
+  margin-bottom: 14rem/$base;
   .left {
-    @include wh(56px, 56px);
+    @include wh(56rem/$base, 56rem/$base);
     @include baimg('../../../static/images/dxdbt1.png');
   }
   .ename {
-    @include fo(12px);
+    @include fo(12rem/$base);
     @include co(#cccccc);
   }
   .right {
-    padding-left: 11px;
+    padding-left: 11rem/$base;
   }
   .dbt {
-    @include fo(32px);
+    @include fo(32rem/$base);
     font-weight: bold;
     @include co(#1993f0);
-    padding-bottom: 10px;
+    padding-bottom: 10rem/$base;
   }
 }
 .itemtype2 {
@@ -330,20 +333,20 @@ export default {
 .itemtype2,
 .itemtype5,
 .itemtype8 {
-  margin-left: 10px;
-  margin-right: 10px;
+  margin-left: 10rem/$base;
+  margin-right: 10rem/$base;
 }
 .morelink {
   @include po;
-  @include fo(14px);
+  @include fo(14rem/$base);
   @include co(#999);
-  top: 55px;
-  right: 16px;
+  top: 55rem/$base;
+  right: 16rem/$base;
   z-index: 2;
 }
 .swiperoutlct1 {
-  margin-top: 11px;
-  @include wh(404px, 257px);
+  margin-top: 11rem/$base;
+  @include wh(404rem/$base, 257rem/$base);
   @include ov;
   img {
     @include block;
@@ -363,11 +366,11 @@ export default {
   background: rgba(0, 0, 0, 0.7);
   .ttshow {
     @include co(#fff);
-    @include fo(16px);
-    line-height: 44px;
-    padding-left: 21px;
-    padding-right: 21px;
-    height: 44px;
+    @include fo(16rem/$base);
+    line-height: 44rem/$base;
+    padding-left: 21rem/$base;
+    padding-right: 21rem/$base;
+    height: 44rem/$base;
     width: 75%;
     @include tov;
   }

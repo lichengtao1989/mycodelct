@@ -43,40 +43,41 @@
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="scss" scoped="" rel="stylesheet/scss">
+<style lang="scss" scoped="" type="text/css">
+$base: 192;
   @import "static/style/_var.scss";
 
   .goodsitem {
-    width: 200px;
-    padding-left: 98px;
+    width: 200rem/$base;
+    padding-left: 98rem/$base;
     @include pr;
     @include co(#222);
-    @include fo(12px);
+    @include fo(12rem/$base);
   }
 
   .mc {
-    @include fo(15px);
-    padding-top: 5px;
+    @include fo(15rem/$base);
+    padding-top: 5rem/$base;
     font-weight: bolder;
   }
 
   .goodsimg {
     @include block;
     @include po;
-    @include wh(52px, 52px);
+    @include wh(52rem/$base, 52rem/$base);
     top: 0;
-    left: 23px;
+    left: 23rem/$base;
   }
 
   .msgs {
-    line-height: 25px;
+    line-height: 25rem/$base;
   }
 
   .leftsl {
-    @include wh(23px, 1px);
+    @include wh(23rem/$base, 1px);
     @include ba(#b4b4b4);
     @include po;
     left: 0;
-    top: 25px;
+    top: 25rem/$base;
   }
 </style>

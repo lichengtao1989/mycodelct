@@ -33,21 +33,22 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped="" type="text/css">
+$base: 192;
 @import 'static/style/_var.scss';
 .friendlylink {
   width: 100%;
   @include ba(#fff);
   @include bs;
-  padding: 14px 16px;
+  padding: 14rem/$base 16rem/$base;
 }
 .linkap {
-  margin-right: 60px;
+  margin-right: 60rem/$base;
   cursor: pointer;
 }
 .imgss,
 .linkap {
   display: inline-block;
-  @include wh(197px, 54px);
-  margin-bottom:10px;
+  @include wh(197rem/$base, 54rem/$base);
+  margin-bottom:10rem/$base;
 }
 </style>

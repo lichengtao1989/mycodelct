@@ -50,6 +50,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped="" type="text/css">
+$base: 192;
 @import 'static/style/_var.scss';
 .topmidwrap {
   height: 100%;
@@ -78,12 +79,12 @@ export default {
 
     background: rgba(0, 0, 0, 0.7);
     @include co(#fff);
-    @include fo(16px);
-    line-height: 21px;
-    padding-left: 21px;
-    padding-right: 21px;
-    height: 38px;
-    padding-top: 18px;
+    @include fo(16rem/$base);
+    line-height: 21rem/$base;
+    padding-left: 21rem/$base;
+    padding-right: 21rem/$base;
+    height: 38rem/$base;
+    padding-top: 18rem/$base;
   }
 }
 .swiper-container {

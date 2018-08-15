@@ -1,6 +1,7 @@
 <template>
   <div class="goodslist">
-    <div class="leftline" :class="isShow?'is-show':''" :style="'height:'+leftLineHeight+'px'" v-if="showProductList.length>1"></div>
+    <div class="leftline" :class="isShow?'is-show':''"  v-if="showProductList.length>1"></div>
+    <!-- :style="'height:'+leftLineHeight+'rem/$base'" -->
     <div class="goodsitem-wrap" :class="isShow?'is-show':''" v-for="(product,index) in showProductList" :key="index">
       <goodsitem :show-line="showProductList.length>1" :product-data="product"></goodsitem>
     </div>
@@ -83,11 +84,12 @@
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="scss" scoped="" rel="stylesheet/scss">
+<style lang="scss" scoped="" type="text/css">
+$base: 192;
   @import "static/style/_var.scss";
 
   .goodsmapwrap {
-    border-top: 2px solid #128f40;
+    border-top: 2rem/$base solid #128f40;
   }
 
   .goodslist {
@@ -96,10 +98,10 @@
 
   .leftline {
     position: absolute;
-    height: 300px;
+    height: 92%;
     width: 1px;
     left: 0;
-    top: 26px;
+    top: 26rem/$base;
     @include ba(#b4b4b4);
     opacity: 0;
     transition: opacity 500ms;
@@ -109,7 +111,7 @@
   }
 
   .goodsitem-wrap {
-    margin-bottom: 30px;
+    margin-bottom: 30rem/$base;
     animation: flipOutX 800ms;
     &.is-show {
       animation: flipInX 800ms;
@@ -118,36 +120,36 @@
 
   @keyframes flipInX {
     0% {
-      transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+      transform: perspective(400rem/$base) rotate3d(1, 0, 0, 90deg);
       transition-timing-function: ease-in;
       opacity: 0;
     }
     40% {
-      transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+      transform: perspective(400rem/$base) rotate3d(1, 0, 0, -20deg);
       transition-timing-function: ease-in;
     }
     60% {
-      transform: perspective(400px) rotate3d(1, 0, 0, 10deg);
+      transform: perspective(400rem/$base) rotate3d(1, 0, 0, 10deg);
       opacity: 1;
     }
     80% {
-      transform: perspective(400px) rotate3d(1, 0, 0, -5deg);
+      transform: perspective(400rem/$base) rotate3d(1, 0, 0, -5deg);
     }
     100% {
-      transform: perspective(400px);
+      transform: perspective(400rem/$base);
     }
   }
 
   @keyframes flipOutX {
     0% {
-      transform: perspective(400px);
+      transform: perspective(400rem/$base);
     }
     30% {
-      transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+      transform: perspective(400rem/$base) rotate3d(1, 0, 0, -20deg);
       opacity: 1;
     }
     100% {
-      transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+      transform: perspective(400rem/$base) rotate3d(1, 0, 0, 90deg);
       opacity: 0;
     }
   }

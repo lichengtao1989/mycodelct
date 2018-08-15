@@ -78,14 +78,15 @@ export default {
 
 
 <style lang="scss" scoped="" type="text/css">
+$base: 192;
 @import 'static/style/_var.scss';
 .downloadflag {
   @include baimg('../../static/images/xz.png');
   @include po;
-  top: 6px;
+  top: 6rem/$base;
   right: 14%;
   z-index: 2;
-  @include wh(30px, 30px);
+  @include wh(30rem/$base, 30rem/$base);
 }
 .midt {
   width: 85%;
@@ -95,23 +96,23 @@ export default {
   cursor: pointer;
   width: 100%;
   @include bs;
-  @include li(44px);
+  @include li(44rem/$base);
   @include pr;
   @include ov;
-  padding-left: 28px;
-  border-bottom: 1px dashed #e3e3e3;
+  padding-left: 28rem/$base;
+  border-bottom: 1rem/$base dashed #e3e3e3;
   .leftk {
-    @include wh(8px, 8px);
+    @include wh(8rem/$base, 8rem/$base);
     @include po;
     @include ba(#128f40);
     left: 0;
-    bottom: 18px;
+    bottom: 18rem/$base;
     z-index: 2;
   }
   .righttime {
     @include po;
-    right: 26px;
-    bottom: 0px;
+    right: 26rem/$base;
+    bottom: 0rem/$base;
   }
 }
 </style>

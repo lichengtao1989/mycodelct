@@ -161,29 +161,30 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped="" type="text/css">
+$base: 192;
 @import 'static/style/_var.scss';
-$base: 14px;
+// $base: 14rem/$base;
 .moduleAry {
-  margin-top: 10px;
+  margin-top: 10rem/$base;
 }
 .cbanner {
-  @include wh(100%, 115px);
-  margin-top: 14px;
-  margin-bottom: 14px;
+  @include wh(100%, 115rem/$base);
+  margin-top: 14rem/$base;
+  margin-bottom: 14rem/$base;
 }
 .hidestyle {
   @include none;
 }
 .companymsg {
-  margin-top: 7px;
+  margin-top: 7rem/$base;
 }
 .topone {
-  width: 877px;
-  padding-left: 443px;
+  width: 877rem/$base;
+  padding-left: 443rem/$base;
   @include mag;
   @include pr;
-  height: 352px;
-  margin-top: 7px;
+  height: 352rem/$base;
+  margin-top: 7rem/$base;
   .topleft {
     @include po;
     height: 100%;
@@ -191,11 +192,11 @@ $base: 14px;
     left: 0;
   }
   .topmid {
-    @include wh(558px, 352px);
+    @include wh(558rem/$base, 352rem/$base);
     @include ov;
   }
   .topright {
-    @include wh(309px, 100%);
+    @include wh(309rem/$base, 100%);
     @include po;
     right: 0;
     top: 0;
@@ -206,22 +207,22 @@ $base: 14px;
 .rightgoodspr,
 .sycp,
 .egoods {
-  @include wh(1198px, 257px);
-  border: 1px solid #128f40;
+  @include wh(1198rem/$base, 257rem/$base);
+  border: 1rem/$base solid #128f40;
   @include pr;
   @include mag;
-  margin-top: 6px;
+  margin-top: 6rem/$base;
 }
 
 .rightgoodspr {
-  height: 776px;
-  border-top-width: 4px;
+  height: 776rem/$base;
+  border-top-width: 4rem/$base;
   @include ov;
 }
 
 .sycp,
 .egoods {
-  height: 526px;
+  height: 526rem/$base;
   @include ov;
 }
 #topmidwrap {

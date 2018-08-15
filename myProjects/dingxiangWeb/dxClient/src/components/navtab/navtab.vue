@@ -113,13 +113,13 @@ export default {
 };
 </script>
 
-
-<style lang="scss" scoped="" rel="stylesheet/scss">
+<style lang="scss" scoped="" type="text/css">
+$base: 192;
 @import 'static/style/_var.scss';
 
 .navtabout {
   width: 100%;
-  height: 60px;
+  height: 60rem/$base;
   @include ba(#56bc4a);
 }
 .fixed {
@@ -136,17 +136,17 @@ export default {
   z-index: 13;
 }
 .navlist {
-  width: 1320px;
+  width: 1320rem/$base;
   @include ov;
   @include mag;
   .navitem {
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 20rem/$base;
+    padding-right: 20rem/$base;
     @include float;
-    @include li(60px);
+    @include li(60rem/$base);
     @include te;
     @include co(#fff);
-    @include fo(18px);
+    @include fo(18rem/$base);
     cursor: pointer;
   }
   .activenav {

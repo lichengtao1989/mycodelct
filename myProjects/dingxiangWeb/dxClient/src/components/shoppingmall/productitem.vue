@@ -28,7 +28,6 @@ export default {
   },
   methods: {
     jumpUrl(id) {
-    
       this.$router.push({
         path: `/productdetail/${id}/?listtype=12`
       });
@@ -40,20 +39,22 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="scss" scoped="" rel="stylesheet/scss">
+<style lang="scss" scoped="" type="text/css">
+$base: 192;
 @import 'static/style/_var.scss';
 .pitem {
   cursor: pointer;
   @include te;
   margin-left: 1.5%;
   width: 23%;
-  height: 300px;
+  height: 300rem / $base;
   @include ov;
   @include inline;
   @include pr;
-  margin-bottom: 30px;
+  margin-bottom: 30rem / $base;
   .wenben {
-    @include li(40px);
+    font-size: 16rem / $base;
+    @include li(40rem / $base);
     width: 100%;
     @include ovt;
   }
@@ -66,12 +67,12 @@ export default {
     @include none;
   }
   .shangm {
-    height: 300px;
+    height: 300rem / $base;
     @include ov;
   }
   .imgs {
     @include block;
-    @include wh(100%, 260px);
+    @include wh(100%, 260rem / $base);
   }
 }
 .canhover:hover {

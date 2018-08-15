@@ -91,23 +91,24 @@ export default {
 
 
 <style lang="scss" scoped="" type="text/css">
+$base: 192;
 @import 'static/style/_var.scss';
 
 .tabbox {
-  @include fo(16px);
-  width: 433px;
+  @include fo(16rem / $base);
+  width: 433rem / $base;
   height: 100%;
   @include ba(#fff);
   .topclick {
-    height: 45px;
-    line-height: 45px;
+    height: 45rem / $base;
+    line-height: 45rem / $base;
     @include ba(#ececec);
     @include ov;
-    @include fo(16px);
+    @include fo(16rem / $base);
     @include co(#333333);
     div {
       @include float;
-      width: 109px;
+      width: 109rem / $base;
       @include te;
       cursor: pointer;
     }
@@ -117,18 +118,18 @@ export default {
     }
   }
   .nextlistinfo {
-    padding-left: 13px;
+    padding-left: 13rem / $base;
     @include bs;
   }
   .part {
     cursor: pointer;
   }
   .part:first-child {
-    // padding-top: 18px;
-    width: 394px;
+    // padding-top: 18rem/$base;
+    width: 394rem / $base;
     .bt1 {
-      @include fo(18px);
-      line-height: 48px;
+      @include fo(18rem / $base);
+      line-height: 48rem / $base;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
@@ -136,16 +137,16 @@ export default {
       font-weight: bold;
     }
     .nrxs {
-      @include fo(16px);
-      line-height: 28px;
-      height: 56px;
+      @include fo(16rem / $base);
+      line-height: 28rem / $base;
+      height: 56rem / $base;
       @include co(#999);
     }
 
     .nrxs {
       position: relative;
-      line-height: 20px;
-      max-height: 40px; /*是行高的整数倍，防止下行文字露出*/
+      line-height: 20rem / $base;
+      max-height: 40rem / $base; /*是行高的整数倍，防止下行文字露出*/
       overflow: hidden;
     }
 
@@ -154,7 +155,7 @@ export default {
       position: absolute;
       bottom: 0;
       right: 0;
-      padding-left: 40px;
+      padding-left: 40rem / $base;
       background: -webkit-linear-gradient(left, transparent, #fff 55%);
       background: -o-linear-gradient(right, transparent, #fff 55%);
       background: -moz-linear-gradient(right, transparent, #fff 55%);
@@ -162,25 +163,25 @@ export default {
     }
     .listinfo {
       padding-top: 13;
-      width: 405px;
-      border-top: 1px solid #e1e1e1;
-      margin-top: 10px;
-      padding-top: 13px;
+      width: 405rem / $base;
+      border-top: 1rem / $base solid #e1e1e1;
+      margin-top: 10rem / $base;
+      padding-top: 13rem / $base;
       .listitem {
-        margin-bottom: 10px;
+        margin-bottom: 10rem / $base;
       }
       .inline {
         display: inline-block;
         vertical-align: middle;
       }
       .sk {
-        @include wh(6px, 6px);
+        @include wh(6rem / $base, 6rem / $base);
         @include ba(#ccc);
-        margin-right: 10px;
+        margin-right: 10rem / $base;
       }
 
       .xssx {
-        width: 363px;
+        width: 363rem / $base;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
@@ -194,11 +195,12 @@ export default {
 }
 </style>
 <style lang="scss" type="text/css">
+$base: 192;
 #topmidwrap .swiper-pagination-bullet {
   background: #68686c;
   opacity: 1;
-  width: 10px;
-  height: 10px;
+  width: 10rem / $base;
+  height: 10rem / $base;
 }
 
 #topmidwrap .swiper-pagination-bullet-active {
@@ -207,7 +209,7 @@ export default {
 .swiper-pagination {
   position: absolute;
   text-align: center;
-  /* padding-right:17px; */
+  /* padding-right:17rem/$base; */
   -webkit-transition: 300ms opacity;
   -o-transition: 300ms opacity;
   transition: 300ms opacity;
@@ -223,7 +225,7 @@ export default {
   width: 100%;
   position: absolute;
   text-align: right;
-  padding-right: 20px;
+  padding-right: 20rem / $base;
   -webkit-transition: 300ms opacity;
   -o-transition: 300ms opacity;
   transition: 300ms opacity;
@@ -233,7 +235,7 @@ export default {
 }
 
 #topmidwrap .swiper-pagination-bullets {
-  bottom: 17px;
-  right: 0px;
+  bottom: 17rem / $base;
+  right: 0rem / $base;
 }
 </style>

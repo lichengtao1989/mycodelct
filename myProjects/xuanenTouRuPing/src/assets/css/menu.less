@@ -1,0 +1,33 @@
+.el-tree-node__content {
+  .menu-item {
+    width: 100%;
+  }
+  .ctrl {
+    float: right;
+    margin-right: 15px;
+    display: none;
+    cursor: default;
+    i {
+      font-size: 12px;
+      cursor: pointer;
+      color: #191919;
+      font-weight: bolder;
+    }
+  }
+  .is-current {
+    background-color: #eaf7f5;
+  }
+  &:hover {
+    background-color: #f6fcfb;
+    .ctrl {
+      display: block;
+    }
+  }
+  .menu-item {
+    width: 100%;
+    float: left;
+  }
+  .menu-name {
+    float: left;
+  }
+}

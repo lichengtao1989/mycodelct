@@ -1,12 +1,12 @@
-var express = require('express');
-var app = express();
+const express = require('express');
+const app = express();
 app.use(express.static('./static'));
 // app.use('/static',express.static('./static'));
 app.set('view engine', 'ejs');
 app.get('/', function(req, res) {
-  res.render('index',{
-    name:'lct',
-    list:['hh','dd','bb']
+  res.render('index', {
+    name: 'lct',
+    list: ['hh', 'dd', 'bb']
   });
 });
 app.get('/student/:number', function(req, res) {

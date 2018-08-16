@@ -1,0 +1,43 @@
+{
+  "workbench.colorTheme": "One Dark Pro",
+  "editor.fontSize": 18,
+  "editor.tabSize": 2,
+  "files.autoSave": "afterDelay",
+  "files.autoSaveDelay": 300000,
+  "eslint.autoFixOnSave": true,
+  "editor.detectIndentation": false,
+  "typescript.useCodeSnippetsOnMethodSuggest": true,
+  "editor.wordWrap": "on",
+  "editor.wordWrapColumn": 120,
+  "prettier.singleQuote": true,
+  "prettier.printWidth": 250,
+  "git.ignoreMissingGitWarning": true,
+  "workbench.statusBar.visible": false,
+  "extensions.ignoreRecommendations": true,
+  "explorer.confirmDragAndDrop": false,
+  "window.zoomLevel": 0,
+  "explorer.confirmDelete": false,
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "html",
+    "vue"
+  ],
+  "vetur.format.defaultFormatter.html": "js-beautify-html",
+  "vetur.format.defaultFormatterOptions": {
+    "wrap_attributes": "force-aligned"
+  },
+  "vsicons.dontShowNewVersionMessage": true,
+  "gitlens.keymap": "alternate",
+  "gitlens.advanced.messages": {
+    "suppressCommitHasNoPreviousCommitWarning": false,
+    "suppressCommitNotFoundWarning": false,
+    "suppressFileNotUnderSourceControlWarning": false,
+    "suppressGitVersionWarning": false,
+    "suppressLineUncommittedWarning": false,
+    "suppressNoRepositoryWarning": false,
+    "suppressResultsExplorerNotice": false,
+    "suppressShowKeyBindingsNotice": true
+  },
+  "gitlens.historyExplorer.enabled": true
+}

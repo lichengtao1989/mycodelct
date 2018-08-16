@@ -119,7 +119,7 @@ $base: 192;
 
 .navtabout {
   width: 100%;
-  height: 60rem/$base;
+  height: 60rem / $base;
   @include ba(#56bc4a);
 }
 .fixed {
@@ -136,21 +136,45 @@ $base: 192;
   z-index: 13;
 }
 .navlist {
-  width: 1320rem/$base;
+  width: 1320rem / $base;
   @include ov;
   @include mag;
   .navitem {
-    padding-left: 20rem/$base;
-    padding-right: 20rem/$base;
+    padding-left: 19rem / $base;
+    padding-right: 19rem / $base;
     @include float;
-    @include li(60rem/$base);
+    @include li(60rem / $base);
     @include te;
     @include co(#fff);
-    @include fo(18rem/$base);
+    @include fo(18rem / $base);
     cursor: pointer;
   }
   .activenav {
     @include ba(#45963b);
+  }
+}
+@media (max-width: 1200px) {
+  .navlist {
+    .navitem {
+      padding-left: 15rem / $base;
+      padding-right: 15rem / $base;
+    }
+  }
+}
+@media (max-width: 1100px) {
+  .navlist {
+    .navitem {
+      padding-left: 12rem / $base;
+      padding-right: 12rem / $base;
+    }
+  }
+}
+@media (max-width: 1000px) {
+  .navlist {
+    .navitem {
+      padding-left: 5rem / $base;
+      padding-right: 5rem / $base;
+    }
   }
 }
 </style>

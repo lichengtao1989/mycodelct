@@ -1,6 +1,15 @@
 *test 是我建的一个集合名字
 show dbs //显示数据库
 use test //使用某个数据库
+显示数据库列表
+show dbs;
+显示当前数据库中的集合（类似关系数据库中的表）
+show collections;
+显示用户
+show users;
+切换当前数据库，这和MS-SQL里面的意思一样
+user <db name>;
+
 db.test.insert({‘name’:’byc’}) //插入一条记录
 db.test.find() //查找所有记录
 db.test.findone() //查找一条记录
@@ -18,4 +27,3 @@ db.test.find({“age”:{$gt:5}}) //查找age大于5的条目
 db.test.find({"age":{$gt:5}}).sort({"age":1}) //查找age大于5的条目且升序排列
 db.test.find({"age":{$gt:5}}).sort({"age":1}) //查找age大于5的条目且升序排列
 db.test.find({"age":{$gt:5}}).sort({"age”:-1}) //查找age大于5的条目且降序排列
-

@@ -64,7 +64,7 @@ $base: 192;
 .topright {
   height: 100%;
   @include ba(#fff);
-  border: 1rem/$base solid #128f40;
+  border: 1px solid #128f40;
   @include bs;
   padding-top: 10rem/$base;
   padding-left: 15rem/$base;
@@ -83,7 +83,7 @@ $base: 192;
       @include wh(311rem/$base, 42rem/$base);
       padding-left: 9rem/$base;
       line-height: 42rem/$base;
-      border: 1rem/$base solid #ccd0d5;
+      border: 1px solid #ccd0d5;
       @include fo(15rem/$base);
       outline: none;
     }
@@ -107,7 +107,7 @@ $base: 192;
     line-height: 38rem/$base;
     @include co(#4b4b4b);
     @include fo(24rem/$base);
-    border: 1rem/$base solid #cacfd4;
+    border: 1px solid #cacfd4;
     @include float;
     margin-right: 7rem/$base;
     margin-top: 9rem/$base;
@@ -115,7 +115,7 @@ $base: 192;
   }
   .numactive {
     @include co(#128f40);
-    border: 1rem/$base solid #128f40;
+    border: 1px solid #128f40;
   }
   .shuzishuru {
     @include pr;
@@ -127,7 +127,7 @@ $base: 192;
     @include li(38rem/$base);
     @include te;
     @include co(#128f40);
-    border: 1rem/$base solid #cacfd4;
+    border: 1px solid #cacfd4;
     left: 141rem/$base;
     top: 57rem/$base;
     z-index: 2;

@@ -1,7 +1,61 @@
+##promise 和async await 
+    validateForm() {
+      return new Promise(resolve => {
+        this.$refs.form
+          .validate()
+          .then(() => {
+            resolve(true);
+          })
+          .catch(() => {
+            resolve(false);
+          });
+      });
+    },
+      async submit(callback) {
+      const valid = await this.validateForm();
+      if (valid) {
+        try {
+          await this.$refs.recordEdit.submit();
+          this.visible = false;
+          this.$emit('save-success');
+        } catch (err) {}
+      }
+      callback();
+    },
+
+##基础表格使用
+   <div class="tablelct">
+      <cjm-table :data="tableData">
+        <cjm-table-column prop="rank" label="排名"></cjm-table-column>
+        <cjm-table-column prop="type" label="品类"></cjm-table-column>
+        <cjm-table-column prop="weight" label="重量"></cjm-table-column>
+        <cjm-table-column prop="percent" label="占比总数">
+         <template slot-scope="scope">
+          {{scope.row.templetID}}
+          </template>
+          </cjm-table-column>
+      </cjm-table>
+    </div>
+
+  data() {
+    return {
+      tableData: [
+        {
+          rank: 1,
+          type: 1,
+          weight: 120,
+          percent: '20%'
+        }
+      ]
+    };
+  },
+
 ##下拉使用方式：
+
 <nz-select v-model="item.productName">
     <nz-option v-for="(item,index) in infoVal" :key="index" :label="item.ProductName" :value="item.PesticideId"></nz-option>
 </nz-select>
+
 ##cjm中常规select用法
  <cjm-form-item label="被检单位" prop="orgID">      
   <cjm-select v-model="form.orgID" placeholder="" :readonly="readonly" :disabled="disabled">
@@ -9,7 +63,9 @@
     </cjm-option>
   </cjm-select>
   </cjm-form-item>
+
 ##下拉选择枚举的用法
+
 <cjm-form-item label="所属镇" prop="standard" required>
           <cjm-enum-select v-model="form.town" enum-name="崇明乡镇" enum-namespace="trace" :clearable="true"></cjm-enum-select>
  </cjm-form-item>
@@ -19,7 +75,9 @@
       console.log(val);
       this.checkOrgParams['Type'] = val;
     }}
+
  ##cjm-list中添加查询参数
+
 <cjm-list :request-url="requestUrl" :need-base-search="false" :need-advanced-search="true" ref="list" :before-search="beforeSearch" :auto-get-data="false">
 methods: {
   beforeSearch(conditions){
@@ -31,6 +89,7 @@ methods: {
     return conditions;
   },
 }
+
 ##vue中解决object中属性改变试图不改变的方法
  1.方案一：利用Vue.set(object,key,val)
  例：Vue.set(vm.obj,'k1','v1')

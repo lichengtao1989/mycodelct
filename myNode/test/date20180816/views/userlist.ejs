@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>list</title>
+  <style>
+    .main{
+      width:450px;
+      border:1px solid #ddd;
+    }
+    .row{
+      border-bottom:1px solid #ddd;
+    }
+    .row span{
+      display: inline-block;
+      width:25%;
+    }
+    .sp4{
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>用户列表</h1>
+  <a href="/addusers">添加用户</a>
+  <div class="main">
+  <div class="row"><span class="sp1">姓名</span><span class="sp2">年龄</span><span class="sp3">爱好</span><span class="sp4">操作</span></div>
+  <div class="infolist">
+
+  </div>
+  <div class="bottominfo">
+    一共:
+    <span class="totalcount"></span>条
+    <span class="syy">上一页</span>
+    <span class="xyy">下一页</span>
+
+  </div>
+</div>
+  <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+  <script>
+    $(function () {
+
+      $.ajax({
+        type: "get",
+        url: "/api/getUserList",
+        data: {
+          pageSize: 10,
+          pageNum: 1
+        },
+        dataType: "json",
+        success: function (data) {
+          console.log(data);
+          if (data.resultCode == 200) {
+            var rows = data.data.rows;
+            var htmlStr = '';
+            rows.forEach(item => {
+              htmlStr += '<div class="row"><span class="sp1">' + item.nickname +
+                '</span><span class="sp2">' + item.age + '</span><span class="sp3">' + item.hobby +
+                '</span><span class="sp4">删除</span></div>'
+            });
+            $('.infolist').html(htmlStr);
+            $('.totalcount').text(data.total);
+          } else {
+            alert(data.msg)
+          }
+        }
+      });
+
+    });
+  </script>
+</body>
+
+</html>

@@ -4,7 +4,7 @@ let app = express();
 let doAddUsers = require('./src/doAddUsers');
 let getTest = require('./src/getTest');
 let getList = require('./src/getList');
-
+let doDelete = require('./src/doDelete');
 
 app.use(express.static('./static'));
 // app.use('/static',express.static('./static'));
@@ -32,5 +32,8 @@ app.get('/api/getUserList', (req, res) => {
 });
 app.get('/api/getTest', (req, res) => {
   getTest(req, res);
+});
+app.get('/api/doDelete', (req, res) => {
+  doDelete(req, res);
 });
 app.listen(5400);

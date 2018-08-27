@@ -1,6 +1,7 @@
 const MongoClient = require('mongodb').MongoClient;
-const assert = require('assert');
-
+// const assert = require('assert');
+const uuidv1 = require('uuid/v1');
+// console.log(uuidv1().replace(/\-/g, ''));
 // Connection URL
 const url = 'mongodb://localhost:27017';
 
@@ -37,6 +38,10 @@ const findDocuments = function (db, json) {
     // Get the documents collection
     const collection = db.collection(dbCollection);
     // Find some documents
+    // let jsonVal = json;
+
+    // jsonVal.userId = uuidv1().replace(/\-/g, '');
+    // console.log(jsonVal)
     collection.find(json).toArray(function (err, docs) {
       // assert.equal(err, null);
       if (err) {
@@ -64,6 +69,8 @@ function insertDb(arr, res) {
     }).then((result) => {
       console.log(result.length)
       if (result.length < 1) {
+        console.log(arr);
+        arr[0].userId = uuidv1().replace(/\-/g, '');
         insertDocuments(db, arr, function (r) {
           res.json({
             resultCode: 200,

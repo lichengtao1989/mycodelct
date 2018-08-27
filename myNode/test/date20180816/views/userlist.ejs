@@ -22,7 +22,11 @@
       width: 25%;
     }
 
-    .sp4 {
+    .row .w50 {
+      width: 50%;
+    }
+
+    .bgwrap {
       cursor: pointer;
     }
   </style>
@@ -60,7 +64,9 @@
         arr.forEach(item => {
           htmlStr += '<div class="row"><div class="sp1">' + item.nickname +
             '</div><div class="sp2">' + item.age + '</div><div class="sp3">' + item.hobby +
-            '</div><div class="sp4" data-id="' + item.userId+ '">删除</div></div>'
+            '</div><div class="bgwrap"><div class="sp4 w50" data-id="' + item.userId +
+            '">删除</div><div class="sp5 w50" data-id="' +
+            item.userId + '">编辑</div></div></div>'
         });
         return htmlStr;
       };
@@ -102,14 +108,20 @@
           dataType: "json",
           success: function (data) {
             console.log(data);
-            if(data.resultCode==200){
+            if (data.resultCode == 200) {
               getList(pageSize, pageNum);
-            }else{
+            } else {
               alert(data.msg)
             }
 
           }
         });
+      })
+      $('.infolist').on('click', '.sp5', function () {
+        var _this = $(this);
+        var id = _this.attr('data-id');
+        // console.log(id);
+        window.location.href = '/userInfo?id=' + id;
       })
     });
   </script>

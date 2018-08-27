@@ -23,16 +23,20 @@ function doDelete(req, res) {
   // console.log(req.query.id)
   let query = req.query;
   let myres = res;
-  connectDb(dbName).then((db) => {
-
+  connectDb().then((client) => {
+    let db=client.db(dbName);
     deleteData(db, docName, query).then((r) => {
       console.log(r)
-      myres.json({
-        resultCode: 200,
-        msg: 'success',
-        data: {},
-        total: r.result.ok
-      })
+      if(r.result.ok>0){
+        myres.json({
+          resultCode: 200,
+          msg: 'success',
+          data: {},
+          total: r.result.ok
+        });
+        client.close();
+      }
+     
     }, (e) => {
       myres.json({
         resultCode: 500,

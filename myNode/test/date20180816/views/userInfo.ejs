@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>addusers</title>
+  <style>
+    .tijiao {
+      border: 1px solid #ddd;
+      padding: 10px 20px;
+      width: 120px;
+      background: #ffd990;
+      text-align: center;
+      margin-top: 15px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="pp1">
+    姓名:
+    <input type="nickname" class="nickname" value="">
+  </div>
+  <div class="pp1">
+    年龄:
+    <input type="age" class="age" value="">
+  </div>
+  <div class="pp1">
+    爱好:
+    <input type="hobby" class="hobby" value="">
+  </div>
+  <div class="pp1">
+    手机号码:
+    <input type="phone" class="phone" value="">
+  </div>
+  <div class="tijiao">提交修改</div>
+  <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+  <script>
+    function getUrlParam(name) {
+      //构造一个含有目标参数的正则表达式对象  
+      var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+      //匹配目标参数  
+      var r = window.location.search.substr(1).match(reg);
+      //返回参数值  
+      if (r != null) return unescape(r[2]);
+      return null;
+    };
+    $(function () {
+      var userId = getUrlParam('id');
+      console.log(userId)
+
+
+      $.ajax({
+        type: "get",
+        url: "/api/getUserInfo",
+        data: {
+          userId: userId
+        },
+        dataType: "json",
+        success: function (data) {
+          console.log(data);
+
+        }
+      });
+
+    });
+  </script>
+</body>
+
+</html>

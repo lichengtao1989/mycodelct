@@ -1,0 +1,44 @@
+@import "./_var.scss";
+$base: 75;
+.model {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 6;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    .boxinner {
+        width: 688rem / $base;
+        @include ba(#fff);
+        @include border-radius(10rem / $base);
+        @include p_center;
+        z-index: 7;
+        @include fo(28rem / $base);
+        @include bs;
+        padding-left: 30rem / $base;
+        padding-right: 30rem / $base;
+        padding-top: 59rem / $base;
+        padding-bottom: 69rem / $base;
+        .boxcontent{
+            height: 100%;
+            overflow: auto;
+        }
+        .guanbi {
+            @include wh(26rem / $base, 26rem / $base);
+            @include po;
+            top: 26rem / $base;
+            right: 30rem / $base;
+            z-index: 8;
+            @include baimg("../assets/images/guanbi.png");
+        }
+    }
+}
+
+.nodata {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

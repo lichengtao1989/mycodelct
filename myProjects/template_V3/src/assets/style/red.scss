@@ -1,0 +1,13 @@
+$themeColor: #ffb820;
+.custom-red {
+  .introduce .tbxs,
+  .itemlist .listwrap .activeitem .iconbg,
+  .qualityreport .nbjc .tpl,
+  .qualityreport .fangda,
+  .itemlist .listwrap .bd{
+    background: $themeColor;
+  }
+  .itemlist .listwrap .activeitem {
+    color: $themeColor;
+  }
+}

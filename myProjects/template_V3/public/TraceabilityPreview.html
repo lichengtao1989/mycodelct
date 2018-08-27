@@ -1,0 +1,148 @@
+﻿<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0"/>
+  <meta name="apple-mobile-web-app-capable" content="yes"/>
+  <meta name="format-detection" content="telephone=no"/>
+  <title>批次溯源节点预览</title>
+  <link href='http://122.224.171.198/static/MicroPage/css/plugin.css' rel='stylesheet' type='text/css'/>
+  <script src="config/config.js"></script>
+  <style>
+    .microPagePreview {
+      width: 328px;
+    }
+
+    .diyScroll .pvBodyControls {
+      height: 509px;
+      overflow: auto;
+      background: #fafafa;
+    }
+
+    .pvBodyTitle {
+      width: 330px;
+      height: 66px;
+    }
+
+    body .cartNav {
+      width: 320px;
+      margin: auto;
+    }
+  </style>
+  <title></title>
+</head>
+<body>
+<div id="RequestDataPanel" style="display:none"></div>
+
+<!-- 新版预览页面 -->
+<div id="mobileShow" style="display:none">
+  <div class="microPageLoading">
+    <div class="spinner">
+      <div class="rect rect1"></div>
+      <div class="rect rect2"></div>
+      <div class="rect rect3"></div>
+      <div class="rect rect4"></div>
+      <div class="rect rect5"></div>
+    </div>
+  </div>
+  <!-- <div class="pvBody"></div> -->
+</div>
+
+<div id="pcShow">
+  <div class="bg"></div>
+  <div class="previewWrap zoom">
+    <div class="iphone fl_left diyScroll">
+      <div class="microPagePreview">
+        <div class="microPageLoading">
+          <div class="spinner">
+            <div class="rect rect1"></div>
+            <div class="rect rect2"></div>
+            <div class="rect rect3"></div>
+            <div class="rect rect4"></div>
+            <div class="rect rect5"></div>
+          </div>
+        </div>
+        <div class="pvBody"></div>
+      </div>
+    </div>
+    <div class="previewCodeWrap fl_right">
+      <img src="http://122.224.171.198/static/MicroPage/images/previewPage/previewCode.png" id="CImg3"/>
+      <div class="codeWrap"><img id="previewCodeImg" src=""></div>
+    </div>
+  </div>
+</div>
+
+<!-- 新版预览页面 end-->
+<!-- <script type="text/javascript" src="http://app315.kf315.net/Module/WeixinManage/init/pretreatment.js"></script> -->
+<script src='//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js' type='text/javascript'></script>
+<script type="text/javascript">
+  function getSearch() {
+    var url = location.search.toLowerCase(), searchResult = {}, str = '', strs = [], i = 0;
+    if (url.indexOf('?') >= 0) {
+      str = url.substr(1);
+      strs = str.split('&');
+      for (; i < strs.length; i++) {
+        searchResult[strs[i].split('=')[0]] = unescape(strs[i].split('=')[1]);
+      }
+    }
+    return searchResult;
+  }
+  var searchCodes = getSearch();
+  var code = searchCodes['code'];
+  var recordID = searchCodes['recordid'];
+  var batchId = searchCodes['batchid'];
+  var traceType = searchCodes['tracetype']; //0 溯源节点 1 微页面
+  var micropageid = searchCodes['micropageid'] || '';
+  var previewCodeImgUrl = location.href.split('/')
+  previewCodeImgUrl.pop();
+  previewCodeImgUrl = previewCodeImgUrl.join('/');
+  $('#previewCodeImg').attr('src', '//app315.kf315.net/Ashx/CodeGenerate.ashx?data=' + previewCodeImgUrl + '/index.html?batchid=' + batchId + '&traceType=' + traceType);
+  var dom = $("<div class='pvBodyControls'>" +
+    "<iframe id='previewIframe' style='width:100%;border:0px;height:100%' src='index.html?batchid=" + batchId + "&traceType=" + traceType + "&MicroPageID=" + micropageid + "'></iframe>" +
+    "</div>");
+  $('.microPageLoading').remove();
+  dom.appendTo('.pvBody');
+
+  var isMobile = !!navigator.userAgent.match(/AppleWebKit.*Mobile.*/);
+  if (isMobile) {
+    $('.pvBody').css('height', 'auto');
+  } else if (traceType == 1) {
+    $('.pvBody').css('padding-top', 0);
+    $('.microPagePreview').css('width', '320px');
+    $('.pvBodyControls').css('height', '574px');
+  }
+  $('<div class="pvBodyTitle"><span class="pBodyTitleText">全程追溯信息</span></div>').insertBefore(dom);
+
+  function loop(resizeH, context) {
+    setTimeout(function () {
+      resizeH.call(context)
+      setTimeout(function () {
+        loop(resizeH, context)
+      }, 300)
+    }, 300);
+  }
+  loop(resizeIframe, this);
+  function resizeIframe() {
+    var iframeDom = this.document.getElementById('previewIframe');
+    var el = iframeDom.contentWindow;
+    if (el) {
+      el.document.getElementsByTagName('html')[0].style.overflow = "hidden";
+      var html = el.document.getElementById('app');
+      if (html && html.style.display == "none") {
+        html = el.document.getElementById('microPagePanel');
+      }
+      if (html && html.offsetHeight) {
+        html.style.overflow = "hidden";
+        html.style.width = "auto"
+        var htmlHeight = html.offsetHeight;
+        if (htmlHeight) {
+          htmlHeight += 24;
+          iframeDom.style.height = htmlHeight + 'px';
+        }
+      }
+    }
+  }
+
+</script>
+</body>
+</html>

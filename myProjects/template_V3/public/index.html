@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta name="format-detection" content="telephone=no" />
+  <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+  <link href="//static.kf315.net/MicroPage/css/plugin.css" rel="stylesheet" type="text/css"/>
+  <script src="//res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+  <script src="config/config.js"></script>
+  <title></title>
+
+  <style>
+    .diyScroll.pvBody {
+      padding-top: 64px;
+    }
+
+    .diyScroll.pvBody, .diyScroll .pvBodyControls {
+      width: 320px;
+      height: auto;
+      margin: auto;
+    }
+
+    .hide-vue-app #app {
+      display: none;
+    }
+  </style>
+  <script>
+    !function (e, t) {
+      function n() {
+        t.body ? t.body.style.fontSize = 12 * o + "px" : t.addEventListener("DOMContentLoaded", n)
+      }
+
+      function d() {
+        var e = i.clientWidth / 10;
+        i.style.fontSize = e + "px"
+      }
+
+      var i = t.documentElement,
+        o = e.devicePixelRatio || 1;
+      if (n(), d(), e.addEventListener("resize", d), e.addEventListener("pageshow", function (e) {
+          e.persisted && d()
+        }), o >= 2) {
+        var a = t.createElement("body"),
+          s = t.createElement("div");
+        s.style.border = ".5px solid transparent", a.appendChild(s), i.appendChild(a), 1 === s.offsetHeight &&
+        i.classList.add("hairlines"), i.removeChild(a)
+      }
+    }(window, document);
+  </script>
+</head>
+<body>
+<noscript>
+  <strong>We're sorry but app doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+</noscript>
+<div id="app"></div>
+<!-- built files will be auto injected -->
+<div id="microPagePanel" class="pvBody diyScroll" style="display:none;"></div>
+</body>
+<script type="text/javascript" src="//static.kf315.net/MicroPage/base/sea.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.min.js"></script>
+<script src="<%= BASE_URL %>lib/weiXinCore.js"></script>
+<script>
+  // 初始化微页内容
+  function urlQuery(url = window.location.href) {
+    var query = {};
+    var search = (url.split('?')[1] || '').split('#')[0];
+    var kvs = search.split('&');
+    kvs.forEach(function (kv) {
+      var key = kv.split('=')[0];
+      var value = decodeURIComponent(kv.split('=')[1]);
+      query[key] = value;
+    });
+    return query;
+  }
+  var code = urlQuery(window.location.href.toLocaleLowerCase()).code;
+  function initMicroPage() {
+    $.ajax({
+      url: wap_config.data_service_site2 + "?function=TraceQuery&Code=" + code,
+      cache: false,
+      async: false,
+      type: "get",
+      dataType: "jsonp",
+      success: function (result) {
+        if (result.Data.MicroPage) {
+          if (result.Data.MicroPage.MicroPageID && result.Data.MicroPage.MicroPageID.length > 0) {
+            $("#app").hide();
+            $("#microPagePanel").show();
+            var wzz = {
+              pageId: result.Data.MicroPage.MicroPageID,
+              MallUrl: '',
+              UserCenter: ''
+            };
+
+            seajs.config({
+              base: web_config.ResourceHost + "/MicroPage/",
+              alias: {
+                "jquery": "base/jquery-min.js"
+              },
+              preload: ["jquery"],
+              vars: {
+                'pageInit': 'mainPageShow',
+                'dataPostBaseUrl': web_config.MicroPagePostBaseUrl,
+                'microPageshowUrl': web_config.MicroPageshowUrl
+              }
+            });
+
+            //开发用
+            initPageOptions = {
+              'pageId': wzz.pageId,
+              'isEdit': false
+            };
+            seajs.use("init/version", function (version) {
+              version.initShowPage();
+            });
+          }
+        }
+      }
+    });
+  }
+
+  function previewMicroPage() {
+    var batchid = urlQuery(window.location.href.toLocaleLowerCase()).batchid || '';
+    $.ajax({
+      url: wap_config.data_service_site2 + "?function=BatchIDTraceQuery&ProductBatchID=" + batchid,
+      cache: false,
+      async: false,
+      type: "get",
+      dataType: "jsonp",
+      success: function (result) {
+        if (result.Data.MicroPage) {
+          $("body").addClass('hide-vue-app');
+          if (result.Data.MicroPage.MicroPageID && result.Data.MicroPage.MicroPageID.length > 0) {
+            $("#microPagePanel").show();
+            var MicroPageID = result.Data.MicroPage.MicroPageID;
+            var wzz = {
+              pageId: MicroPageID,
+              MallUrl: '',
+              UserCenter: ''
+            };
+
+            seajs.config({
+              base: web_config.ResourceHost + "/MicroPage/",
+              alias: {
+                "jquery": "base/jquery-min.js"
+              },
+              preload: ["jquery"],
+              vars: {
+                'pageInit': 'mainPageShow',
+                'dataPostBaseUrl': web_config.MicroPagePostBaseUrl,
+                'microPageshowUrl': web_config.MicroPageshowUrl
+              }
+            });
+
+            //开发用
+            initPageOptions = {
+              'pageId': wzz.pageId,
+              'isEdit': false
+            };
+            seajs.use("init/version", function (version) {
+              version.initShowPage();
+            });
+          }
+        }
+      }
+    })
+  }
+
+  var t = '全程追溯信息',
+    d = '',
+    imgInfo = '';
+  function initMenuShare(weixin) {
+    var l = location.href,
+      s = function () {
+      },
+      c = function () {
+      },
+      o = '';
+    var i_arr = imgInfo.split('?');
+    var i = i_arr[0];
+    weixin.Api["onMenuShareTimeline"] = {
+      success: WeiXinCoreAPIHelper.onMenuShareTimeline(t, l, i, s, c, o), error: function () {
+      }
+    }
+    weixin.Api["onMenuShareAppMessage"] = {
+      success: WeiXinCoreAPIHelper.onMenuShareAppMessage(t, d, l, i, s, c, o), error: function () {
+      }
+    }
+    weixin.Api["onMenuShareQQ"] = {
+      success: WeiXinCoreAPIHelper.onMenuShareQQ(t, d, l, i, s, c, o), error: function () {
+      }
+    }
+    weixin.Api["onMenuShareWeibo"] = {
+      success: WeiXinCoreAPIHelper.onMenuShareWeibo(t, d, l, i, s, c, o), error: function () {
+      }
+    }
+    weixin.Api["onMenuShareQZone"] = {
+      success: WeiXinCoreAPIHelper.onMenuShareQZone(t, d, l, i, s, c, o), error: function () {
+      }
+    }
+
+    return weixin;
+  }
+  function getTicket() {
+    var wxAppID = 'wx7abe9539c6c71a7f';
+    var wxTicket = '';
+    $.ajax({
+      url: "https://wap.cjm.so/Common/DataService.ashx?function=GetWeixinTicket&Key=27",
+      cache: false,
+      async: false,
+      type: "get",
+      dataType: "jsonp",
+      success: function (data, textStatus) {
+        if (data && data.success) {
+          wxTicket = data.result.Ticket;
+          var weixin = new WeiXinCore(wxAppID, wxTicket);
+          weixin = initMenuShare(weixin);
+          weixin.Init(weixin.getApiList(["getLocation", "onMenuShareTimeline", "onMenuShareAppMessage", "onMenuShareQQ", "onMenuShareWeibo", "onMenuShareQZone"]));
+        }
+        else {
+          weixinInitiError = "获取Ticket失败:" + data.message;
+        }
+      }
+    });
+  }
+
+  function getCustomerInfo() {
+    $.ajax({
+      url: wap_config.data_service_site2 + "?function=TraceQuery&Code=" + code,
+      cache: false,
+      async: false,
+      type: "get",
+      dataType: "jsonp",
+      success: function (res, textStatus) {
+        if (res && res.Data) {
+          var BatchID = res.Data.BatchData.BatchID;
+          $.ajax({
+            url: wap_config.data_service_site2 + "?function=GetProductBatchCustomFunction&BatchID=" + BatchID,
+            cache: false,
+            async: false,
+            type: "get",
+            dataType: "jsonp",
+            success: function (res, textStatus) {
+              if (res.Data.CustomTitle != null) {
+                if (res.Data.CustomTitle.length > 0) {
+                  if (res.Data.CustomTitle[0].ShareTitle != '') {
+                    t = res.Data.CustomTitle[0].ShareTitle;
+                  }
+                  if (res.Data.CustomTitle[0].ShareDescription != '') {
+                    d = res.Data.CustomTitle[0].ShareDescription;
+                  }
+                  if (res.Data.CustomTitle[0].ShareIco != '') {
+                    imgInfo = res.Data.CustomTitle[0].ShareIco;
+                  }
+                }
+              }
+            }
+          })
+
+          getTicket();
+        } else {
+          weixinInitiError = "获取Ticket失败:" + data.message;
+        }
+      }
+    });
+  }
+
+  $(function () {
+    var TraceType = urlQuery(window.location.href.toLocaleLowerCase()).tracetype || '';
+    var batchid = urlQuery(window.location.href.toLocaleLowerCase()).batchid || '';
+    if (batchid) {
+      previewMicroPage();
+    } else if (!batchid) {
+      getCustomerInfo();
+      initMicroPage();
+    }
+  })
+
+</script>
+</html>

@@ -51,6 +51,7 @@
   },
 
 ##下拉使用方式：
+#remote-select
 <cjm-search-item label="产品分类" search-key="classifyID" v-model="search.classifyID">
           <cjm-remote-select :remote-url="$globalData.get('trace', 'apiUrl').certificate.PRODUCT_CALSSIFY" value-key="classifyID" label-key="classifyName" v-model="search.classifyID">
           </cjm-remote-select>

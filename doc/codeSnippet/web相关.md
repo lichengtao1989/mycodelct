@@ -51,7 +51,10 @@
   },
 
 ##下拉使用方式：
-
+<cjm-search-item label="产品分类" search-key="classifyID" v-model="search.classifyID">
+          <cjm-remote-select :remote-url="$globalData.get('trace', 'apiUrl').certificate.PRODUCT_CALSSIFY" value-key="classifyID" label-key="classifyName" v-model="search.classifyID">
+          </cjm-remote-select>
+</cjm-search-item>
 <nz-select v-model="item.productName">
     <nz-option v-for="(item,index) in infoVal" :key="index" :label="item.ProductName" :value="item.PesticideId"></nz-option>
 </nz-select>

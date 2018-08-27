@@ -6,6 +6,8 @@ let getTest = require('./src/getTest');
 let getList = require('./src/getList');
 let doDelete = require('./src/doDelete');
 let getUserInfo = require('./src/getUserInfo');
+let userInfoUpdate = require('./src/userInfoUpdate');
+
 
 
 
@@ -31,6 +33,9 @@ app.get('/userInfo', (req, res) => {
 });
 app.post('/api/doAddUsers', (req, res) => {
   doAddUsers(req, res);
+});
+app.post('/api/userInfoUpdate', (req, res) => {
+  userInfoUpdate(req, res);
 });
 app.get('/api/getUserList', (req, res) => {
   // console.log(req)

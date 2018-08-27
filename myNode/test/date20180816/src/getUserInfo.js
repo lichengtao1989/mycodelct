@@ -1,10 +1,9 @@
-let connectDb = require('../lib/db/connect');
-
-function getUserInfo(req, res) {
-  console.log(req.query)
-  connectDb().then((client)=>{
-    let db=client.db(dbName);
-  })
+let findInfo = require('../lib/db/findInfo');
+const dbName = 'student';
+const dbCollection = 'users';
+function getFindInfo(req, res) {
+  findInfo(dbName,dbCollection,req.query,res)
+  // console.log(findInfo(req))
 }
 
-module.exports = getUserInfo;
+module.exports = getFindInfo;

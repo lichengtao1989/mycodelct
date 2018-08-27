@@ -16,10 +16,17 @@
       margin-top: 15px;
       cursor: pointer;
     }
+    #czxs{
+      display: none;
+      color: red;
+      padding-bottom:20px;
+
+    }
   </style>
 </head>
 
 <body>
+  <h1 id="czxs">修改成功!</h1>
   <div class="pp1">
     姓名:
     <input type="nickname" class="nickname" value="">
@@ -50,9 +57,6 @@
     };
     $(function () {
       var userId = getUrlParam('id');
-      console.log(userId)
-
-
       $.ajax({
         type: "get",
         url: "/api/getUserInfo",
@@ -60,12 +64,46 @@
           userId: userId
         },
         dataType: "json",
-        success: function (data) {
-          console.log(data);
+        success: function (res) {
+          console.log(res);
+          if(res.resultCode==200){
+            var info=res.data;
+            $('.nickname').val(info.nickname);
+            $('.hobby').val(info.hobby);
+            $('.age').val(info.age);
+            $('.phone').val(info.phone);
 
+          }else{
+            alert(res.msg)
+          }
         }
       });
-
+      $('.tijiao').click(function(){
+        $.ajax({
+        type: "post",
+        url: "/api/userInfoUpdate",
+        data: {
+          userId: userId,
+          nickname:$('.nickname').val(),
+          hobby:$('.hobby').val(),
+          age:$('.age').val(),
+          phone:$('.phone').val(),
+        },
+        dataType: "json",
+        success: function (res) {
+          console.log(res);
+          if(res.resultCode==200){
+            $('#czxs').text('修改成功').show();
+            setTimeout(function(){
+              window.location.href='/userlist';
+            },2000);
+          }else{
+            $('#czxs').text(res.msg).show();
+           
+          }
+        }
+      });
+      });
     });
   </script>
 </body>

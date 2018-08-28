@@ -1,5 +1,5 @@
 let formidable = require('formidable');
-let checkPhone = require('../lib/db/checkphone');
+// let checkPhone = require('../lib/db/checkphone');
 let updateInfo = require('../lib/db/updateInfo');
 
 const dbName = 'student';

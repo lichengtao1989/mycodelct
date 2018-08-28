@@ -1,3 +1,11 @@
+##数组的find方法
+  watch: {
+    baseID: function(val) {
+    
+      this.baseInfo = this.baseAry.find(element => element.baseID == val);
+     
+    }
+  },
 ##promise 和async await 
 我写过很大型的异步逻辑，中间一层用到Promise.all，同时外层和内层都用await，用非常美观的函数式风格实现，举例如下（该例子先取得一组用户名，然后向数据库查询这些用户的分数，返回其中分数超过50的用户）：
 

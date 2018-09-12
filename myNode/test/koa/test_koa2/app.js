@@ -8,6 +8,8 @@ const logger = require('koa-logger')
 
 const index = require('./routes/index')
 const users = require('./routes/users')
+const bootstrap = require('./routes/bootstrap')
+
 
 // error handler
 onerror(app)
@@ -20,8 +22,11 @@ app.use(json())
 app.use(logger())
 app.use(require('koa-static')(__dirname + '/public'))
 
-app.use(views(__dirname + '/views', {
-  extension: 'pug'
+// app.use(views(__dirname + '/views', {
+//   extension: 'pug'
+// }))
+app.use(views(__dirname + '/views',{
+  map : {html:'ejs'}
 }))
 
 // logger
@@ -32,9 +37,10 @@ app.use(async (ctx, next) => {
   console.log(`${ctx.method} ${ctx.url} - ${ms}ms`)
 })
 
-// routes
+// routes00
 app.use(index.routes(), index.allowedMethods())
 app.use(users.routes(), users.allowedMethods())
+app.use(bootstrap.routes(), bootstrap.allowedMethods())
 
 // error-handling
 app.on('error', (err, ctx) => {

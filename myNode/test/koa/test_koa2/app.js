@@ -9,6 +9,7 @@ const logger = require('koa-logger')
 const index = require('./routes/index')
 const users = require('./routes/users')
 const bootstrap = require('./routes/bootstrap')
+const elementui = require('./routes/elementui')
 
 
 // error handler
@@ -41,6 +42,7 @@ app.use(async (ctx, next) => {
 app.use(index.routes(), index.allowedMethods())
 app.use(users.routes(), users.allowedMethods())
 app.use(bootstrap.routes(), bootstrap.allowedMethods())
+app.use(elementui.routes(), elementui.allowedMethods())
 
 // error-handling
 app.on('error', (err, ctx) => {

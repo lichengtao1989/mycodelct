@@ -2,7 +2,7 @@ const router = require('koa-router')()
 
 router.prefix('/bootstrap')
 router.get('/', async (ctx, next) => {
-  await ctx.render('index', {
+  await ctx.render('bootstrap', {
     title: 'Hello Koa 2.0!'
   })
 })

@@ -1,13 +1,14 @@
 const router = require('koa-router')()
 
+router.prefix('/elementui')
 router.get('/', async (ctx, next) => {
-  await ctx.render('index', {
+  await ctx.render('elementui', {
     title: 'Hello Koa 2.0!'
   })
 })
 
 router.get('/string', async (ctx, next) => {
-  ctx.body = 'koa2 string'
+  ctx.body = 'bootstrap'
 })
 
 router.get('/json', async (ctx, next) => {

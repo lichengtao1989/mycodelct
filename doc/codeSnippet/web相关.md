@@ -1,3 +1,29 @@
+##form清除验证
+ watch: {
+    'form.productID': function(val) {
+      this.form.breedingRecordList = [{ cubsBatch: '', number: '' }];
+      this.$nextTick(function() {
+        this.$refs.form.clearValidate();
+      });
+    },
+    $route: function() {
+      this.setViewPage();
+    }
+  },
+  
+   async show(data) {
+      this.visible = true;
+      this.form = Object.deepClone(this.formModle);
+      await this.$nextTick();
+      this.$refs.form.clearValidate();
+      let userInfo = this.$storage.get('userInfo');
+      this.form.person = userInfo.userName;
+      this.timeFn();
+      if (data) {
+        this.editFn(data);
+      }
+    }
+
 ##数组的find方法
   watch: {
     baseID: function(val) {

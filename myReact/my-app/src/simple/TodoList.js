@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component,Fragment } from 'react';
 import TodoItem from './TodoItem';
-// import logo from './logo.svg';
+import CssTest from './CssTest';
 // import './App.css';
 
 class TodoList extends Component {
@@ -14,6 +14,7 @@ class TodoList extends Component {
   }
   render() {
     return (
+      <Fragment>
       <div className="App">
         {/* todolist */}
         <label htmlFor="insetarea">输入内容</label>
@@ -22,7 +23,10 @@ class TodoList extends Component {
         <ul>
           {this.getTodoItem()}
         </ul>
+
       </div>
+      <CssTest />
+      </Fragment>
     );
   }
   getTodoItem(){

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 // import logo from './logo.svg';
-import TodoItem from './simple/TodoItem';
+// import TodoItem from './simple/TodoItem';
 import './App.css';
 
 class App extends Component {
@@ -43,7 +43,7 @@ class App extends Component {
   }
   deleteHandle(idx) {
     let list = [...this.state.list];
-    list.splice(idx);
+    list.splice(idx,1);
     console.log(list);
     this.setState({ list: list });
   }

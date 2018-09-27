@@ -1,20 +1,51 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+// import logo from './logo.svg';
+import TodoItem from './simple/TodoItem';
 import './App.css';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      inputValue: '',
+      list: [111, 222]
+    };
+  }
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React  1</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        {/* todolist */}
+        <label htmlFor="insetarea">输入内容</label>
+        <input id="insetarea" value={this.state.inputValue} onChange={this.changeHandle.bind(this)} />
+        <button onClick={this.clickHandle.bind(this)}>提交</button>
+        <ul>
+          {this.state.list.map((item, index) => {
+            return (
+              <li key={index} onClick={this.deleteHandle.bind(this, index)} dangerouslySetInnerHTML={{ __html: item }}>
+                {/* {item} */}
+              </li>
+            );
+          })}
+        </ul>
       </div>
     );
+  }
+  changeHandle(e) {
+    this.setState({
+      inputValue: e.target.value
+    });
+  }
+  clickHandle() {
+    this.setState({
+      list: [...this.state.list, this.state.inputValue],
+      inputValue: ''
+    });
+  }
+  deleteHandle(idx) {
+    let list = [...this.state.list];
+    list.splice(idx);
+    console.log(list);
+    this.setState({ list: list });
   }
 }
 

@@ -6,6 +6,7 @@ import CssTest from './CssTest';
 class TodoList extends Component {
   constructor(props) {
     super(props);
+    console.log(this)
     this.state = {
       inputValue: '',
       list: []

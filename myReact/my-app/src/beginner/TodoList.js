@@ -31,9 +31,12 @@ class TodoList extends Component {
     );
   }
   componentDidMount(){
-    axios.get('/list.json').then((res)=>{
+    axios.get('/v2/movie/search?q=%E6%88%98%E7%8B%BC&count=2').then((res)=>{
       console.log(res)
     })
+    // axios.get('/list.json').then((res)=>{
+    //   console.log(res)
+    // })
   }
   handleChange(){
     this.setState(store.getState())

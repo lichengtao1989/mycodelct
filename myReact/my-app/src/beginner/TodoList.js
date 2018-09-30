@@ -1,17 +1,14 @@
 import React, { Component } from 'react';
 // import {Input,Button,List} from 'antd';
 import TodoListUi from './TodoListUi';
-import axios from 'axios';
+// import axios from 'axios';
 import store from '../store/index';
-import { getInputChangeAction,doAddHandle,doDelHandle } from '../store/actionCreators';
-// import { CHANGE_INPUT_VALUE,ADD_TODO_ITEM,DEL_TODO_ITEM } from '../store/actionTypes';
-
+import { getInputChangeAction,doAddHandle,doDelHandle,getInitList } from '../store/actionCreators';//getTodoList  initListAction
 import 'antd/dist/antd.css'
 
 class TodoList extends Component {
   constructor(props) {
     super(props);
-    // console.log(this)
     this.state = store.getState();
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -31,11 +28,22 @@ class TodoList extends Component {
     );
   }
   componentDidMount(){
-    axios.get('/v2/movie/search?q=%E6%88%98%E7%8B%BC&count=2').then((res)=>{
-      console.log(res)
-    })
-    // axios.get('/list.json').then((res)=>{
+    const action=getInitList();
+    store.dispatch(action);
+    //store.dispatch 发送一个action到reducer
+
+
+    //redux-thunk
+    // const action=getTodoList();//redux-thunk 业务解耦
+    // store.dispatch(action);//如果action是个fnc 会自动传dispatch
+
+    //常规
+    // axios.get('/v2/movie/search?q=%E6%88%98%E7%8B%BC&count=2').then((res)=>{
     //   console.log(res)
+    //   let data=res.data.subjects;
+    //   data=['hello','dear','lee']
+    //   const action = initListAction(data);
+    //   store.dispatch(action);
     // })
   }
   handleChange(){

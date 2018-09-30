@@ -15,3 +15,25 @@ proxy: {
   }
 },
 ```
+
+在package.json中设置
+
+  "scripts": {
+
+​    "start": "react-scripts start"
+
+  },
+
+  "proxy": {
+
+​    "/v2": {
+
+​      "target": "http://api.douban.com/",
+
+​      "changeOrigin": true
+
+​    }
+
+  },
+
+  "devDependencies": {}

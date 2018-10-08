@@ -3,8 +3,7 @@ import {
   HeaderWrapper,
   Logo,
   Nav,
-  NavItem,
-  NavSearch
+  NavItem
  } from './style';
 class Header extends Component {
   render(){
